@@ -1,73 +1,41 @@
-// 'use client'
+'use client';
 
-// import { useEffect, useState } from 'react'
-// import { toast } from 'react-hot-toast'
-// import { useDebounce } from 'use-debounce'
+// import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+import { useDebouncedCallback } from 'use-debounce';
 
 
-// export function Search({ searchGuests }) {
-//   const [query, setQuery] = useState('')
-//   const [searchResults, setSearchResults] = useState([])
-//   const [debouncedQuery] = useDebounce(query, 150)
 
-//   useEffect(() => {
-//     let current = true
-//     if (debouncedQuery.trim().length > 0) {
-//       searchGuests(debouncedQuery).then((results) => {
-//         if (current) {
-//           setSearchResults(results)
-//         }
-//       })
-//     }
-//     return () => {
-//       current = false
-//     }
-//   }, [debouncedQuery, searchGuests])
+export const Search = ({ placeholder }) => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
-//   return (
-//     <div className="w-full">
-//       <Command label="Command Menu" shouldFilter={false} className="h-[200px]">
-//         <nput
-//           id="search"
-//           placeholder="Search for Pokémon"
-//           className="focus:ring-0 sm:text-sm text-base focus:border-0 border-0 active:ring-0 active:border-0 ring-0 outline-0"
-//           value={query}
-//           onValueChange={(q) => setQuery(q)}
-//         />
-//         <CommandList>
-//           <CommandEmpty>No results found.</CommandEmpty>
-//           {searchResults.map((pokemon) => (
-//             <CommandItem
-//               key={pokemon.id}
-//               value={pokemon.name}
-//               className="data-[selected='true']:bg-zinc-50  flex items-center justify-between py-3"
-//               onSelect={(p) => {
-//                 console.log(p)
-//                 toast.success(`You selected ${p}!`)
-//               }}
-//             >
-//               <div className="flex items-center space-x-4">
-//                 <div className="space-y-1">
-//                   <p className="text-sm text-gray-500">
-//                     {pokemon.name.substring(0, 90)}
-//                   </p>
-//                 </div>
-//               </div>
-//               <div className="text-sm text-gray-500">
-//                 {pokemon.similarity ? (
-//                   <div className="text-xs font-mono p-0.5 rounded bg-zinc-100">
-//                     {pokemon.similarity.toFixed(3)}
-//                   </div>
-//                 ) : (
-//                   <div />
-//                 )}
-//               </div>
-//             </CommandItem>
-//           ))}
-//         </CommandList>
-//       </Command>
-//     </div>
-//   )
-// }
+  const handleSearch = useDebouncedCallback((term) => {
+    const params = new URLSearchParams(searchParams);
+    if (term) {
+      params.set('query', term);
+    } else {
+      params.delete('query');
+    }
+    replace(`${pathname}?${params.toString()}`);
+    console.log(term);
+  }, 300);
 
-// Search.displayName = 'Search'
+  return (
+    <div className="relative flex flex-1 flex-shrink-0">
+      <label htmlFor="search" className="sr-only">
+        Search
+      </label>
+      <input
+        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+        placeholder={placeholder}
+        onChange={(e) => {
+          handleSearch(e.target.value);
+        }}
+        defaultValue={searchParams.get('query')?.toString()}
+      />
+      {/* <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" /> */}
+    </div>
+  );
+}

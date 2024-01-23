@@ -1,34 +1,46 @@
-'use client'
-
-import { useEffect, useState } from 'react';
 import { timeAgo } from '@/lib/utils';
 import Image from 'next/image';
 import RefreshButton from './refresh-button';
 import { seed } from '@/lib/guests';
-import { getAllGuests, searchGuests } from '../app/api';
+import { Search } from './Search'
+import { getAllGuests, searchGuests } from '@/app/api';
 
-const Table = () => {
-  const [guests, setGuests] = useState([]);
+const Table = async ({ query, currentPage }) => {
 
-  console.log('heyaegyjgaeyjg')
+  const dataFromApi = await searchGuests(query)
+  console.log(dataFromApi)
+  const data = dataFromApi.rows
+  // useEffect(() => {
+  //   const getGuests = async ()  => {
+  //     try {
+  //       const res = await getAllGuests()
+  //       console.log('client side', res)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const query = 'alex'
+  //       setData(res.rows)
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   }
+  //   getGuests()
+  // }, [] )
 
-        const res = await searchGuests(query)
-        console.log(res)
+  // useEffect(() => {
+  //   const getGuests = async ()  => {
+  //     try {
 
-        // const { rows } = data || { rows: [] };
-        // setGuests(rows);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+  //       const res = searchTerm ? await searchGuests(searchTerm) : await getAllGuests()
+  //       console.log('client side', res)
 
-    fetchData();
-  }, []);
+  //       setData(res.rows)
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   }
+  //   getGuests()
+  // }, [searchTerm] )
+
+
+
 
   return (
     <div className="bg-white/30 p-12 shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full">
@@ -39,8 +51,7 @@ const Table = () => {
         <RefreshButton />
       </div>
       <div className="divide-y divide-gray-900/5">
-        {guests.length > 0 ? (
-          guests.map((guest) => (
+          { data.map((guest) => (
             <div key={guest.name} className="flex items-center justify-between py-3">
               <div className="space-y-1">
               <p className="font-medium leading-none">{guest.name}</p>
@@ -52,10 +63,8 @@ const Table = () => {
               <p className="text-sm text-gray-500">{timeAgo(guest.createdAt)}</p>
               </div>
             </div>
-          ))
-        ) : (
-          <p>Loading...</p>
-        )}
+          )) }
+
       </div>
     </div>
   );

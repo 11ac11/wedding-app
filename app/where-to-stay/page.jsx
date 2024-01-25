@@ -1,3 +1,6 @@
+import Image from "next/image";
+import CastelldefelsBeach from "../../public/images/castelldefels-beach.png"
+
 export default async function WhereToStay() {
 
   return (
@@ -10,14 +13,12 @@ export default async function WhereToStay() {
           evening and the next day together, but understand this might not be the
           best option for everyone.
         </p>
-        <br/>
         <p>
           The venue is only 400 metres from the C-32 motorway and 10 minutes by
           car from Barcelona El Prat airport. Free parking is provided for those with
           rooms. It is also easily accessible via public transport from Barcelona
           (see how to get there).
         </p>
-        <br/>
         <p>
           If you are interested in staying at the venue, please let us know ASAP
           and we can help with guest discounts.
@@ -32,6 +33,7 @@ export default async function WhereToStay() {
           as numerous bars and restaurants. It is easy to access Barcelona via
           public transpot for a day trip.
         </p>
+      <Image src={CastelldefelsBeach} width={800} />
       </div>
 
       <div className="info-section">
@@ -40,11 +42,9 @@ export default async function WhereToStay() {
           Barcelona is within 30 minutes by train and car so is a good option
           if you want to explore the wonderful city we call home.
         </p>
-        <br/>
         <p>
           Areas we advise to stay in/see:
         </p>
-        <br/>
         <p>
           If you want any food recommendations, please see this document:
         </p>

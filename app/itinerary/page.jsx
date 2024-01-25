@@ -26,7 +26,6 @@ export default async function Itinerary() {
           We'll have a variety of music, starting with some 80s at the beginning
           and gradually navigating through other genres.` }
         </p>
-        <br/>
         <p>
           { `This part of the evening will an open bar. We would ask that anyone
           who wants to continue the party to provide a 20€ donation towards the bar.` }

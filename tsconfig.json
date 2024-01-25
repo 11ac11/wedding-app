@@ -29,6 +29,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "lib/seed.ts"
-, "components/table.jsx", "app/page.jsx"  ],
+, "components/table.jsx", "pages/rsvp.jsx"  ],
   "exclude": ["node_modules"]
 }

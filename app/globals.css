@@ -1,19 +1,166 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.cdnfonts.com/css/best-wishes-2');
+
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --cream: #FFF8F2;
+  --subtlepeach: #FFF1EB;
+  --offblack: #3B3B3B;
+  --cornflowerblue: #95bddd;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--offblack);
+  background: linear-gradient(180deg, var(--cream) 0%, var(--subtlepeach) 100%);
+  font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
+  letter-spacing: 0.02rem;
+  font-weight: 200;
+  line-height: 1.5;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+p {
+  margin: 0;
+  letter-spacing: 0.05rem
+}
+
+.uppercase {
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+}
+
+h1 {
+  font-family: 'Best Wishes', sans-serif;
+  font-size: 4rem;
+  font-weight: 400;
+  margin: 2rem 0;
+}
+
+h2 {
+  margin: 1rem 0;
+  border-bottom: 2px solid var(--cornflowerblue);
+}
+
+.nav-container {
+  width: 100%;
+  border-bottom: 1px solid var(--cornflowerblue);
+  display: flex;
+  justify-content:  center;
+}
+
+nav {
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+  font-weight: 600;
+  width: 800px;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+nav a {
+  color: var(--offblack);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--cornflowerblue);
+}
+
+.info-section {
+  max-width: 800px;
+  width: 80%;
+  margin: 0 2rem 2rem;
+}
+
+.table-container {
+  display: flex;
+  width: 75vw;
+  max-width: 800px;
+}
+
+.fade-in {
+  animation: fadeIn 1s;
+}
+
+.fade-out {
+  animation: fadeOut 1s;
+}
+
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.table-all-rows {
+  width: 100%;
+}
+
+.table-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+}
+
+.guest-info {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+}
+
+.guestname-row {
+  justify-content: flex-start;
+  gap: 2rem;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.search-container label {
+  margin: 1rem;
+}
+
+.search {
+  outline: 2px solid transparent;
+  padding: 0.1rem 0.75rem;
+  border-radius: 1rem;
+  border: solid 1px lightgray;
+  line-height: 2;
+}
+
+.search:focus-visible, .search:hover {
+  outline: 2px solid var(--cornflowerblue);
+  outline-offset: -2px;
+  transition: outline 0.3s ease;
 }

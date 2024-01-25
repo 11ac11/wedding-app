@@ -3,8 +3,20 @@
 // import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
+import styled from 'styled-components';
 
-
+const SearchContainer = styled.div`
+  margin: 1rem 1rem;
+`
+const SearchInput = styled.input`
+  padding: 0.5rem 0.75rem;
+  border-radius: 1rem;
+  border: solid 1px lightgray;
+  &:focus-visible {
+    outline: 2px solid var(--offblack);
+    outline-offset: -2px;
+  }
+`
 
 export const Search = ({ placeholder }) => {
   const searchParams = useSearchParams();
@@ -19,16 +31,15 @@ export const Search = ({ placeholder }) => {
       params.delete('query');
     }
     replace(`${pathname}?${params.toString()}`);
-    console.log(term);
   }, 300);
 
   return (
-    <div className="relative flex flex-1 flex-shrink-0">
+    <div className="search-container">
       <label htmlFor="search" className="sr-only">
-        Search
+        Search for the names in your party:
       </label>
       <input
-        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+        className="search"
         placeholder={placeholder}
         onChange={(e) => {
           handleSearch(e.target.value);

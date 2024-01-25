@@ -4,9 +4,9 @@ import Nav from '../components/nav'
 
 export const metadata = {
   metadataBase: new URL('https://postgres-starter.vercel.app'),
-  title: 'Vercel Postgres Demo',
+  title: `Robyn & Alex's Wedding`,
   description:
-    'A simple Next.js app with Vercel Postgres as the database',
+    'September 2025',
 }
 
 // const inter = Inter({

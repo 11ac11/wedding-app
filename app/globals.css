@@ -200,3 +200,17 @@ nav a:hover {
   outline-offset: -2px;
   transition: outline 0.3s ease;
 }
+
+@media (max-width: 600px) {
+  h1.getting-married {
+    top: 10%;
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 350px) {
+  h1.getting-married {
+  top: 10%;
+  font-size: 4rem;
+  }
+}

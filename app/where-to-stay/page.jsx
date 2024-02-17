@@ -1,5 +1,7 @@
 import Image from "next/image";
 import CastelldefelsBeach from "../../public/images/castelldefels-beach.png"
+import hotelTurret from "../../public/images/hotel-turret.png"
+
 
 export default async function WhereToStay() {
 
@@ -23,6 +25,7 @@ export default async function WhereToStay() {
           If you are interested in staying at the venue, please let us know ASAP
           and we can help with guest discounts.
         </p>
+        <Image src={hotelTurret} quality={100} style={{ borderRadius: '1rem' }}/>
       </div>
 
       <div className="info-section">

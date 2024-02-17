@@ -1,5 +1,5 @@
 import Image from "next/image"
-import hotelTurret from "../public/images/hotel-turret.png"
+import VidCont from '../components/vid-container'
 
 export const runtime = 'edge'
 export const preferredRegion = 'home'
@@ -9,8 +9,10 @@ export default async function App() {
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
-      <h1>{ `We're getting married!`}</h1>
-      <Image src={hotelTurret} quality={100} style={{ borderRadius: '1rem' }}/>
+      <h1 className="getting-married low">{ `We're getting married!`}</h1>
+      <h1 className="getting-married">{ `We're getting married!`}</h1>
+      <VidCont />
+
     </main>
   )
 }

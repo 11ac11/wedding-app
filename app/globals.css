@@ -2,18 +2,20 @@
 
 
 :root {
-  --cream: #FFF8F2;
-  --champagne: #F5DBCB;
-  --subtlepeach: #FFF1EB;
-  --offblack: #231F20;
-  --cornflowerblue: #68BFEB;
-  --lightcoral: #ED7B84;
-  --slategrey: #A09C94;
+  --white: #fdfdfd;
+  --offwhite: #F8F8F8;
+  --champagne: #fff8f4;
+  --subtlepeach: #fff6f1;
+  --offblack: #231f20;
+  --cornflowerblue: #68bfeb;
+  --lightcoral: #ed7b7b;
+  --slategrey: #a09c94;
+  --gold: #a09c94;
 }
 
 body {
   color: var(--offblack);
-  background: linear-gradient(180deg, var(--subtlepeach) 0%, var(--champagne) 100%);
+  background: linear-gradient(180deg, var(--white) 0%, var(--offwhite) 100%);
   min-height: 100vh;
   font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
   letter-spacing: 0.02rem;
@@ -33,6 +35,24 @@ main {
 
 h1, h2, h3, h4, p {
   margin: 0;
+}
+
+h1.getting-married {
+  position: absolute;
+  top: 25%;
+  font-size: 6rem;
+  text-align: center;
+  z-index: 1;
+  color: var(--white);
+  mix-blend-mode: overlay;
+  overflow: hidden;
+  max-height: 100vh;
+}
+
+h1.getting-married.low {
+  mix-blend-mode: unset;
+  color: black;
+  z-index: -1;
 }
 
 p {
@@ -55,11 +75,12 @@ h1 {
 
 h2 {
   margin: 1rem 0;
-  border-bottom: 2px solid var(--cream);
+  border-bottom: 2px solid var(--gold);
   letter-spacing: 3px;
 }
 
 .nav-container {
+  background: var(--white);
   width: 100%;
   border-bottom: 1px solid rgba(255,255,255,0.25);;
   display: flex;
@@ -67,6 +88,7 @@ h2 {
   -webkit-box-shadow: 0px 25px 50px 0px rgba(255,255,255,0.25);
   -moz-box-shadow: 0px 25px 50px 0px rgba(255,255,255,0.25);
   box-shadow: 0px 25px 50px 0px rgba(255,255,255,0.25);
+  z-index: 1;
 }
 
 nav {
@@ -163,7 +185,7 @@ nav a:hover {
   outline: 2px solid transparent;
   padding: 0.1rem 1rem;
   border-radius: 1rem;
-  border: solid 1px var(--slategrey);
+  border: solid 1px var(--gold);
   line-height: 1.4;
   font-size: 2rem;
   font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
@@ -174,7 +196,7 @@ nav a:hover {
 }
 
 .search:focus-visible, .search:hover {
-  outline: 2px solid var(--cornflowerblue);
+  outline: 2px solid var(--gold);
   outline-offset: -2px;
   transition: outline 0.3s ease;
 }

@@ -1,6 +1,6 @@
-import Image from "next/image";
 import fromBcnTrain from "../../public/images/bcn-castelldefels.jpg"
 import fromAirportCar from "../../public/images/airport-venue-car.jpg"
+import ImgCont from "../../components/img-container"
 
 export default async function HowToGetThere() {
 
@@ -15,7 +15,7 @@ export default async function HowToGetThere() {
       </div>
       <div className="info-section">
         <h2 className="uppercase">Train from Barcelona</h2>
-        <Image src={fromBcnTrain} width={800} />
+        <ImgCont src={fromBcnTrain} fill={true} className='image' />
         <p>
           { `Castadafells train station is a 15 minute walk from the venue or a 5
           minute taxi. If you're heading from Barcelona, you can get the R2S/R2
@@ -31,7 +31,7 @@ export default async function HowToGetThere() {
       </div>
       <div className="info-section">
         <h2 className="uppercase">Car/Taxi from Airport</h2>
-        <Image src={fromAirportCar} width={800} />
+        <ImgCont src={fromAirportCar} fill={true} className='image' />
         <p>
           { `The venue is only 400 metres from the C-32 motorway and 10 minutes by
           car from El Prat airport. Free parking is provided for those with
@@ -44,7 +44,7 @@ export default async function HowToGetThere() {
           { `A taxi from Barcelona centre costs around 30-50€ each way,
           and the drive is slightly longer than the train (~40 mins depending on traffic).
           You can hail the black and yellow taxis from the street, or book one through
-          Uber/Freenow, although Uber/Freenow tend to be cheaper.`}
+          Uber/Freenow, who tend to be cheaper.`}
         </p>
       </div>
 

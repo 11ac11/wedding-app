@@ -10,7 +10,7 @@ const VidContainer = styled.div`
 
   & > video {
     z-index: 0;
-    object-fit: fill;
+    object-fit: cover;
   }
 `
 

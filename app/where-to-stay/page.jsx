@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ImgCont from "../../components/img-container"
 import CastelldefelsBeach from "../../public/images/castelldefels-beach.png"
 import hotelTurret from "../../public/images/hotel-turret.png"
 
@@ -25,7 +25,7 @@ export default async function WhereToStay() {
           If you are interested in staying at the venue, please let us know ASAP
           and we can help with guest discounts.
         </p>
-        <Image src={hotelTurret} quality={100} style={{ borderRadius: '1rem' }}/>
+        <ImgCont src={hotelTurret} fill={true} className='image' />
       </div>
 
       <div className="info-section">
@@ -36,7 +36,8 @@ export default async function WhereToStay() {
           as numerous bars and restaurants. It is easy to access Barcelona via
           public transpot for a day trip.
         </p>
-      <Image src={CastelldefelsBeach} width={800} />
+
+      <ImgCont src={CastelldefelsBeach} fill={true} className='image' />
       </div>
 
       <div className="info-section">

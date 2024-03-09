@@ -32,7 +32,7 @@ export default async function WhereToStay() {
         <h2 className="uppercase">In Castadefells</h2>
         <p>
           The venue is located in the town of Castadefells. It has a lovely
-          long, child friendly beach with soft white sand and calm waters, as well
+          long, child-friendly beach with soft white sand and calm waters, as well
           as numerous bars and restaurants. It is easy to access Barcelona via
           public transpot for a day trip.
         </p>

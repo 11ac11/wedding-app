@@ -49,16 +49,16 @@ const Navigation = styled.nav`
   }
 `
 
-export default function Nav() {
+export default function Nav({ openClose }) {
   const router = useRouter()
 
   return (
     <NavContainer>
       <Navigation>
-        <Link href="/">Home</Link>
-        <Link href="/rsvp">RSVP</Link>
-        <Link href="/how-to-get-there">How To Get There</Link>
-        <Link href="/where-to-stay">Where To Stay</Link>
+        <Link href="/" onClick={() => openClose()}>Home</Link>
+        <Link href="/rsvp" onClick={() => openClose()}>RSVP</Link>
+        <Link href="/how-to-get-there" onClick={() => openClose()}>How To Get There</Link>
+        <Link href="/where-to-stay" onClick={() => openClose()}>Where To Stay</Link>
       </Navigation>
     </NavContainer>
   )

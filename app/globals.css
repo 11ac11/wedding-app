@@ -28,10 +28,11 @@ body {
 
 main {
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding: 150px 0;
+  justify-content: center;
+  padding: 20px 0;
 }
 
 h1,
@@ -42,9 +43,14 @@ p {
   margin: 0;
 }
 
+h1 {
+  width: 80%;
+  text-align: center;
+}
+
 h1.getting-married {
   position: absolute;
-  top: 25%;
+  top: 20%;
   font-size: 6rem;
   text-align: center;
   z-index: 1;
@@ -182,16 +188,22 @@ h2 {
   transition: outline 0.3s ease;
 }
 
+@media (max-width: 900px) {
+  h1 {
+    max-width: 800px;
+  }
+}
+
 @media (max-width: 600px) {
   h1.getting-married {
-    top: 10%;
+    top: 28%;
     font-size: 4rem;
   }
 }
 
 @media (max-width: 350px) {
   h1.getting-married {
-    top: 10%;
+    top: 28%;
     font-size: 4rem;
   }
 }

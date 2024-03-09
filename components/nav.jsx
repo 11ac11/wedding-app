@@ -17,6 +17,7 @@ const NavContainer = styled.div`
   -moz-box-shadow: 0px 25px 50px 0px rgba(255,255,255,0.25);
   box-shadow: 0px 25px 50px 0px rgba(255,255,255,0.25);
   z-index: 1;
+  user-select: none;
 
   @media (max-width: 768px) {
     nav {

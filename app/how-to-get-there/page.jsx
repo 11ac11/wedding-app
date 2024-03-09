@@ -1,5 +1,6 @@
 import fromBcnTrain from "../../public/images/bcn-castelldefels.jpg"
 import fromAirportCar from "../../public/images/airport-venue-car.jpg"
+import taxiRanks from "../../public/images/train-stations-taxi-rank.jpg"
 import ImgCont from "../../components/img-container"
 
 export default async function HowToGetThere() {
@@ -22,6 +23,7 @@ export default async function HowToGetThere() {
           from Passaig de Gracia or Sants train stations and the journey is
           around 30 minutes.` }
         </p>
+        <ImgCont src={taxiRanks} fill={true} className='image' />
         <p>
           {`There are TWO stations on the RS2/R2 line, 'Castadefells' and
           'Castadefells platja' (beach). Although the platja stop looks closer

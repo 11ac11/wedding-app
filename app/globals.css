@@ -31,9 +31,14 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  padding: 150px 0;
 }
 
-h1, h2, h3, h4, p {
+h1,
+h2,
+h3,
+h4,
+p {
   margin: 0;
 }
 
@@ -79,41 +84,6 @@ h2 {
   letter-spacing: 3px;
 }
 
-.nav-container {
-  background: var(--white);
-  width: 100%;
-  border-bottom: 1px solid rgba(255,255,255,0.25);;
-  display: flex;
-  justify-content: center;
-  -webkit-box-shadow: 0px 25px 50px 0px rgba(255,255,255,0.25);
-  -moz-box-shadow: 0px 25px 50px 0px rgba(255,255,255,0.25);
-  box-shadow: 0px 25px 50px 0px rgba(255,255,255,0.25);
-  z-index: 1;
-}
-
-nav {
-  padding: 1.5rem 0;
-  display: flex;
-  flex-direction: row;
-  text-transform: uppercase;
-  font-weight: 600;
-  width: 800px;
-  justify-content: space-between;
-  align-items: center;
-
-}
-
-nav a {
-  color: var(--offblack);
-  text-decoration: none;
-  transition: color 0.3s ease;
-  letter-spacing: 3px;
-}
-
-nav a:hover {
-  color: var(--slategrey);
-}
-
 .info-section {
   max-width: 800px;
   width: 80%;
@@ -136,13 +106,23 @@ nav a:hover {
 
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 .table-all-rows {
@@ -195,7 +175,8 @@ nav a:hover {
   margin-bottom: 1.5rem;
 }
 
-.search:focus-visible, .search:hover {
+.search:focus-visible,
+.search:hover {
   outline: 2px solid var(--gold);
   outline-offset: -2px;
   transition: outline 0.3s ease;
@@ -210,7 +191,7 @@ nav a:hover {
 
 @media (max-width: 350px) {
   h1.getting-married {
-  top: 10%;
-  font-size: 4rem;
+    top: 10%;
+    font-size: 4rem;
   }
 }

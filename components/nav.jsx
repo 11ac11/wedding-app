@@ -5,6 +5,9 @@ import { useRouter } from 'next/navigation'
 import styled, { css } from 'styled-components';
 
 const NavContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   background: var(--white);
   width: 100%;
   border-bottom: 1px solid rgba(255,255,255,0.25);;

@@ -4,9 +4,11 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import Nav from './nav';
 
-const Container = styled.button`
-  background: none;
-  border: none;
+const Container = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: fit-content;
 
   height: 20px;
   display: flex;
@@ -28,13 +30,13 @@ const Container = styled.button`
     props.$isOpen &&
     css`
       .lineOne {
-        transform: rotate(45deg) translate(3px, 10px);
+        transform: rotate(45deg) translate(4px, 10px);
       }
       .lineTwo {
         opacity: 0;
       }
       .lineThree {
-        transform: rotate(-45deg) translate(2px, -9px);
+        transform: rotate(-45deg) translate(3px, -9px);
       }
     `}
 `;

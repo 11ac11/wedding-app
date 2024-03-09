@@ -46,6 +46,7 @@ p {
 h1 {
   width: 80%;
   text-align: center;
+  user-select: none;
 }
 
 h1.getting-married {

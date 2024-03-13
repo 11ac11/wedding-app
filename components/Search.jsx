@@ -3,20 +3,6 @@
 // import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
-import styled from 'styled-components';
-
-const SearchContainer = styled.div`
-  margin: 1rem 1rem;
-`
-const SearchInput = styled.input`
-  padding: 0.5rem 0.75rem;
-  border-radius: 1rem;
-  border: solid 1px lightgray;
-  &:focus-visible {
-    outline: 2px solid var(--offblack);
-    outline-offset: -2px;
-  }
-`
 
 export const Search = ({ placeholder }) => {
   const searchParams = useSearchParams();
@@ -25,7 +11,7 @@ export const Search = ({ placeholder }) => {
 
   const handleSearch = useDebouncedCallback((term) => {
     const params = new URLSearchParams(searchParams);
-    if (term) {
+    if (term && term.length > 2) {
       params.set('query', term);
     } else {
       params.delete('query');

@@ -1,0 +1,28 @@
+.dropdown-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  height: 25px;
+}
+
+.dropdown-options {
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2;
+}
+
+.dropdown-option {
+  padding: 0 10px;
+}
+
+.dropdown-option:hover {
+  background-color: pink;
+}

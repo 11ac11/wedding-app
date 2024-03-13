@@ -157,6 +157,10 @@ h2 {
   gap: 2rem;
 }
 
+.guestname-row p {
+  margin-bottom: 0;
+}
+
 .search-container {
   display: flex;
   flex-direction: column;
@@ -187,6 +191,14 @@ h2 {
   outline: 2px solid var(--gold);
   outline-offset: -2px;
   transition: outline 0.3s ease;
+}
+
+table.guestlist {
+  width: 80%;
+}
+
+table.guestlist th {
+  text-align: left;
 }
 
 @media (max-width: 900px) {

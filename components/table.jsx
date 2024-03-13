@@ -1,26 +1,29 @@
-import { searchGuests } from '@/app/api';
+'use client'
 
-const Table = async ({ query, currentPage }) => {
-  const dataFromApi = await searchGuests(query)
-  const data = dataFromApi.rows
+import React, { useState, useEffect } from 'react'
+import { searchGuests } from '@/app/api';
+import { GuestForm } from './guest-form';
+
+const Table = ({ query }) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (query) {
+        const dataFromApi = await searchGuests(query);
+        setData(dataFromApi.rows);
+      }
+    };
+
+    fetchData();
+  }, [query]);
 
   return (
-    <div className={ query ? 'table-container fade-in' : 'table-container fade-out' }>
+    <div className={query ? 'table-container fade-in' : 'table-container fade-out'}>
       <div className="table-all-rows">
-        { query && data.map((guest) => (
-          <div key={guest.name} className="table-row">
-            <div className="guest-info guestname-row">
-              <p className="uppercase">{guest.name}</p>
-              <p className="secondary">Attending: {guest.attending ? '✅' : 'not attending'}</p>
-            </div>
-            <div className="guest-info">
-              <p className="secondary">Dietary req: {guest.dietary_requirements ? 'dietery' : 'nothing'}</p>
-              <p className="secondary">Allergies: {guest.allergies}</p>
-              <p className="secondary">Accomodation: {guest.interested_in_accommodation}</p>
-              <p className="secondary">Under 14: {guest.is_under_14 || 'no'}</p>
-            </div>
-          </div>
-        )) }
+        {query && data.map((guest) => (
+          <GuestForm key={guest.id} guest={guest} />
+        ))}
       </div>
     </div>
   );

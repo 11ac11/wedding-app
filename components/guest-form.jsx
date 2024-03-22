@@ -29,7 +29,7 @@ export const GuestForm = ({ guest }) => {
         />
         <Dropdown
           label="Main"
-          options={['meat', 'fish']}
+          options={['Herb Crusted Beef Tenderloin with Red Wine Demi-Glace, accompanied by Garlic Mashed Potatoes and Sauteed Green Beans Almondine', 'Grilled Chilean Sea Bass with Lemon Herb Butter Sauce, served with Wild Rice Pilaf and Roasted Asparagus']}
           onSelect={(val) => setMain(val)}
           value={main}
         />

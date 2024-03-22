@@ -63,7 +63,7 @@ export const Hamburger = () => {
         <Line className={isOpen ? 'lineTwo' : 'lineTwo closed'} />
         <Line className={isOpen ? 'lineThree' : 'lineThree closed'} />
       </Container>
-      {isOpen && <Nav openClose={openClose} />}
+      {<Nav openClose={openClose} className={isOpen ? 'open' : 'close'} />}
     </>
   );
 };

@@ -32,7 +32,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px 0;
+  padding: 60px 0;
 }
 
 .rsvp-container {
@@ -42,7 +42,7 @@ main {
   align-items: center;
   justify-content: flex-start;
   padding: 20px 0;
-  margin-top: 100px;
+  width: 80%;
 }
 
 h1,
@@ -161,6 +161,7 @@ h2 {
   width: 100%;
   justify-content: space-between;
   padding: 0.25rem 0;
+  gap: 2rem;
 }
 
 .guestname-row {
@@ -183,18 +184,26 @@ h2 {
   margin-bottom: 1.5rem;
 }
 
-.search {
+input {
+  font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
+  height: 34px;
+  font-weight: 200;
+  border: solid 1px var(--gold);
   outline: 2px solid transparent;
   padding: 0.1rem 1rem;
-  border-radius: 1rem;
-  border: solid 1px var(--gold);
+  min-width: 220px;
+  box-sizing: border-box;
+}
+
+.search {
+  padding: 0.1rem 1rem;
+  border-radius: 6px;
   line-height: 1.4;
-  font-size: 2rem;
-  font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 3px;
-  font-weight: 200;
   margin-bottom: 1.5rem;
+  caret-color: var(--slategrey);
 }
 
 .search:focus-visible,

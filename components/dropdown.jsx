@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import './dropdown.css';
+import CaretDownIcon from './CaretDownIcon';
+
 
 const useOutsideClick = (ref, callback) => {
   const handleClick = (e) => {
@@ -40,7 +42,12 @@ export const Dropdown = ({ label, value, options, onSelect, placeholder = '' }) 
   return (
     <div className="dropdown-wrap" ref={ref}>
       <span>{label}:</span>
-      <input className="dropdown-toggle" onClick={toggleDropdown} value={value ? value : placeholder} />
+      <div className="input-container">
+        <input className="dropdown-input" onClick={toggleDropdown} value={value ? value : placeholder} />
+        <div onClick={toggleDropdown}>
+          <CaretDownIcon toggleDropdown={toggleDropdown} />
+        </div>
+      </div>
       {isOpen && (
         <div className="dropdown-options">
           <ul>

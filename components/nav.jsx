@@ -18,6 +18,8 @@ const NavContainer = styled.div`
   box-shadow: 0px 25px 50px 0px rgba(255,255,255,0.25);
   z-index: 1;
   user-select: none;
+  transition: all 0.2s linear;
+  opacity: ${({ className }) => className === 'open' ? 1 : 0};
 
   @media (max-width: 768px) {
     nav {
@@ -27,6 +29,7 @@ const NavContainer = styled.div`
     }
   }
 `
+
 
 const Navigation = styled.nav`
   padding: 1.5rem 0;
@@ -50,11 +53,12 @@ const Navigation = styled.nav`
   }
 `
 
-export default function Nav({ openClose }) {
+export default function Nav({ openClose, className }) {
+  console.log(className)
   const router = useRouter()
 
   return (
-    <NavContainer>
+    <NavContainer className={className}>
       <Navigation>
         <Link href="/" onClick={() => openClose()}>Home</Link>
         <Link href="/rsvp" onClick={() => openClose()}>RSVP</Link>

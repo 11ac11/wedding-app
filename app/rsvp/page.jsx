@@ -14,11 +14,11 @@ export default async function RSVP({ searchParams }) {
   const currentPage = Number(searchParams?.page) || 1;
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
-      <h1>R.S.V.P.</h1>
-      <Search onSearch={searchGuests}/>
-      <Suspense fallback={<TablePlaceholder />}>
-        <Table query={query} currentPage={currentPage}/>
-      </Suspense>
+      <div className='rsvp-container'>
+        <h1>R.S.V.P.</h1>
+        <Search onSearch={searchGuests} />
+        {query && <Table query={query} currentPage={currentPage} />}
+      </div>
     </main>
   )
 }

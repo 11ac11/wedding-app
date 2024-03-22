@@ -14,13 +14,13 @@ export const GuestForm = ({ guest }) => {
     <div key={guest.name} className="table-row">
       <div className="guest-info guestname-row">
         <p className="uppercase">{guest.name}</p>
+      </div>
+      <div className="guest-info">
         <Dropdown label="Attending"
           options={['yes', 'no']}
           onSelect={(val) => setAttending(val)}
           value={attending}
         />
-      </div>
-      <div className="guest-info">
         <Dropdown
           label="Starter"
           options={['salad', 'pasta']}

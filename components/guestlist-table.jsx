@@ -9,10 +9,11 @@ const GuestlistTable = async ({ currentPage }) => {
       <tr key={guest.name}>
         <td>{index + 1}</td>
         <td>{guest.name}</td>
-        <td>{guest.attending ? '✅' : 'not attending'}</td>
+        <td>{guest.guestlist}</td>
+        <td>{guest.attending ? '✅' : '❌'}</td>
         <td>{guest.starter}</td>
         <td>{guest.main}</td>
-        <td>{guest.dietary_requirements ? 'dietary' : 'nothing'}</td>
+        <td>{guest.dietary_requirements ? 'dietary' : '-'}</td>
         <td>{guest.interested_in_accommodation}</td>
         <td>{guest.is_under_14 ? 'yes' : 'no'}</td>
       </tr>
@@ -25,6 +26,7 @@ const GuestlistTable = async ({ currentPage }) => {
         <tr>
           <th>#</th>
           <th>Name</th>
+          <th>Guestlist</th>
           <th>Attending</th>
           <th>Starter</th>
           <th>Main</th>

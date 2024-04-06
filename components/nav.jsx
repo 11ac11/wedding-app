@@ -54,7 +54,6 @@ const Navigation = styled.nav`
 `
 
 export default function Nav({ openClose, className }) {
-  console.log(className)
   const router = useRouter()
 
   return (

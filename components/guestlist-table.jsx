@@ -1,23 +1,22 @@
-import { getAllGuests } from '@/app/api';
+const GuestlistTable = async ({ currentPage, sortedData }) => {
 
-const GuestlistTable = async ({ currentPage }) => {
-  const dataFromApi = await getAllGuests();
-  const data = dataFromApi.rows;
-
-  const renderRows = (data) => {
-    return data.map((guest, index) => (
-      <tr key={guest.name}>
-        <td>{index + 1}</td>
-        <td>{guest.name}</td>
-        <td>{guest.guestlist}</td>
-        <td>{guest.attending ? '✅' : '❌'}</td>
-        <td>{guest.starter}</td>
-        <td>{guest.main}</td>
-        <td>{guest.dietary_requirements ? 'dietary' : '-'}</td>
-        <td>{guest.interested_in_accommodation}</td>
-        <td>{guest.is_under_14 ? 'yes' : 'no'}</td>
-      </tr>
-    ));
+  const renderRows = (sortedData) => {
+    return sortedData.map((guest, index) => {
+      console.log(guest)
+      return (
+        <tr key={guest.name}>
+          <td>{index + 1}</td>
+          <td>{guest.name}</td>
+          <td>{guest.guestlist}</td>
+          <td>{guest.attending ? '✅' : '❌'}</td>
+          <td>{guest.starter}</td>
+          <td>{guest.main}</td>
+          <td>{guest.dietary_requirements ? 'dietary' : '-'}</td>
+          <td>{guest.interested_in_accommodation}</td>
+          <td>{guest.is_under_14 ? 'yes' : 'no'}</td>
+        </tr>
+      )
+    });
   };
 
   return (
@@ -35,7 +34,7 @@ const GuestlistTable = async ({ currentPage }) => {
           <th>Under 14</th>
         </tr>
       </thead>
-      <tbody>{renderRows(data)}</tbody>
+      <tbody>{renderRows(sortedData)}</tbody>
     </table>
   );
 };

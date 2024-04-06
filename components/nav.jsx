@@ -60,9 +60,11 @@ export default function Nav({ openClose, className }) {
     <NavContainer className={className}>
       <Navigation>
         <Link href="/" onClick={() => openClose()}>Home</Link>
+        <Link href="/itinerary" onClick={() => openClose()}>Itinerary</Link>
+        <Link href="/faqs" onClick={() => openClose()}>FAQs</Link>
+        <Link href="/travel" onClick={() => openClose()}>Travel</Link>
+        <Link href="/accomodation" onClick={() => openClose()}>Accomodation</Link>
         <Link href="/rsvp" onClick={() => openClose()}>RSVP</Link>
-        <Link href="/how-to-get-there" onClick={() => openClose()}>How To Get There</Link>
-        <Link href="/where-to-stay" onClick={() => openClose()}>Where To Stay</Link>
       </Navigation>
     </NavContainer>
   )

@@ -3,7 +3,7 @@ import CastelldefelsBeach from "../../public/images/castelldefels-beach.png"
 import hotelTurret from "../../public/images/hotel-turret.png"
 
 
-export default async function WhereToStay() {
+export default async function Accomodation() {
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
@@ -37,7 +37,7 @@ export default async function WhereToStay() {
           public transpot for a day trip.
         </p>
 
-      <ImgCont src={CastelldefelsBeach} fill={true} className='image' />
+        <ImgCont src={CastelldefelsBeach} fill={true} className='image' />
       </div>
 
       <div className="info-section">

@@ -154,6 +154,13 @@ h2 {
   padding: 0.25rem 0;
 }
 
+td {
+  white-space: nowrap;
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .guest-info {
   display: flex;
   flex-direction: row;
@@ -193,6 +200,14 @@ input {
   padding: 0.1rem 1rem;
   min-width: 220px;
   box-sizing: border-box;
+}
+
+input[type="file"] {
+  height: unset;
+  border: none;
+  outline: none;
+  padding: 0;
+  min-width: 0;
 }
 
 .search {

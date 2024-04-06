@@ -4,6 +4,8 @@ import { getAllGuests, searchGuests } from '../api'
 import Table from '@/components/table.jsx'
 import TablePlaceholder from '@/components/table-placeholder'
 import { Search } from '/components/Search'
+import ImgCont from "../../components/img-container"
+import TurrentBW from "../../public/images/image2 1.png"
 
 export const runtime = 'edge'
 export const preferredRegion = 'home'
@@ -15,6 +17,7 @@ export default async function RSVP({ searchParams }) {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
       <div className='rsvp-container'>
+        <ImgCont src={TurrentBW} fill={true} className='image' width='25%' />
         <h1>R.S.V.P.</h1>
         <Search onSearch={searchGuests} />
         {query && <Table query={query} currentPage={currentPage} />}

@@ -3,7 +3,7 @@ import fromAirportCar from "../../public/images/airport-venue-car.jpg"
 import taxiRanks from "../../public/images/train-stations-taxi-rank.jpg"
 import ImgCont from "../../components/img-container"
 
-export default async function HowToGetThere() {
+export default async function Travel() {
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">

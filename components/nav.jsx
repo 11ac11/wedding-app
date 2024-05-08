@@ -20,6 +20,7 @@ const NavContainer = styled.div`
   user-select: none;
   transition: all 0.2s linear;
   opacity: ${({ className }) => className === 'open' ? 1 : 0};
+  height: 60px;
 
   @media (max-width: 768px) {
     nav {
@@ -32,7 +33,7 @@ const NavContainer = styled.div`
 
 
 const Navigation = styled.nav`
-  padding: 1.5rem 0;
+  height: 100%;
   display: flex;
   flex-direction: row;
   text-transform: uppercase;

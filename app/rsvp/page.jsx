@@ -2,7 +2,6 @@
 import { Suspense } from 'react'
 import { getAllGuests, searchGuests } from '../api'
 import Table from '@/components/table.jsx'
-import TablePlaceholder from '@/components/table-placeholder'
 import { Search } from '/components/Search'
 import ImgCont from "../../components/img-container"
 import TurrentBW from "../../public/images/image2 1.png"

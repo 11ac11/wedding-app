@@ -15,8 +15,8 @@ export default async function FAQs() {
         </p>
         <h2 className="uppercase">Gifts</h2>
         <p>
-          We don't expect any gifts from anyone, your presence is enough! However,
-          if you really wish to give a gift, we would prefer a donation towards ç
+          We don&apos;t expect any gifts from anyone, your presence is enough! However,
+          if you really wish to give a gift, we would prefer a donation towards
           our honeymoney. Please donate via this link:
         </p>
       </div>

@@ -17,7 +17,7 @@ export default async function FAQs() {
         <p>
           We don't expect any gifts from anyone, your presence is enough! However,
           if you really wish to give a gift, we would prefer a donation towards ç
-          our honeymoney. Please donate via this link: 'link goes here'
+          our honeymoney. Please donate via this link:
         </p>
       </div>
     </main>

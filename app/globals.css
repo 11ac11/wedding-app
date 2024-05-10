@@ -31,17 +31,16 @@ main {
   min-height: 100vh;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 100px 0;
+  justify-content: flex-start;
+  padding: 80px 0;
 }
 
 .rsvp-container {
   display: flex;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 20px 0;
   width: 80%;
 }
 
@@ -130,6 +129,43 @@ h3 {
   animation: fadeOut 1s;
 }
 
+.hide {
+  animation: hideMe 1s;
+}
+
+.image {
+  opacity: 1;
+  transition: all 0.5s ease-out;
+}
+
+.image.fade-out {
+  opacity: 0;
+  top: -500px;
+}
+
+.image-container {
+  /* Replace with your actual class name */
+  position: relative;
+  width: 100%;
+  /* Default width */
+  height: 400px;
+  transition: height 0.4s ease-out;
+}
+
+.image-container.shrink {
+  height: 0px;
+}
+
+.image-container>img {
+  object-fit: contain;
+  width: 100%;
+  /* Override default width for image */
+  position: relative;
+  /* Override default position for image */
+  height: auto;
+  /* Remove height restriction for image */
+}
+
 
 @keyframes fadeIn {
   0% {
@@ -143,11 +179,14 @@ h3 {
 
 @keyframes fadeOut {
   0% {
-    opacity: 1;
+    /* opacity: 1; */
+    /* display: block; */
+    top: 0;
   }
 
   100% {
-    opacity: 0;
+    /* opacity: 0; */
+    top: -999;
   }
 }
 

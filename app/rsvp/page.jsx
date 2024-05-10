@@ -1,4 +1,3 @@
-
 import { Suspense } from 'react'
 import { getAllGuests, searchGuests } from '../api'
 import Table from '@/components/table.jsx'
@@ -11,12 +10,21 @@ export const preferredRegion = 'home'
 export const dynamic = 'force-dynamic'
 
 export default async function RSVP({ searchParams }) {
+
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
+
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
-      <div className='rsvp-container'>
-        <ImgCont src={TurrentBW} fill={true} className='image' width='25%' />
+      <div className={`rsvp-container`}>
+        <ImgCont
+          src={TurrentBW}
+          alt="Turrent Black and White"
+          fill={true}
+          className='image-container'
+          width="400px"
+          isVisible={!query}
+        />
         <h1>R.S.V.P.</h1>
         <Search onSearch={searchGuests} />
         {query && <Table query={query} currentPage={currentPage} />}

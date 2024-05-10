@@ -11,6 +11,7 @@ export const GuestForm = ({ guest }) => {
   const [main, setMain] = useState(guest.main || '')
   const [accomodation, setAccomodation] = useState(guest.accomodation || '')
   const [isChild, setIsChild] = useState(guest.is_under_14 || '')
+  const [expand, setExpand] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,8 +36,9 @@ export const GuestForm = ({ guest }) => {
     <div key={guest.name} className="table-row">
       <div className="guest-info guestname-row">
         <p className="uppercase">{guest.name}</p>
+        <p onClick={() => { setExpand(!expand) }}>↓</p>
       </div>
-      <div className="guest-info">
+      {expand && <div className="guest-info">
         <Dropdown label="Attending"
           options={['yes', 'no']}
           onSelect={(val) => setAttending(val)}
@@ -70,7 +72,7 @@ export const GuestForm = ({ guest }) => {
             />
           </>}
         <button onClick={handleSubmit}>update</button>
-      </div>
+      </div>}
     </div>
   );
 };

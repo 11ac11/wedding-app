@@ -308,15 +308,19 @@ table.guestlist th {
 }
 
 @media (max-width: 600px) {
+  .image-container-shrinkable {
+    height: 100px;
+  }
+
   h1.getting-married {
-    top: 28%;
-    font-size: 4rem;
+    font-size: 3rem;
+    margin-top: -30px;
+    line-height: 60px;
   }
 }
 
 @media (max-width: 350px) {
   h1.getting-married {
-    top: 28%;
-    font-size: 4rem;
+    font-size: 3rem;
   }
 }

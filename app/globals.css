@@ -146,7 +146,7 @@ h3 {
 .image-container {
   /* Replace with your actual class name */
   position: relative;
-  width: 100%;
+  width: 800px;
   /* Default width */
   height: 400px;
   transition: height 0.4s ease-out;

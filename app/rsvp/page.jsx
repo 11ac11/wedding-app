@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import { getAllGuests, searchGuests } from '../api'
 import Table from '@/components/table.jsx'
 import { Search } from '/components/Search'
-import ImgCont from "../../components/img-container"
+import HideImage from "../../components/hide-img"
 import TurrentBW from "../../public/images/image2 1.png"
 
 export const runtime = 'edge'
@@ -17,13 +17,14 @@ export default async function RSVP({ searchParams }) {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
       <div className={`rsvp-container`}>
-        <ImgCont
+        <HideImage
           src={TurrentBW}
           alt="Turrent Black and White"
           fill={true}
           className='image-container'
           width="400px"
           isVisible={!query}
+          isShrinkable
         />
         <h1>R.S.V.P.</h1>
         <Search onSearch={searchGuests} />

@@ -3,7 +3,7 @@ import { getAllGuests, searchGuests } from '../api'
 import Table from '@/components/table.jsx'
 import { Search } from '/components/Search'
 import HideImage from "../../components/hide-img"
-import TurrentBW from "../../public/images/image2 1.png"
+import Turrent from "../../public/images/image2 1.png"
 
 export const runtime = 'edge'
 export const preferredRegion = 'home'
@@ -18,8 +18,8 @@ export default async function RSVP({ searchParams }) {
     <main className="relative flex min-h-screen flex-col items-center justify-center">
       <div className={`rsvp-container`}>
         <HideImage
-          src={TurrentBW}
-          alt="Turrent Black and White"
+          src={Turrent}
+          alt="Turrent"
           fill={true}
           width="400px"
           isVisible={!query}

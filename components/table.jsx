@@ -24,6 +24,11 @@ const Table = ({ query }) => {
         {query && data.map((guest) => (
           <GuestForm key={guest.id} guest={guest} />
         ))}
+        {query && data.length === 0 &&
+          <>
+            {`Sorry, we can't find you! Please check your name or contact us directly.`}
+          </>
+        }
       </div>
     </div>
   );

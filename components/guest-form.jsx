@@ -5,7 +5,6 @@ import { Dropdown } from './dropdown'
 import { updateGuest } from '@/app/api';
 
 export const GuestForm = ({ guest }) => {
-  console.log(guest)
   const [attending, setAttending] = useState(guest.attending || '')
   const [starter, setStarter] = useState(guest.starter || '')
   const [main, setMain] = useState(guest.main || '')
@@ -33,10 +32,10 @@ export const GuestForm = ({ guest }) => {
   };
 
   return (
-    <div key={guest.name} className="table-row">
-      <div className="guest-info guestname-row">
+    <div key={guest.name} className={`table-row ${expand ? 'expanded' : 'mini'}`}>
+      <div className={`guestname-row`} onClick={() => { setExpand(!expand) }}>
         <p className="uppercase">{guest.name}</p>
-        <p onClick={() => { setExpand(!expand) }}>↓</p>
+        <p>↓</p>
       </div>
       {expand && <div className="guest-info">
         <Dropdown label="Attending"

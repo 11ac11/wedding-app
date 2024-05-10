@@ -6,7 +6,6 @@ import Image from 'next/image';
 const ImgContainer = styled.div`
   position: relative;
   width: ${({ width }) => width || '100%'};
-  height: 400px;
   transition: height 0.5s ease-out;
 
   & > img {
@@ -17,9 +16,9 @@ const ImgContainer = styled.div`
   }
 `;
 
-export default function HideImage({ className, src, fill, width }) {
+export default function ImgCont({ src, fill, width }) {
   return (
-    (<ImgContainer width={width} className={className}>
+    (<ImgContainer width={width}>
       <Image src={src} fill={fill} />
     </ImgContainer>)
   )

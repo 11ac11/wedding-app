@@ -42,19 +42,19 @@
   color: var(--slategrey);
 }
 
-ul {
+.dropdown-options>ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-li {
+.dropdown-options>ul>li {
   padding: 0.5rem;
   cursor: pointer;
   border-bottom: 1px solid var(--slategrey);
 }
 
-li:hover {
+.dropdown-options>ul>li:hover {
   background-color: var(--slategrey);
 }
 

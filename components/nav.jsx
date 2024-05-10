@@ -23,6 +23,7 @@ const NavContainer = styled.div`
   height: 60px;
 
   @media (max-width: 768px) {
+    height: auto;
     nav {
       /* Adjust styles for tablet and mobile devices */
       flex-direction: column;

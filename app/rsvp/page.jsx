@@ -21,7 +21,6 @@ export default async function RSVP({ searchParams }) {
           src={TurrentBW}
           alt="Turrent Black and White"
           fill={true}
-          className='image-container'
           width="400px"
           isVisible={!query}
           isShrinkable

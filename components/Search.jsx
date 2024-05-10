@@ -11,7 +11,7 @@ export const Search = ({ placeholder }) => {
 
   const handleSearch = useDebouncedCallback((term) => {
     const params = new URLSearchParams(searchParams);
-    if (term && term.length > 2) {
+    if (term && term.includes(' ') && term.length > 2) {
       params.set('query', term);
     } else {
       params.delete('query');
@@ -22,7 +22,7 @@ export const Search = ({ placeholder }) => {
   return (
     <div className="search-container">
       <label htmlFor="search" className="sr-only">
-        Search for the names in your party:
+        Search for the full names of your party:
       </label>
       <input
         className="search"

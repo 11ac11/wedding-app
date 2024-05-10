@@ -143,7 +143,7 @@ h3 {
   top: -500px;
 }
 
-.image-container {
+.image-container-shrinkable {
   /* Replace with your actual class name */
   position: relative;
   width: 800px;
@@ -152,11 +152,11 @@ h3 {
   transition: height 0.4s ease-out;
 }
 
-.image-container.shrink {
-  height: 0px;
+.image-container-shrinkable.shrink {
+  height: 100px;
 }
 
-.image-container>img {
+.image-container-shrinkable>img {
   object-fit: contain;
   width: 100%;
   /* Override default width for image */
@@ -200,6 +200,12 @@ h3 {
   width: 100%;
   justify-content: space-between;
   padding: 0.25rem 0;
+  transition: height 0.4s ease-out;
+  height: inherit;
+}
+
+.table-row.expanded {
+  height: 100%;
 }
 
 td {
@@ -220,8 +226,19 @@ td {
 }
 
 .guestname-row {
+  display: flex;
+  flex-direction: row;
   justify-content: flex-start;
   gap: 2rem;
+  cursor: pointer;
+}
+
+.guestname-row.expanded {
+  height: 100%;
+}
+
+.guestname-row:hover {
+  color: var(--slategrey)
 }
 
 .guestname-row p {

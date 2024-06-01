@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const NavContainer = styled.div`
   position: absolute;
@@ -32,7 +32,6 @@ const NavContainer = styled.div`
   }
 `
 
-
 const Navigation = styled.nav`
   height: 100%;
   display: flex;
@@ -56,8 +55,6 @@ const Navigation = styled.nav`
 `
 
 export default function Nav({ openClose, className }) {
-  const router = useRouter()
-
   return (
     <NavContainer className={className}>
       <Navigation>
@@ -66,7 +63,7 @@ export default function Nav({ openClose, className }) {
         <Link href="/faqs" onClick={() => openClose()}>FAQs</Link>
         <Link href="/travel" onClick={() => openClose()}>Travel</Link>
         <Link href="/accomodation" onClick={() => openClose()}>Accomodation</Link>
-        <Link href="/rsvp" onClick={() => openClose()} scroll={false}>RSVP</Link>
+        <Link href="/rsvp" onClick={() => openClose()}>RSVP</Link>
       </Navigation>
     </NavContainer>
   )

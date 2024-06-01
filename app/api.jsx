@@ -23,7 +23,6 @@ export const getAllGuests = async () => {
 }
 
 export const searchGuests = async (searchTerm) => {
-  console.log(searchTerm)
   try {
     const withSpaces = searchTerm
 

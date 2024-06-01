@@ -1,23 +1,13 @@
-import { Suspense } from 'react'
-import { getAllGuests, searchGuests } from '../api'
+'use client'
+
+import { useState } from 'react'
 import Table from '@/components/table.jsx'
 import { Search } from '/components/Search'
 import HideImage from "../../components/hide-img"
 import Turrent from "../../public/images/image2 1.png"
 
-export const runtime = 'edge'
-export const preferredRegion = 'home'
-export const dynamic = 'force-dynamic'
-
-export default async function RSVP({ searchParams }) {
-
-  // const query = searchParams?.query || '';
-  // const currentPage = Number(searchParams?.page) || 1;
-
-  const returnQuery = (query) => {
-    return query
-  }
-
+export const Rsvp = () => {
+  const [searchTerm, setSearchTerm] = useState('')
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
@@ -27,12 +17,15 @@ export default async function RSVP({ searchParams }) {
           alt="Turrent"
           fill={true}
           width="400px"
-          isVisible={!returnQuery()}
+          isVisible={!searchTerm}
           isShrinkable
         />
         <h1>R.S.V.P.</h1>
-        <Search />
+        <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <Table query={searchTerm || ''} />
       </div>
     </main>
   )
 }
+
+export default Rsvp;

@@ -40,34 +40,41 @@ export const GuestForm = ({ guest }) => {
       {expand && <div className="guest-info">
         <Dropdown label="Attending"
           options={['yes', 'no']}
-          onSelect={(val) => setAttending(val)}
+          onChange={(val) => setAttending(val)}
           value={attending}
+          defaultValue={''}
         />
         {attending === 'yes' &&
           <>
             <Dropdown
               label="Under 14"
               options={['yes', 'no']}
-              onSelect={(val) => setIsChild(val)}
+              onChange={(val) => setIsChild(val)}
               value={isChild}
+              defaultValue={''}
             />
             <Dropdown
               label="Starter"
               options={isChild === 'yes' ? ['kidstarter1', 'kidstarter2'] : ['salad', 'pasta']}
-              onSelect={(val) => setStarter(val)}
+              onChange={(val) => setStarter(val)}
               value={starter}
+              defaultValue={''}
             />
             <Dropdown
               label="Main"
               options={['Herb Crusted Beef Tenderloin with Red Wine Demi-Glace, accompanied by Garlic Mashed Potatoes and Sauteed Green Beans Almondine', 'Grilled Chilean Sea Bass with Lemon Herb Butter Sauce, served with Wild Rice Pilaf and Roasted Asparagus']}
-              onSelect={(val) => setMain(val)}
+              onChange={(val) => setMain(val)}
               value={main}
+              defaultValue={''}
+
             />
             <Dropdown
               label="Accomodation"
               options={['yes', 'no']}
-              onSelect={(val) => setAccomodation(val)}
+              onChange={(val) => setAccomodation(val)}
               value={accomodation}
+              defaultValue={''}
+
             />
           </>}
         <button onClick={handleSubmit}>update</button>

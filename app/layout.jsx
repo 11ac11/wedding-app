@@ -1,4 +1,5 @@
 import './globals.css'
+import StyledJsxRegistry from '../lib/registry'
 import Nav from '../components/nav'
 import { Hamburger } from '../components/hamburger'
 
@@ -13,8 +14,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Hamburger />
-        {children}
+        <StyledJsxRegistry>
+          <Hamburger />
+          {children}
+        </StyledJsxRegistry>
       </body>
     </html>
   )

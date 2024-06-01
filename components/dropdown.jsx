@@ -20,7 +20,7 @@ const useOutsideClick = (ref, callback) => {
   });
 };
 
-export const Dropdown = ({ label, value, options, onSelect, placeholder = '' }) => {
+export const Dropdown = ({ label, value, options, onChange, placeholder = '' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef();
 
@@ -29,7 +29,7 @@ export const Dropdown = ({ label, value, options, onSelect, placeholder = '' }) 
   };
 
   const handleSelectOption = (option) => {
-    onSelect(option);
+    onChange(option);
     toggleDropdown()
   };
 
@@ -43,7 +43,7 @@ export const Dropdown = ({ label, value, options, onSelect, placeholder = '' }) 
     <div className="dropdown-wrap" ref={ref}>
       <span>{label}:</span>
       <div className="input-container">
-        <input className="dropdown-input" onClick={toggleDropdown} value={value ? value : placeholder} />
+        <input className="dropdown-input" onClick={toggleDropdown} value={value ? value : placeholder} onChange={() => { }} />
         <div onClick={toggleDropdown}>
           <CaretDownIcon toggleDropdown={toggleDropdown} />
         </div>

@@ -11,8 +11,13 @@ export const dynamic = 'force-dynamic'
 
 export default async function RSVP({ searchParams }) {
 
-  const query = searchParams?.query || '';
-  const currentPage = Number(searchParams?.page) || 1;
+  // const query = searchParams?.query || '';
+  // const currentPage = Number(searchParams?.page) || 1;
+
+  const returnQuery = (query) => {
+    return query
+  }
+
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
@@ -22,12 +27,11 @@ export default async function RSVP({ searchParams }) {
           alt="Turrent"
           fill={true}
           width="400px"
-          isVisible={!query}
+          isVisible={!returnQuery()}
           isShrinkable
         />
         <h1>R.S.V.P.</h1>
-        <Search onSearch={searchGuests} />
-        {query && <Table query={query} currentPage={currentPage} />}
+        <Search />
       </div>
     </main>
   )

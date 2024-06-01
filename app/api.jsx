@@ -1,4 +1,5 @@
 'use server'
+
 import { sql } from '@vercel/postgres'
 import { seed } from '@/lib/guests'
 
@@ -22,8 +23,9 @@ export const getAllGuests = async () => {
 }
 
 export const searchGuests = async (searchTerm) => {
+  console.log(searchTerm)
   try {
-    const withSpaces = searchTerm.replace('+', ' ')
+    const withSpaces = searchTerm
 
     const data = await sql`SELECT * FROM guests WHERE LOWER(name) LIKE ${'%' + withSpaces.toLowerCase() + '%'};`;
     return data

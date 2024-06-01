@@ -11,8 +11,6 @@ export default function Search({ searchTerm, setSearchTerm, editingGuestId }) {
     }
   }, 300);
 
-  console.log('search', editingGuestId)
-
   return (
     <>
       <div className={`search-container ${!!editingGuestId ? 'fade-out-shrink' : null}`}>

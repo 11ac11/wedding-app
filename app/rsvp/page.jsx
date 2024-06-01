@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Table from '@/components/table.jsx'
-import Search from '@/components/search.jsx'
+import Search from '@/components/search-two.jsx'
 import HideImage from "../../components/hide-img"
 import Turrent from "../../public/images/image2 1.png"
 

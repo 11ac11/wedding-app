@@ -269,19 +269,6 @@ td {
   margin-bottom: 0;
 }
 
-.search-container {
-  margin: 1rem;
-  width: 300px;
-  height: 110px;
-  overflow: hidden;
-}
-
-.search-container label {
-  display: block;
-  width: 100%;
-  text-align: center;
-}
-
 input {
   font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
   height: 34px;
@@ -299,24 +286,6 @@ input[type="file"] {
   outline: none;
   padding: 0;
   min-width: 0;
-}
-
-.search {
-  padding: 0.1rem 1rem;
-  border-radius: 6px;
-  line-height: 1.4;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin: 1rem 0;
-  caret-color: var(--slategrey);
-}
-
-.search:focus-visible,
-.search:hover {
-  outline: 2px solid var(--gold);
-  outline-offset: -2px;
-  transition: outline 0.3s ease;
 }
 
 table.guestlist {

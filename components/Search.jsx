@@ -5,6 +5,21 @@ import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 
 export const Search = ({ placeholder }) => {
+  const [scrollY, setScrollY] = useState(0);
+  const router = useRouter();
+
+  const handleReplace = (pathname, params) => {
+    setScrollY(window.scrollY); // Capture current scroll position
+    replace(`${pathname}?${params.toString()}`);
+  };
+
+  useEffect(() => {
+    if (scrollY) {
+      window.scrollTo({ top: scrollY, behavior: 'smooth' });
+      setScrollY(0); // Reset scroll state after use
+    }
+  }, [scrollY, router.asPath]);
+
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -16,7 +31,7 @@ export const Search = ({ placeholder }) => {
     } else {
       params.delete('query');
     }
-    replace(`${pathname}?${params.toString()}`);
+    handleReplace(pathname, params)
   }, 300);
 
   return (

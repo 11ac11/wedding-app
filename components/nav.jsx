@@ -40,17 +40,36 @@ const Navigation = styled.nav`
   width: 800px;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 
   a {
     color: var(--offblack);
     text-decoration: none;
     transition: color 0.3s ease;
     letter-spacing: 3px;
+    display: flex;
+    position: relative;
   }
 
-  a:hover {
-    color: var(--slategrey);
+  & > a::before {
+    content: "";
+    position: absolute;
+    bottom: -0.25rem;
+    width: 100%;
+    height: 2px;
+    background-color: #3B3B3B;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.2s ease;
   }
+
+  & > a:hover::before {
+    transform: scaleX(1);
+  }
+
+  // a:hover {
+  //   color: var(--slategrey);
+  // }
 `
 
 export default function Nav({ openClose, className }) {

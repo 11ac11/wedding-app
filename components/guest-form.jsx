@@ -24,6 +24,7 @@ const NameSection = styled.div`
   margin-bottom: 0.25rem;
 
   p {
+    font-size: 1.4rem;
     margin-bottom: 0rem;
   }
 
@@ -56,6 +57,17 @@ const NameSection = styled.div`
   &:hover::after {
     transform: scaleX(1);
   }
+`
+
+const GuestInfo = styled.div`
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+  gap: 2rem;
 `
 
 export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
@@ -96,7 +108,7 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
   const guestIsComplete = guestDetailsComplete()
 
   return (
-    <div key={guest.id} className={`table - row ${editingGuestId === guest.id ? 'expanded' : 'mini'} `}>
+    <div key={guest.id} className={`table-row ${editingGuestId === guest.id ? 'expanded' : 'mini'} `}>
       <GuestNameRow>
         <NameSection onClick={() => setEditingGuestId(guest.id === editingGuestId ? '' : guest.id)} $editingGuestId={!!editingGuestId}>
           <div>
@@ -108,7 +120,7 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
           </div>
         </NameSection>
       </GuestNameRow >
-      {editingGuestId === guest.id && <div className="guest-info">
+      {editingGuestId === guest.id && <GuestInfo>
         <Dropdown label="Attending"
           options={['yes', 'no']}
           onChange={(val) => setAttending(val)}
@@ -148,7 +160,7 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
             />
           </>}
         <Button onClick={handleSubmit} text={!!guestIsComplete ? 'update' : 'save rsvp'} />
-      </div>}
+      </GuestInfo>}
     </div >
   );
 };

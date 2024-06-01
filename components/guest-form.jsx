@@ -27,12 +27,17 @@ const NameSection = styled.div`
     margin-bottom: 0rem;
   }
 
-  & > div > p {
+  & > div {
+    display: flex;
+    gap: 2rem;
+  }
+
+  & > .edit > p {
     opacity: ${({ $editingGuestId }) => $editingGuestId ? 1 : 0};
     transition: opacity 0.2s ease;
   }
 
-  &:hover > div > p {
+  &:hover > .edit > p {
     opacity: 1;
   }
 
@@ -79,13 +84,27 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
     }
   };
 
+  const guestDetailsComplete = () => {
+    if ((starter, main, accomodation, isChild) || attending === 'no') {
+      return true
+    }
+    return false
+  }
+
+  console.log(guestDetailsComplete())
+
+  const guestIsComplete = guestDetailsComplete()
+
   return (
     <div key={guest.id} className={`table - row ${editingGuestId === guest.id ? 'expanded' : 'mini'} `}>
       <GuestNameRow>
         <NameSection onClick={() => setEditingGuestId(guest.id === editingGuestId ? '' : guest.id)} $editingGuestId={!!editingGuestId}>
-          <p className="uppercase">{guest.name}</p>
-          <div className={editingGuestId ? 'fadeIn' : 'fadeOut'}>
-            <p style={{ marginBottom: "0px" }} onClick={() => setEditingGuestId('')}>{editingGuestId ? 'X' : 'RSVP'}</p>
+          <div>
+            <p className="uppercase">{guest.name}</p>
+            <p className="uppercase">{guestIsComplete ? '✓' : ''}</p>
+          </div>
+          <div className='edit'>
+            <p style={{ marginBottom: "0px" }} onClick={() => setEditingGuestId('')}>{editingGuestId ? 'X' : guestIsComplete ? 'EDIT' : 'RSVP'}</p>
           </div>
         </NameSection>
       </GuestNameRow >
@@ -128,7 +147,7 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
 
             />
           </>}
-        <Button onClick={handleSubmit}>update</Button>
+        <Button onClick={handleSubmit} text={!!guestIsComplete ? 'update' : 'save rsvp'} />
       </div>}
     </div >
   );

@@ -141,11 +141,6 @@ h3 {
   animation: fadeOut 1s;
 }
 
-.fade-out-shrink {
-  animation: fadeOutAndShrink 0.5s;
-  animation-fill-mode: forwards;
-}
-
 .hide {
   animation: hideMe 1s;
 }
@@ -201,14 +196,6 @@ h3 {
 
   100% {
     top: -999;
-  }
-}
-
-@keyframes fadeOutAndShrink {
-  100% {
-    opacity: 0;
-    height: 0;
-    margin: 0;
   }
 }
 

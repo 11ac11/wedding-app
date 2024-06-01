@@ -23,9 +23,9 @@ export const StyledButton = styled.button`
   }
 `
 
-export const Button = ({ onClick, width }) => {
+export const Button = ({ onClick, width, text }) => {
 
   return (
-    <StyledButton onClick={onClick}>update</StyledButton>
+    <StyledButton onClick={onClick}>{text}</StyledButton>
   );
 };

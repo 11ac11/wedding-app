@@ -9,7 +9,7 @@ const SearchContainer = styled.div`
   opacity: ${({ $editingGuestId }) => $editingGuestId ? 0 : 1};
   width: 300px;
   overflow: hidden;
-  transition: height 0.2s ease-in, opacity 0.2s ease-in, margin 0.2s ease-in;
+  transition: height 0.5s ease-in, opacity 0.5s ease-in, margin 0.5s ease-in;
 
   & label {
     display: block;

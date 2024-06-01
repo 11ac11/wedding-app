@@ -2,7 +2,7 @@
 
 import { useDebouncedCallback } from 'use-debounce';
 
-const Search = ({ searchTerm, setSearchTerm, editingGuestId }) => {
+export default function Search({ searchTerm, setSearchTerm, editingGuestId }) {
   const handleSearch = useDebouncedCallback((term) => {
     if (term && term.includes(' ') && term.length > 2) {
       setSearchTerm(term)
@@ -30,5 +30,3 @@ const Search = ({ searchTerm, setSearchTerm, editingGuestId }) => {
     </>
   );
 }
-
-export default Search;

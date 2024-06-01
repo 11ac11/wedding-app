@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Dropdown } from './dropdown'
 import { Button } from './button'
 import { updateGuest } from '@/app/api';
@@ -10,11 +10,46 @@ const GuestNameRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
+  width: 100%;
+`
 
-  & > div {
-    display: flex;
-    gap: 1rem;
-    cursor: pointer;
+const NameSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.25rem;
+
+  p {
+    margin-bottom: 0rem;
+  }
+
+  & > div > p {
+    opacity: ${({ $editingGuestId }) => $editingGuestId ? 1 : 0};
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover > div > p {
+    opacity: 1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #3B3B3B;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.2s ease;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
   }
 `
 
@@ -30,7 +65,6 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
 
     try {
       const response = await updateGuest(guest.id, attending, starter, main, accomodation, isChild)
-      console.log('this is response', response)
       if (!!response) {
         console.log('Guests inserted successfully');
         // Handle success, e.g., show a success message
@@ -46,16 +80,15 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
   };
 
   return (
-    <div key={guest.id} className={`table-row ${editingGuestId === guest.id ? 'expanded' : 'mini'}`}>
+    <div key={guest.id} className={`table - row ${editingGuestId === guest.id ? 'expanded' : 'mini'} `}>
       <GuestNameRow>
-        <div onClick={() => setEditingGuestId(guest.id === editingGuestId ? '' : guest.id)}>
+        <NameSection onClick={() => setEditingGuestId(guest.id === editingGuestId ? '' : guest.id)} $editingGuestId={!!editingGuestId}>
           <p className="uppercase">{guest.name}</p>
-          <p>↓</p>
-        </div>
-        {editingGuestId && <div>
-          <p onClick={() => setEditingGuestId('')}>X</p>
-        </div>}
-      </GuestNameRow>
+          <div className={editingGuestId ? 'fadeIn' : 'fadeOut'}>
+            <p style={{ marginBottom: "0px" }} onClick={() => setEditingGuestId('')}>{editingGuestId ? 'X' : 'RSVP'}</p>
+          </div>
+        </NameSection>
+      </GuestNameRow >
       {editingGuestId === guest.id && <div className="guest-info">
         <Dropdown label="Attending"
           options={['yes', 'no']}
@@ -97,6 +130,6 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
           </>}
         <Button onClick={handleSubmit}>update</Button>
       </div>}
-    </div>
+    </div >
   );
 };

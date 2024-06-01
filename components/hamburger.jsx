@@ -9,7 +9,6 @@ const Container = styled.div`
   top: 20px;
   left: 20px;
   width: fit-content;
-
   height: 20px;
   display: flex;
   flex-direction: column;

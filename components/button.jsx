@@ -24,7 +24,6 @@ export const StyledButton = styled.button`
 `
 
 export const Button = ({ onClick, width, text }) => {
-
   return (
     <StyledButton onClick={onClick}>{text}</StyledButton>
   );

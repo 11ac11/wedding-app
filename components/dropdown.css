@@ -29,14 +29,12 @@
 
 .dropdown-input {
   padding-right: 30px;
-  /* Adjust the padding to accommodate the icon */
 }
 
 .caret-icon {
   position: absolute;
   top: 50%;
   right: 5px;
-  /* Adjust the distance of the icon from the input's right edge */
   transform: translateY(-50%);
   cursor: pointer;
   color: var(--slategrey);

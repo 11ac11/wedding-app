@@ -48,7 +48,6 @@ export default function InsertGuestsForm() {
 
     try {
       const response = await postGuests(values)
-      console.log(response)
       if (response.ok) {
         console.log('Guests inserted successfully');
         // Handle success, e.g., show a success message
@@ -67,7 +66,6 @@ export default function InsertGuestsForm() {
       <input type="file" onChange={handleFileUpload} />
 
       {fileData && <form onSubmit={handleSubmit}>
-        {/* Your form inputs for guests */}
         <button type="submit">Insert Guests</button>
       </form>}
     </div>

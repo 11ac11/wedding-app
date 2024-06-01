@@ -18,8 +18,8 @@ const ImgContainer = styled.div`
 
 export default function ImgCont({ src, fill, width }) {
   return (
-    (<ImgContainer width={width}>
+    <ImgContainer width={width}>
       <Image src={src} fill={fill} />
-    </ImgContainer>)
+    </ImgContainer>
   )
 }

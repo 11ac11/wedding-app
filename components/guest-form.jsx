@@ -2,15 +2,15 @@
 
 import React, { useState, useEffect } from 'react'
 import { Dropdown } from './dropdown'
+import { Button } from './button'
 import { updateGuest } from '@/app/api';
 
-export const GuestForm = ({ guest }) => {
+export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
   const [attending, setAttending] = useState(guest.attending || '')
   const [starter, setStarter] = useState(guest.starter || '')
   const [main, setMain] = useState(guest.main || '')
   const [accomodation, setAccomodation] = useState(guest.accomodation || '')
   const [isChild, setIsChild] = useState(guest.is_under_14 || '')
-  const [expand, setExpand] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +21,7 @@ export const GuestForm = ({ guest }) => {
       if (!!response) {
         console.log('Guests inserted successfully');
         // Handle success, e.g., show a success message
+        setEditingGuestId('')
       } else {
         console.error('Failed to insert guests:', response.statusText);
         // Handle error, e.g., show an error message
@@ -32,12 +33,14 @@ export const GuestForm = ({ guest }) => {
   };
 
   return (
-    <div key={guest.name} className={`table-row ${expand ? 'expanded' : 'mini'}`}>
-      <div className={`guestname-row`} onClick={() => { setExpand(!expand) }}>
+    <div key={guest.id} className={`table-row ${editingGuestId === guest.id ? 'expanded' : 'mini'}`}>
+      <div className={`guestname-row`} onClick={() => {
+        setEditingGuestId(guest.id === editingGuestId ? '' : guest.id)
+      }}>
         <p className="uppercase">{guest.name}</p>
         <p>↓</p>
       </div>
-      {expand && <div className="guest-info">
+      {editingGuestId === guest.id && <div className="guest-info">
         <Dropdown label="Attending"
           options={['yes', 'no']}
           onChange={(val) => setAttending(val)}
@@ -66,7 +69,6 @@ export const GuestForm = ({ guest }) => {
               onChange={(val) => setMain(val)}
               value={main}
               defaultValue={''}
-
             />
             <Dropdown
               label="Accomodation"
@@ -77,7 +79,7 @@ export const GuestForm = ({ guest }) => {
 
             />
           </>}
-        <button onClick={handleSubmit}>update</button>
+        <Button onClick={handleSubmit}>update</Button>
       </div>}
     </div>
   );

@@ -13,10 +13,16 @@
   --gold: #a09c94;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   color: var(--offblack);
   background: linear-gradient(180deg, var(--white) 0%, var(--offwhite) 100%);
   min-height: 100vh;
+  width: 100vw;
+  background-attachment: fixed;
   font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
   letter-spacing: 0.02rem;
   font-weight: 200;
@@ -24,15 +30,18 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 main {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   padding: 80px 0;
+  box-sizing: border-box;
+  scrollbar-gutter: stable both-edges;
 }
 
 .rsvp-container {
@@ -51,7 +60,22 @@ p {
   margin: 0;
 }
 
+p {
+  margin-bottom: 1rem;
+  letter-spacing: 1.4px;
+}
+
+.uppercase {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
 h1 {
+  font-family: 'Best Wishes', sans-serif;
+  font-size: 4rem;
+  font-weight: 400;
+  margin: 2rem 0 0.5rem 0;
+  letter-spacing: 3px;
   width: 80%;
   text-align: center;
   user-select: none;
@@ -79,24 +103,6 @@ h1.getting-married.second {
   margin-top: -50px;
 }
 
-p {
-  margin-bottom: 1rem;
-  letter-spacing: 1.4px;
-}
-
-.uppercase {
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-h1 {
-  font-family: 'Best Wishes', sans-serif;
-  font-size: 4rem;
-  font-weight: 400;
-  margin: 2rem 0 0.5rem 0;
-  letter-spacing: 3px;
-}
-
 h2 {
   margin: 1rem 0;
   border-bottom: 2px solid var(--gold);
@@ -114,6 +120,13 @@ h3 {
   margin: 0 2rem 2rem;
 }
 
+.info-section ul {
+  font-family: 'Best Wishes', sans-serif;
+  list-style-type: none;
+  font-size: 1.6rem;
+
+}
+
 .table-container {
   display: flex;
   width: 75vw;
@@ -126,6 +139,11 @@ h3 {
 
 .fade-out {
   animation: fadeOut 1s;
+}
+
+.fade-out-shrink {
+  animation: fadeOutAndShrink 0.5s;
+  animation-fill-mode: forwards;
 }
 
 .hide {
@@ -178,14 +196,19 @@ h3 {
 
 @keyframes fadeOut {
   0% {
-    /* opacity: 1; */
-    /* display: block; */
     top: 0;
   }
 
   100% {
-    /* opacity: 0; */
     top: -999;
+  }
+}
+
+@keyframes fadeOutAndShrink {
+  100% {
+    opacity: 0;
+    height: 0;
+    margin: 0;
   }
 }
 
@@ -201,10 +224,11 @@ h3 {
   padding: 0.25rem 0;
   transition: height 0.4s ease-out;
   height: inherit;
+  margin-bottom: 2rem;
 }
 
 .table-row.expanded {
-  height: 100%;
+  height: auto;
 }
 
 td {
@@ -245,14 +269,16 @@ td {
 }
 
 .search-container {
-  display: flex;
-  flex-direction: column;
   margin: 1rem;
+  width: 300px;
+  height: 110px;
+  overflow: hidden;
 }
 
 .search-container label {
+  display: block;
+  width: 100%;
   text-align: center;
-  margin-bottom: 1.5rem;
 }
 
 input {
@@ -281,7 +307,7 @@ input[type="file"] {
   font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 3px;
-  margin-bottom: 1.5rem;
+  margin: 1rem 0;
   caret-color: var(--slategrey);
 }
 

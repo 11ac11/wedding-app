@@ -4,27 +4,32 @@ import React, { useState, useEffect } from 'react'
 import { searchGuests } from '@/app/api';
 import { GuestForm } from './guest-form';
 
-const Table = ({ query }) => {
+const Table = ({ searchTerm, editingGuestId, setEditingGuestId }) => {
   const [data, setData] = useState([]);
+
+  console.log(editingGuestId)
 
   useEffect(() => {
     const fetchData = async () => {
-      if (query) {
-        const dataFromApi = await searchGuests(query);
+      if (searchTerm) {
+        const dataFromApi = await searchGuests(searchTerm);
         setData(dataFromApi.rows);
       }
     };
 
     fetchData();
-  }, [query]);
+  }, [searchTerm]);
 
   return (
-    <div className={query ? 'table-container fade-in' : 'table-container fade-out'}>
+    <div className={searchTerm ? 'table-container fade-in' : 'table-container fade-out'}>
       <div className="table-all-rows">
-        {query && data.map((guest) => (
-          <GuestForm key={guest.id} guest={guest} />
-        ))}
-        {query && data.length === 0 &&
+        {searchTerm && data.map((guest) => {
+
+          if ((!!editingGuestId && editingGuestId === guest.id) || !editingGuestId) {
+            return <GuestForm key={guest.id} guest={guest} editingGuestId={editingGuestId} setEditingGuestId={setEditingGuestId} />
+          }
+        })}
+        {searchTerm && data.length === 0 &&
           <>
             {`Sorry, we can't find you! Please check your name or contact us directly.`}
           </>

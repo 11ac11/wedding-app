@@ -2,7 +2,7 @@
 
 import { useDebouncedCallback } from 'use-debounce';
 
-export const Search = ({ searchTerm, setSearchTerm }) => {
+export const Search = ({ searchTerm, setSearchTerm, editingGuestId }) => {
   const handleSearch = useDebouncedCallback((term) => {
     if (term && term.includes(' ') && term.length > 2) {
       setSearchTerm(term)
@@ -11,9 +11,11 @@ export const Search = ({ searchTerm, setSearchTerm }) => {
     }
   }, 300);
 
+  console.log('search', editingGuestId)
+
   return (
     <>
-      <div className="search-container">
+      <div className={`search-container ${!!editingGuestId ? 'fade-out-shrink' : null}`}>
         <label htmlFor="search" className="sr-only">
           Search for the full names of your party:
         </label>

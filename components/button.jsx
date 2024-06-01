@@ -23,7 +23,6 @@ export const StyledButton = styled.button`
   }
 `
 
-
 export const Button = ({ onClick, width }) => {
 
   return (

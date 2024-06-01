@@ -1,9 +1,22 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
 import { Dropdown } from './dropdown'
 import { Button } from './button'
 import { updateGuest } from '@/app/api';
+
+const GuestNameRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  & > div {
+    display: flex;
+    gap: 1rem;
+    cursor: pointer;
+  }
+`
 
 export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
   const [attending, setAttending] = useState(guest.attending || '')
@@ -34,12 +47,15 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
 
   return (
     <div key={guest.id} className={`table-row ${editingGuestId === guest.id ? 'expanded' : 'mini'}`}>
-      <div className={`guestname-row`} onClick={() => {
-        setEditingGuestId(guest.id === editingGuestId ? '' : guest.id)
-      }}>
-        <p className="uppercase">{guest.name}</p>
-        <p>↓</p>
-      </div>
+      <GuestNameRow>
+        <div onClick={() => setEditingGuestId(guest.id === editingGuestId ? '' : guest.id)}>
+          <p className="uppercase">{guest.name}</p>
+          <p>↓</p>
+        </div>
+        {editingGuestId && <div>
+          <p onClick={() => setEditingGuestId('')}>X</p>
+        </div>}
+      </GuestNameRow>
       {editingGuestId === guest.id && <div className="guest-info">
         <Dropdown label="Attending"
           options={['yes', 'no']}

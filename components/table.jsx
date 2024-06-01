@@ -24,7 +24,6 @@ const Table = ({ searchTerm, editingGuestId, setEditingGuestId }) => {
     <div className={searchTerm ? 'table-container fade-in' : 'table-container fade-out'}>
       <div className="table-all-rows">
         {searchTerm && data.map((guest) => {
-
           if ((!!editingGuestId && editingGuestId === guest.id) || !editingGuestId) {
             return <GuestForm key={guest.id} guest={guest} editingGuestId={editingGuestId} setEditingGuestId={setEditingGuestId} />
           }

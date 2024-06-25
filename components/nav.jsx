@@ -19,15 +19,16 @@ const NavContainer = styled.div`
   user-select: none;
   transition: all 0.2s linear;
   opacity: ${({ className }) => className === 'open' ? 1 : 0};
+  ${({ className }) => className === 'open' && 'pointer-events: none;'}
   height: 60px;
 
-  @media (max-width: 768px) {
+  @media(max - width: 768px) {
     height: auto;
-    nav {
+      nav {
       flex-direction: column;
       align-items: center;
       padding: 2rem;
-      a {
+        a {
         margin-bottom: 1rem;
       }
     }
@@ -35,44 +36,44 @@ const NavContainer = styled.div`
 `
 
 const Navigation = styled.nav`
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  text-transform: uppercase;
-  font-weight: 600;
-  width: 800px;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
+height: 100 %;
+display: flex;
+flex - direction: row;
+text - transform: uppercase;
+font - weight: 600;
+width: 800px;
+justify - content: space - between;
+align - items: center;
+position: relative;
 
   a {
-    color: var(--offblack);
-    text-decoration: none;
-    transition: color 0.3s ease;
-    letter-spacing: 3px;
-    display: flex;
-    position: relative;
-  }
+  color: var(--offblack);
+  text - decoration: none;
+  transition: color 0.3s ease;
+  letter - spacing: 3px;
+  display: flex;
+  position: relative;
+}
 
   & > a::before {
-    content: "";
-    position: absolute;
-    bottom: -0.25rem;
-    width: 100%;
-    height: 2px;
-    background-color: #3B3B3B;
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 0.2s ease;
-  }
+  content: "";
+  position: absolute;
+  bottom: -0.25rem;
+  width: 100 %;
+  height: 2px;
+  background - color: #3B3B3B;
+  transform: scaleX(0);
+  transform - origin: center;
+  transition: transform 0.2s ease;
+}
 
-  & > a:hover::before {
-    transform: scaleX(1);
-  }
+  & > a: hover::before {
+  transform: scaleX(1);
+}
 
-  // a:hover {
-  //   color: var(--slategrey);
-  // }
+// a:hover {
+//   color: var(--slategrey);
+// }
 `
 
 export default function Nav({ openClose, className }) {

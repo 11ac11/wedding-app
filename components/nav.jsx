@@ -19,7 +19,7 @@ const NavContainer = styled.div`
   user-select: none;
   transition: all 0.2s linear;
   opacity: ${({ className }) => className === 'open' ? 1 : 0};
-  ${({ className }) => className === 'open' && 'pointer-events: none;'}
+  ${({ className }) => className !== 'open' && 'pointer-events: none;'}
   height: 60px;
 
   @media(max-width: 768px) {
@@ -36,15 +36,15 @@ const NavContainer = styled.div`
 `
 
 const Navigation = styled.nav`
-height: 100 %;
-display: flex;
-flex-direction: row;
-text-transform: uppercase;
-font-weight: 600;
-width: 800px;
-justify-content: space-between;
-align-items: center;
-position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+  font-weight: 600;
+  width: 800px;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 
   a {
   color: var(--offblack);
@@ -59,7 +59,7 @@ position: relative;
   content: "";
   position: absolute;
   bottom: -0.25rem;
-  width: 100 %;
+  width: 100%;
   height: 2px;
   background-color: #3B3B3B;
   transform: scaleX(0);

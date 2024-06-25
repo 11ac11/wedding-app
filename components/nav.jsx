@@ -22,35 +22,35 @@ const NavContainer = styled.div`
   ${({ className }) => className === 'open' && 'pointer-events: none;'}
   height: 60px;
 
-  @media(max - width: 768px) {
+  @media(max-width: 768px) {
     height: auto;
-      nav {
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem;
-        a {
+    nav {
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+      a {
         margin-bottom: 1rem;
-      }
-    }
-  }
+      };
+    };
+  };
 `
 
 const Navigation = styled.nav`
 height: 100 %;
 display: flex;
-flex - direction: row;
-text - transform: uppercase;
-font - weight: 600;
+flex-direction: row;
+text-transform: uppercase;
+font-weight: 600;
 width: 800px;
-justify - content: space - between;
-align - items: center;
+justify-content: space-between;
+align-items: center;
 position: relative;
 
   a {
   color: var(--offblack);
-  text - decoration: none;
+  text-decoration: none;
   transition: color 0.3s ease;
-  letter - spacing: 3px;
+  letter-spacing: 3px;
   display: flex;
   position: relative;
 }
@@ -61,9 +61,9 @@ position: relative;
   bottom: -0.25rem;
   width: 100 %;
   height: 2px;
-  background - color: #3B3B3B;
+  background-color: #3B3B3B;
   transform: scaleX(0);
-  transform - origin: center;
+  transform-origin: center;
   transition: transform 0.2s ease;
 }
 

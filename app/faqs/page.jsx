@@ -9,9 +9,18 @@ export default async function FAQs() {
     <main className="relative flex min-h-screen flex-col items-center justify-center">
       <h1>FAQs</h1>
       <div className="info-section">
+        <h2 className="uppercase">RSVP deadline</h2>
+        <p>
+          {`Please RSVP by 1st July 2025.`}
+        </p>
+        <Socials />
+
+        <Button text={'Upload'} />
+      </div>
+      <div className="info-section">
         <h2 className="uppercase">Dresscode</h2>
         <p>
-          {`Please come comfotable, it could be hot, but bare in mind we are
+          {`Please come comfortable, it could be hot, but bare in mind we are
           elevated so there should be a nice breeze. Ties/Blazers optional.`}
         </p>
       </div>

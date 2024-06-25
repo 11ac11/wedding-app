@@ -9,12 +9,6 @@ export default async function Travel() {
     <main className="relative flex min-h-screen flex-col items-center justify-center">
       <h1>How to get there</h1>
       <div className="info-section">
-        {`Personally, we wouldn't recommend hiring a car if you plan to stay in
-        Barcelona or Castdelldefels as the public transport is more than adequate.
-        However, if you plan on exploring more of Catalunya, then hiring a car would
-        be a good option.`}
-      </div>
-      <div className="info-section">
         <h2 className="uppercase">Train from Barcelona</h2>
         <ImgCont src={fromBcnTrain} fill={true} className='image' />
         <p>

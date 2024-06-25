@@ -3,13 +3,15 @@
 import { useDebouncedCallback } from 'use-debounce';
 import styled, { css } from 'styled-components';
 
+const ANIMATION_STYLE = 'cubic-bezier(100,50,60,100)'
+
 const SearchContainer = styled.div`
   height: ${({ $editingGuestId }) => $editingGuestId ? '0' : '1rem'};
   height: ${({ $editingGuestId }) => $editingGuestId ? '0' : '110px'};
   opacity: ${({ $editingGuestId }) => $editingGuestId ? 0 : 1};
   width: 300px;
   overflow: hidden;
-  transition: height 0.5s ease-in, opacity 0.5s ease-in, margin 0.5s ease-in;
+  transition: height 0.5s ${ANIMATION_STYLE}, opacity 0.5s ${ANIMATION_STYLE}, margin 0.5s ${ANIMATION_STYLE};
 
   & label {
     display: block;

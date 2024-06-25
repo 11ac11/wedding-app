@@ -24,9 +24,12 @@ const NavContainer = styled.div`
   @media (max-width: 768px) {
     height: auto;
     nav {
-      /* Adjust styles for tablet and mobile devices */
       flex-direction: column;
       align-items: center;
+      padding: 2rem;
+      a {
+        margin-bottom: 1rem;
+      }
     }
   }
 `
@@ -77,11 +80,12 @@ export default function Nav({ openClose, className }) {
     <NavContainer className={className}>
       <Navigation>
         <Link href="/" onClick={() => openClose()}>Home</Link>
+        <Link href="/rsvp" onClick={() => openClose()}>RSVP</Link>
         <Link href="/itinerary" onClick={() => openClose()}>Itinerary</Link>
-        <Link href="/faqs" onClick={() => openClose()}>FAQs</Link>
         <Link href="/travel" onClick={() => openClose()}>Travel</Link>
         <Link href="/accomodation" onClick={() => openClose()}>Accomodation</Link>
-        <Link href="/rsvp" onClick={() => openClose()}>RSVP</Link>
+        <Link href="/gifts" onClick={() => openClose()}>Gifts</Link>
+        <Link href="/faqs" onClick={() => openClose()}>FAQs</Link>
       </Navigation>
     </NavContainer>
   )

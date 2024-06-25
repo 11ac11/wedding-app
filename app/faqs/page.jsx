@@ -1,4 +1,5 @@
-import ImgCont from "../../components/img-container"
+import { Button } from "@/components/button"
+import { Socials } from "@/components/socials"
 
 
 
@@ -10,15 +11,19 @@ export default async function FAQs() {
       <div className="info-section">
         <h2 className="uppercase">Dresscode</h2>
         <p>
-          Please come comfotable, it could be hot, but bare in mind we are
-          elevated so there might be wind. Ties/Blazers optional.
+          {`Please come comfotable, it could be hot, but bare in mind we are
+          elevated so there should be a nice breeze. Ties/Blazers optional.`}
         </p>
-        <h2 className="uppercase">Gifts</h2>
+      </div>
+      <div className="info-section">
+        <h2 className="uppercase">Social Media</h2>
         <p>
-          We don&apos;t expect any gifts from anyone, your presence is enough! However,
-          if you really wish to give a gift, we would prefer a donation towards
-          our honeymoney. Please donate via this link:
+          {`We would ask that all guests tag us on any social media posts. After the wedding,
+          please upload all photos and videos to our drive by clicking the button below.`}
         </p>
+        <Socials />
+
+        <Button text={'Upload'} />
       </div>
     </main>
   )

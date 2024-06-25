@@ -1,7 +1,7 @@
 import ImgCont from "../../components/img-container"
 import CastelldefelsBeach from "../../public/images/castelldefels-beach.png"
 import hotelTurret from "../../public/images/hotel-turret.png"
-
+import { ContactBox } from "./contactBox.js"
 
 export default async function Accomodation() {
 
@@ -21,10 +21,7 @@ export default async function Accomodation() {
           rooms. It is also easily accessible via public transport from Barcelona
           (see how to get there).
         </p>
-        <p>
-          If you are interested in staying at the venue, please let us know ASAP
-          and we can help with guest discounts.
-        </p>
+        <ContactBox />
         <ImgCont src={hotelTurret} fill={true} className='image' />
       </div>
 

@@ -13,9 +13,6 @@ export default async function FAQs() {
         <p>
           {`Please RSVP by 1st July 2025.`}
         </p>
-        <Socials />
-
-        <Button text={'Upload'} />
       </div>
       <div className="info-section">
         <h2 className="uppercase">Dresscode</h2>

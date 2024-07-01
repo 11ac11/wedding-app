@@ -7,8 +7,6 @@ import { GuestForm } from './guest-form';
 const Table = ({ searchTerm, editingGuestId, setEditingGuestId }) => {
   const [data, setData] = useState([]);
 
-  console.log(editingGuestId)
-
   useEffect(() => {
     const fetchData = async () => {
       if (searchTerm) {

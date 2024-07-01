@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { Dropdown } from './dropdown'
+import { Input } from './input'
 import { Button } from './button'
 import { updateGuest } from '@/app/api';
 
@@ -68,6 +69,16 @@ const GuestInfo = styled.div`
   justify-content: space-between;
   padding: 0.25rem 0;
   gap: 2rem;
+
+  & > * {
+    width: 45%;
+  }
+
+  @media (max-width: 900px) {
+  & > * {
+    width: 100%;
+  }
+}
 `
 
 export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
@@ -76,6 +87,7 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
   const [main, setMain] = useState(guest.main || '')
   const [accomodation, setAccomodation] = useState(guest.accomodation || '')
   const [isChild, setIsChild] = useState(guest.is_under_14 || '')
+  const [dietaryNotes, setDietaryNotes] = useState(guest?.dietary_notes ?? '')
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -103,9 +115,19 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
     return false
   }
 
-  console.log(guestDetailsComplete())
-
   const guestIsComplete = guestDetailsComplete()
+
+  const adultStarterOptions = [
+    'Duck Ham Salad with Confit Broad Beans and Mint',
+    'Mille-feuille of Smoked Salmon and Cod with Passion Fruit Vinaigrette',
+    'Assortment of Grilled Vegetables (v)'
+  ]
+
+  const adultMainOptions = [
+    'Duck Confit with Caramelized Pear and Turnip',
+    'Line-Caught Hake in Jamón Iberico Oil',
+    'Vegetable Paella (v)'
+  ]
 
   return (
     <div key={guest.id} className={`table-row ${editingGuestId === guest.id ? 'expanded' : 'mini'} `}>
@@ -138,14 +160,14 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
             />
             <Dropdown
               label="Starter"
-              options={isChild === 'yes' ? ['kidstarter1', 'kidstarter2'] : ['salad', 'pasta']}
+              options={isChild === 'yes' ? ['Pizza or Pasta - TBC'] : adultStarterOptions}
               onChange={(val) => setStarter(val)}
               value={starter}
               defaultValue={''}
             />
             <Dropdown
               label="Main"
-              options={['Herb Crusted Beef Tenderloin with Red Wine Demi-Glace, accompanied by Garlic Mashed Potatoes and Sauteed Green Beans Almondine', 'Grilled Chilean Sea Bass with Lemon Herb Butter Sauce, served with Wild Rice Pilaf and Roasted Asparagus']}
+              options={isChild === 'yes' ? ['Breaded Chicken Breast with French Fries'] : adultMainOptions}
               onChange={(val) => setMain(val)}
               value={main}
               defaultValue={''}
@@ -157,6 +179,13 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
               value={accomodation}
               defaultValue={''}
 
+            />
+            <Input
+              label="Allergies/Dietary requirements"
+              onChange={(val) => setDietaryNotes(val)}
+              value={dietaryNotes}
+              isTextArea={true}
+              width={'45%'}
             />
           </>}
         <Button onClick={handleSubmit} text={!!guestIsComplete ? 'update' : 'save rsvp'} />

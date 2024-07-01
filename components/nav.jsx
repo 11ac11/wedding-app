@@ -8,8 +8,12 @@ const NavContainer = styled.div`
   top: 0;
   left: 0;
   background: var(--white);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   width: 100%;
-  border-bottom: 1px solid rgba(255,255,255,0.25);;
+  border-bottom: 1px solid rgba(255,255,255,0.25);
   display: flex;
   justify-content: center;
   -webkit-box-shadow: 0px 25px 50px 0px rgba(255,255,255,0.25);

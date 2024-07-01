@@ -2,8 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import './dropdown.css';
-import CaretDownIcon from './CaretDownIcon';
-
+import { Input } from './input';
 
 const useOutsideClick = (ref, callback) => {
   const handleClick = (e) => {
@@ -25,6 +24,7 @@ export const Dropdown = ({ label, value, options, onChange, placeholder = '' }) 
   const ref = useRef();
 
   const toggleDropdown = () => {
+    console.log('clickgin')
     setIsOpen(!isOpen);
   };
 
@@ -41,13 +41,13 @@ export const Dropdown = ({ label, value, options, onChange, placeholder = '' }) 
 
   return (
     <div className="dropdown-wrap" ref={ref}>
-      <span>{label}:</span>
-      <div className="input-container">
-        <input className="dropdown-input" onClick={toggleDropdown} value={value ? value : placeholder} onChange={() => { }} />
-        <div onClick={toggleDropdown}>
-          <CaretDownIcon toggleDropdown={toggleDropdown} />
-        </div>
-      </div>
+      <Input
+        label={label}
+        onClick={toggleDropdown}
+        value={value}
+        onChange={() => { }}
+        isDropdown={true}
+      />
       {isOpen && (
         <div className="dropdown-options">
           <ul>

@@ -15,6 +15,7 @@ export const StyledButton = styled.button`
   letter-spacing: 1.4px;
   font-weight: 600;
   transition: background-color 0.1s ease-in, border 0.1s ease-in;
+  margin-top: 20px;
 
   &:hover {
     background-color: #a09c94;

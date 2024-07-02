@@ -1,4 +1,5 @@
 import { Button } from "../../components/button"
+import { ContributeButton } from "./contribute-button.js"
 
 export default async function Gifts() {
 
@@ -16,7 +17,7 @@ export default async function Gifts() {
           {`However, if you would like to give a little extra, we would prefer a donation towards
           our honeymoney. You can contribute to our honeymoney pot with a card payment via this link: `}
         </p>
-        <Button text="I'd like to contribute" />
+        <ContributeButton />
       </div>
     </main>
   )

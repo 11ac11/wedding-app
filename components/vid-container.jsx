@@ -3,6 +3,7 @@
 import styled from 'styled-components';
 
 const VidContainer = styled.div`
+  margin-top: 60px;
   width: 400px;
   height: 400px;
   border-radius: 80%;

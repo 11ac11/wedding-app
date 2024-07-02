@@ -4,12 +4,11 @@ import Link from 'next/link'
 import styled from 'styled-components';
 
 const NavContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background: var(--white);
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.89);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   width: 100%;
@@ -29,9 +28,9 @@ const NavContainer = styled.div`
   @media(max-width: 768px) {
     height: auto;
     nav {
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
       a {
         margin-bottom: 1rem;
       };

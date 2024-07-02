@@ -70,7 +70,7 @@ const GuestInfo = styled.div`
   padding: 0.25rem 0;
   gap: 2rem;
 
-  & > * {
+  & > input {
     width: 45%;
   }
 
@@ -178,14 +178,13 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
               onChange={(val) => setAccomodation(val)}
               value={accomodation}
               defaultValue={''}
-
             />
             <Input
               label="Allergies/Dietary requirements"
               onChange={(val) => setDietaryNotes(val)}
               value={dietaryNotes}
               isTextArea={true}
-              width={'45%'}
+              width={'100%'}
             />
           </>}
         <Button onClick={handleSubmit} text={!!guestIsComplete ? 'update' : 'save rsvp'} />

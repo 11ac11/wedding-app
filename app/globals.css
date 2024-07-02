@@ -92,6 +92,8 @@ h1.getting-married {
   mix-blend-mode: overlay;
   overflow: hidden;
   max-height: 100vh;
+  white-space: nowrap;
+  margin: 0;
 }
 
 h1.getting-married.low {
@@ -101,7 +103,7 @@ h1.getting-married.low {
 }
 
 h1.getting-married.second {
-  margin-top: -50px;
+  margin-top: -1rem;
 }
 
 h2 {
@@ -288,6 +290,10 @@ table.guestlist th {
   h1 {
     max-width: 800px;
   }
+
+  h1.getting-married {
+    font-size: 3.25rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -296,14 +302,20 @@ table.guestlist th {
   }
 
   h1.getting-married {
-    font-size: 3rem;
-    margin-top: -30px;
-    line-height: 60px;
+    font-size: 2.75rem;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  h1.getting-married {
+    font-size: 2rem;
+    letter-spacing: -0.5px;
   }
 }
 
 @media (max-width: 350px) {
   h1.getting-married {
-    font-size: 3rem;
+    font-size: 1.75rem;
   }
 }

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import styled from 'styled-components';
 
 const NavContainer = styled.div`
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   background: var(--white);
@@ -25,8 +25,9 @@ const NavContainer = styled.div`
   ${({ className }) => className !== 'open' && 'pointer-events: none;'}
   height: 60px;
 
-  @media(max-width: 768px) {
+  @media(max-width: 800px) {
     height: auto;
+    position: fixed;
     nav {
       flex-direction: column;
       align-items: center;
@@ -50,13 +51,13 @@ const Navigation = styled.nav`
   position: relative;
 
   a {
-  color: var(--offblack);
-  text-decoration: none;
-  transition: color 0.3s ease;
-  letter-spacing: 3px;
-  display: flex;
-  position: relative;
-}
+    color: var(--offblack);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    letter-spacing: 3px;
+    display: flex;
+    position: relative;
+  }
 
   & > a::before {
   content: "";

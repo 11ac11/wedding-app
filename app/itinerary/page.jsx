@@ -1,4 +1,56 @@
+import React from "react"
+import styled from "styled-components"
+
+const ChipContainer = styled.div`
+  background-color: var(--gold);
+
+  h3 {
+
+  };
+
+  p {
+
+  };
+`
+
+const PersonChip = ({ name, duty }) => {
+  return (
+    <ChipContainer>
+      <h3>{name}</h3>
+      <p>{duty}</p>
+    </ChipContainer>
+  )
+}
+
 export default async function Itinerary() {
+
+  const bridesmaids = [
+    'Ameera Najwa',
+    'Angel Elliot',
+    'Georgia Hollis',
+    'Geraldine Kealy',
+    'Anna-May Jones'
+  ]
+
+  const groomsmen = [
+    'Andrew Speak',
+    'Alistair Hobson',
+    'Samuel Rodd',
+    'Christian Newmann',
+    'Joseph Bailey'
+  ]
+
+  const renderBridesmaids = () => {
+    bridesmaids.forEach((bridesmaid) => {
+      <PersonChip name={bridesmaid} duty={'Bridesmaid'} />
+    })
+  }
+
+  const renderGroomsmen = () => {
+    groomsmen.forEach((groomsman) => {
+      <PersonChip name={groomsman} duty={'Groomsman'} />
+    })
+  }
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
@@ -25,6 +77,16 @@ export default async function Itinerary() {
         <ul>
           <li>Feel free to join us at the beach club to nurse the hangover</li>
         </ul>
+      </div>
+      <div className="info-section">
+        <h2 className="uppercase">Bridal party</h2>
+        <ChipContainer name={'Ameera Najwa'} duty={'Maid of Honour'} />
+        {renderBridesmaids()}
+      </div>
+      <div className="info-section">
+        <h2 className="uppercase">Grooms party</h2>
+        <ChipContainer name={'Ryan Keady'} duty={'Bestman'} />
+        {renderGroomsmen()}
       </div>
     </main>
   )

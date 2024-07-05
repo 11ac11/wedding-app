@@ -44,24 +44,8 @@ main {
   scrollbar-gutter: stable both-edges;
 }
 
-.rsvp-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 80%;
-  margin-top: 60px;
-}
-
-h1,
-h2,
-h3,
-h4,
 p {
   margin: 0;
-}
-
-p {
   margin-bottom: 1rem;
   letter-spacing: 1.1px;
 }
@@ -69,6 +53,31 @@ p {
 .uppercase {
   text-transform: uppercase;
   font-weight: 600;
+}
+
+a {
+  color: var(--offblack);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  letter-spacing: 3px;
+  display: flex;
+  position: relative;
+}
+
+a::before {
+  content: "";
+  position: absolute;
+  bottom: -0.25rem;
+  width: 100%;
+  height: 2px;
+  background-color: #3B3B3B;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+
+a:hover::before {
+  transform: scaleX(1);
 }
 
 h1 {
@@ -83,7 +92,6 @@ h1 {
 }
 
 h1.getting-married {
-  /* position: absolute; */
   top: 20%;
   font-size: 4rem;
   text-align: center;
@@ -96,6 +104,7 @@ h1.getting-married {
   margin: 0;
 }
 
+/* TODO: can remove? */
 h1.getting-married.low {
   mix-blend-mode: unset;
   color: black;
@@ -113,8 +122,18 @@ h2 {
 }
 
 h3 {
+  margin: 0;
   letter-spacing: 3px;
   font-weight: 200;
+}
+
+.rsvp-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 80%;
+  margin-top: 60px;
 }
 
 .info-section {
@@ -127,25 +146,13 @@ h3 {
   font-family: 'Best Wishes', sans-serif;
   list-style-type: none;
   font-size: 1.6rem;
-
 }
 
+/* check in table.jsx component */
 .table-container {
   display: flex;
   width: 75vw;
   max-width: 800px;
-}
-
-.fade-in {
-  animation: fadeIn 1s;
-}
-
-.fade-out {
-  animation: fadeOut 1s;
-}
-
-.hide {
-  animation: hideMe 1s;
 }
 
 .image {
@@ -159,10 +166,8 @@ h3 {
 }
 
 .image-container-shrinkable {
-  /* Replace with your actual class name */
   position: relative;
   width: 100%;
-  /* Default width */
   height: 400px;
   transition: height 0.4s ease-out;
 }
@@ -174,38 +179,16 @@ h3 {
 .image-container-shrinkable>img {
   object-fit: contain;
   width: 100%;
-  /* Override default width for image */
   position: relative;
-  /* Override default position for image */
   height: auto;
-  /* Remove height restriction for image */
 }
 
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  0% {
-    top: 0;
-  }
-
-  100% {
-    top: -999;
-  }
-}
-
+/* remove? */
 .table-all-rows {
   width: 100%;
 }
 
+/* move this to guest-form */
 .table-row {
   display: flex;
   flex-direction: column;
@@ -228,7 +211,7 @@ td {
   text-overflow: ellipsis;
 }
 
-.guest-info {
+/* .guest-info {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -236,7 +219,9 @@ td {
   justify-content: space-between;
   padding: 0.25rem 0;
   gap: 2rem;
-}
+} */
+
+/* TODO: check this
 
 .guestname-row {
   display: flex;
@@ -257,7 +242,7 @@ td {
 .guestname-row p {
   margin-bottom: 0;
   margin-bottom: 0;
-}
+} */
 
 input {
   font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
@@ -284,6 +269,38 @@ table.guestlist {
 
 table.guestlist th {
   text-align: left;
+}
+
+.fade-in {
+  animation: fadeIn 1s;
+}
+
+.fade-out {
+  animation: fadeOut 1s;
+}
+
+.hide {
+  animation: hideMe 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    top: 0;
+  }
+
+  100% {
+    top: -999;
+  }
 }
 
 @media (max-width: 900px) {

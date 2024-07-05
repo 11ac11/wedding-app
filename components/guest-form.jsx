@@ -1,11 +1,26 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import styled, { css } from 'styled-components'
+import React, { useState } from 'react'
+import styled from 'styled-components'
 import { Dropdown } from './dropdown'
 import { Input } from './input'
 import { Button } from './button'
 import { updateGuest } from '@/app/api';
+
+const GuestTableRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+  transition: height 0.4s ease-out;
+  height: inherit;
+  margin-bottom: 1rem;
+
+  & .expanded {
+    height: auto;
+  };
+`
 
 const GuestNameRow = styled.div`
   display: flex;
@@ -122,12 +137,13 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
     'Mille-feuille of Smoked Salmon and Cod with Passion Fruit Vinaigrette',
     'Assortment of Grilled Vegetables (v)'
   ]
-
   const adultMainOptions = [
     'Duck Confit with Caramelized Pear and Turnip',
     'Line-Caught Hake in Jamón Iberico Oil',
     'Vegetable Paella (v)'
   ]
+  const childStarter = ['Pizza or Pasta - TBC']
+  const childMain = ['Breaded Chicken Breast with French Fries']
 
   return (
     <div key={guest.id} className={`table-row ${editingGuestId === guest.id ? 'expanded' : 'mini'} `}>
@@ -160,14 +176,14 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
             />
             <Dropdown
               label="Starter"
-              options={isChild === 'yes' ? ['Pizza or Pasta - TBC'] : adultStarterOptions}
+              options={isChild === 'yes' ? childStarter : adultStarterOptions}
               onChange={(val) => setStarter(val)}
               value={starter}
               defaultValue={''}
             />
             <Dropdown
               label="Main"
-              options={isChild === 'yes' ? ['Breaded Chicken Breast with French Fries'] : adultMainOptions}
+              options={isChild === 'yes' ? childMain : adultMainOptions}
               onChange={(val) => setMain(val)}
               value={main}
               defaultValue={''}

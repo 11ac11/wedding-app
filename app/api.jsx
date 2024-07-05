@@ -29,16 +29,7 @@ export const searchGuests = async (searchTerm) => {
     const data = await sql`SELECT * FROM guests WHERE LOWER(name) LIKE ${'%' + withSpaces.toLowerCase() + '%'};`;
     return data
   } catch (e) {
-    if (e.message.includes('relation "guests" does not exist')) {
-      console.log(
-        'Table does not exist, creating and seeding it with dummy data now...'
-      )
-      // Table is not created yet
-      await seed()
-      const data = await sql`SELECT * FROM guests WHERE LOWER(name) LIKE ${'%' + withSpaces.toLowerCase() + '%'};`;
-    } else {
-      throw e;
-    }
+    throw e;
   }
 
   return data;
@@ -92,5 +83,19 @@ export const updateGuest = async (id, attending, starter, main, accomodation, is
     return true
   } catch (error) {
     console.error('Error during update:', error);
+  }
+}
+
+export const deleteGuest = async (ids) => {
+  try {
+    // Your delete query TODO: check
+    const query = `DELETE guests WHERE id = $1`;
+
+    // Execute the deleted query
+    const result = await sql.query(query, ids);
+    console.log(`${result.rowCount} row(s) delete`);
+    return true
+  } catch (error) {
+    console.error('Error during delete:', error);
   }
 }

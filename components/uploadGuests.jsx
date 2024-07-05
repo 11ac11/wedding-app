@@ -3,7 +3,7 @@
 import { postGuests } from '@/app/api';
 import * as XLSX from 'xlsx/xlsx.mjs';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function InsertGuestsForm() {
   const [fileData, setFileData] = useState(null);

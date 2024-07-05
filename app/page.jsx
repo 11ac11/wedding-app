@@ -1,4 +1,3 @@
-import Image from "next/image"
 import VidCont from '../components/vid-container'
 
 export const runtime = 'edge'

@@ -1,7 +1,7 @@
 'use client';
 
 import { useDebouncedCallback } from 'use-debounce';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const ANIMATION_STYLE = 'cubic-bezier(100,50,60,100)'
 
@@ -59,7 +59,6 @@ export default function Search({ searchTerm, setSearchTerm, editingGuestId }) {
           onChange={(e) => handleSearch(e.target.value)}
           defaultValue={searchTerm}
         />
-        {/* <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" /> */}
       </SearchContainer>
     </>
   );

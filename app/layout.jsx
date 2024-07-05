@@ -1,6 +1,5 @@
 import './globals.css'
 import StyledJsxRegistry from '../lib/registry'
-import { Hamburger } from '@/components/hamburger'
 
 export const metadata = {
   metadataBase: new URL('https://postgres-starter.vercel.app'),

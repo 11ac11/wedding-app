@@ -1,4 +1,3 @@
-import { Button } from "../../components/button"
 import { ContributeButton } from "./contribute-button.js"
 import Image from "../../components/hide-img"
 import Granada from "@/public/images/granada circle.png"
@@ -15,7 +14,6 @@ export default async function Gifts() {
       />
       <h1>Gifts</h1>
       <div className="info-section">
-        {/* <h2 className="uppercase">Gifts</h2> */}
         <p>
           {`We really appreciate many of you are travelling a long way to be here,
           which we know isn't cheap! You being there on our special day is

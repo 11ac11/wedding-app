@@ -17,19 +17,17 @@ export default async function FAQs() {
       <div className="info-section">
         <h2 className="uppercase">Dresscode</h2>
         <p>
-          {`Please come comfortable, it could be hot, but bare in mind we are
-          elevated so there should be a nice breeze. Ties/Blazers optional.`}
+          {`It is likely to be warm at the start of September so we would prefer people to come in clothing that they'll feel comfortable in. Ties and blazers are completely optional, open shirts and light dresses won't be frowned upon in the slightest.`}
         </p>
       </div>
       <div className="info-section">
         <h2 className="uppercase">Social Media</h2>
         <p>
-          {`We would ask that all guests tag us on any social media posts. After the wedding,
-          please upload all photos and videos to our drive by clicking the button below.`}
+          {`We would ask that all guests tag us on any social media posts. After the wedding, please upload all photos and videos to our drive by clicking the button below so that we can share all the memories. `}
         </p>
         <Socials />
 
-        <Button text={'Upload'} />
+        <Button text={'Upload photos'} />
       </div>
     </main>
   )

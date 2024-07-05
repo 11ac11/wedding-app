@@ -1,8 +1,37 @@
-const GuestlistTable = async ({ currentPage, sortedData }) => {
+import React from "react";
+import styled from "styled-components";
+
+const GuestListTable = styled.table` // TODO: use this instead of css
+  width: 80%;
+
+  & th {
+  text-align: left;
+  };
+`
+
+const GuestlistTable = async ({ sortedData }) => {
+
+  const handleDelete = async (event) => {
+    // TODO: fix this so the event passes the id
+    e.preventDefault();
+
+    try {
+      const response = await deleteGuest(guest.id)
+      if (!!response) {
+        console.log('Guest deleted successfully');
+        // Handle success, e.g., show a success message
+      } else {
+        console.error('Failed to delete guest:', response.statusText);
+        // Handle error, e.g., show an error message
+      }
+    } catch (error) {
+      console.error('Error deleting guests:', error.message);
+      // Handle error, e.g., show an error message
+    }
+  };
 
   const renderRows = (sortedData) => {
     return sortedData.map((guest, index) => {
-      console.log(guest)
       return (
         <tr key={guest.name}>
           <td>{index + 1}</td>
@@ -14,6 +43,7 @@ const GuestlistTable = async ({ currentPage, sortedData }) => {
           <td>{guest.dietary_requirements ? 'dietary' : '-'}</td>
           <td>{guest.interested_in_accommodation}</td>
           <td>{guest.is_under_14 ? 'yes' : 'no'}</td>
+          <td><button onClick={handleDelete}>X</button></td>
         </tr>
       )
     });

@@ -1,13 +1,15 @@
+// 'use client'
+
 import React from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 
-const GuestListTable = styled.table` // TODO: use this instead of css
-  width: 80%;
+// const GuestListTable = styled.table` // TODO: use this instead of css
+//   width: 80%;
 
-  & th {
-  text-align: left;
-  };
-`
+//   & th {
+//   text-align: left;
+//   };
+// `
 
 const GuestlistTable = async ({ sortedData }) => {
 
@@ -43,7 +45,7 @@ const GuestlistTable = async ({ sortedData }) => {
           <td>{guest.dietary_requirements ? 'dietary' : '-'}</td>
           <td>{guest.interested_in_accommodation}</td>
           <td>{guest.is_under_14 ? 'yes' : 'no'}</td>
-          <td><button onClick={handleDelete}>X</button></td>
+          {/* <td><button onClick={(e) => handleDelete(e)}>X</button></td> */}
         </tr>
       )
     });

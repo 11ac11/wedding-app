@@ -12,14 +12,15 @@ const SocalContainer = styled.div`
 `
 
 const Tag = styled.a`
-// TODO: check as maybe this is now done in maine CSS sheet
   color: var(--gold);
   cursor: pointer;
   text-decoration: none;
+  margin-bottom: 0.2rem;
 
-  &:hover {
-    text-decoration: underline;
-  }
+  &::before {
+    bottom: 0;
+    background-color: var(--gold);
+}
 `
 
 export const Socials = () => {

@@ -28,31 +28,31 @@ export const ContactBox = () => {
   return (
     <Container>
       <p>
-        If you are interested in getting accommodation at the wedding venue,
+        {`If you are interested in getting accommodation at the wedding venue,
         you can contact them directly for a <strong>15% discount</strong> on the
-        rate at the time of booking.
+        rate at the time of booking.`}
       </p>
       <p>
-        We'll be staying Friday and Saturday nights. Pre-wedding events in Barcelona are likely the week before, but feel free to stay at the venue for your entire trip if you prefer.
+        {`We'll be staying Friday and Saturday nights. Pre-wedding events in Barcelona are likely the week before, but feel free to stay at the venue for your entire trip if you prefer.`}
       </p>
       <ContactInfo>
-        To book your stay, please email:
+        {`To book your stay, please email:`}
       </ContactInfo>
       <ContactInfoBold>{venueEmail}</ContactInfoBold>
       <ContactInfo>
-        with the subject:
+        {`with the subject:`}
       </ContactInfo>
       <ContactInfoBold>{weddingSubject}</ContactInfoBold>
       <p>
-        In your email, please include:
+        {`In your email, please include:`}
       </p>
       <ul>
-        <li>Number of nights</li>
-        <li>Number of rooms you'd like to book</li>
-        <li>Room types (double, twin, etc.)</li>
+        <li>{`Number of nights`}</li>
+        <li>{`Number of rooms you'd like to book`}</li>
+        <li>{`Room types (double, twin, etc.)`}</li>
       </ul>
       <p>
-        Alternatively, you can call: +34 93 665 13 00
+        {`Alternatively, you can call: +34 93 665 13 00`}
       </p>
     </Container>
   );

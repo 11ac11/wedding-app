@@ -55,16 +55,14 @@ export const Vips = () => {
   ]
 
   const renderBridesmaids = () => {
-    return bridesmaids.map((bridesmaid) => {
-      return <PersonChip name={bridesmaid} duty={'Bridesmaid'} />
+    return bridesmaids.map((bridesmaid, key) => {
+      return <PersonChip name={bridesmaid} duty={'Bridesmaid'} key={key} />
     })
   }
 
   const renderGroomsmen = () => {
-    return groomsmen.map((groomsman) => {
-      return <PersonChip name={groomsman} duty={'Groomsman'}>
-        <p>{groomsman} text</p>
-      </PersonChip>
+    return groomsmen.map((groomsman, key) => {
+      return <PersonChip name={groomsman} duty={'Groomsman'} key={key} />
     })
   }
 

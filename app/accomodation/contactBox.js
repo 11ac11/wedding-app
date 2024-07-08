@@ -21,6 +21,10 @@ const ContactInfo = styled.p`
   margin: 0;
 `
 
+const Bold = styled.span`
+  font-weight: 900;
+`
+
 export const ContactBox = () => {
   const venueEmail = 'reservasdonjaime@grup-soteras.com';
   const weddingSubject = 'Wedding Robyn & Alex - 05 Sept 2025';
@@ -29,7 +33,7 @@ export const ContactBox = () => {
     <Container>
       <p>
         {`If you are interested in getting accommodation at the wedding venue,
-        you can contact them directly for a <strong>15% discount</strong> on the
+        you can contact them directly for a `}<Bold>{`15% discount`}</Bold>{` on the
         rate at the time of booking.`}
       </p>
       <p>

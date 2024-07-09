@@ -3,10 +3,9 @@ import InsertGuestsForm from '@/components/uploadGuests.jsx'
 import { getAllGuests } from '@/app/api';
 
 
-export default async function Guestlist({ searchParams }) {
-  const currentPage = Number(searchParams?.page) || 1;
-
+export default async function Guestlist({ }) {
   const dataFromApi = await getAllGuests();
+  console.log(dataFromApi)
   const data = dataFromApi.rows;
   const sortedData = data.sort((a, b) => a.id - b.id);
 
@@ -15,11 +14,11 @@ export default async function Guestlist({ searchParams }) {
   }
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center">
+    <main>
       <h1>Guestlist</h1>
       {`confirmed: ${getConfirmedAmount(sortedData)}`}
       <InsertGuestsForm />
-      <GuestlistTable currentPage={currentPage} sortedData={sortedData} />
+      <GuestlistTable sortedData={sortedData} />
     </main>
   )
 }

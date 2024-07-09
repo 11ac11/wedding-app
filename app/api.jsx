@@ -5,7 +5,7 @@ import { seed } from '@/lib/guests'
 
 export const getAllGuests = async () => {
   try {
-    const data = await sql`SELECT * FROM guests`
+    const data = await sql`SELECT * FROM guests;`
     return data
   } catch (e) {
     if (e.message.includes('relation "guests" does not exist')) {
@@ -24,15 +24,19 @@ export const getAllGuests = async () => {
 
 export const searchGuests = async (searchTerm) => {
   try {
-    const withSpaces = searchTerm
+    // Assuming case-sensitive search (remove LOWER for case-insensitive)
+    const data = await sql`
+      SELECT *
+      FROM guests
+      WHERE LOWER(name) LIKE ${'%' + searchTerm + '%'}
+    `;
 
-    const data = await sql`SELECT * FROM guests WHERE LOWER(name) LIKE ${'%' + withSpaces.toLowerCase() + '%'};`;
-    return data
-  } catch (e) {
-    throw e;
+    return data;
+  } catch (error) {
+    // Handle error here (e.g., log the error, return a default value)
+    console.error("Error searching guests:", error);
+    throw error; // Or rethrow, handle based on your application logic
   }
-
-  return data;
 };
 
 export const postGuests = async (body) => {
@@ -43,6 +47,7 @@ export const postGuests = async (body) => {
         'INSERT INTO guests (name, guestlist) VALUES ($1, $2) ON CONFLICT (name) DO NOTHING',
         [name, guestlist]
       );
+      return data
     }
   } catch (e) {
     console.error('API error', e)
@@ -58,6 +63,7 @@ export const updateGuestInfo = async (body) => {
         'INSERT INTO guests (name, guestlist) VALUES ($1, $2) ON CONFLICT (name) DO NOTHING',
         [name, guestlist]
       );
+      return data
     }
   } catch (e) {
     console.error('API error', e)

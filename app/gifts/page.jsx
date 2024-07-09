@@ -5,7 +5,7 @@ import Granada from "@/public/images/granada circle.png"
 export default async function Gifts() {
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center">
+    <main>
       <Image
         src={Granada}
         alt="Granada"

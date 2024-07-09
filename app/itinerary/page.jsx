@@ -5,7 +5,7 @@ import { Vips } from './vips.jsx'
 export default async function Itinerary() {
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center">
+    <main>
       <h1>Itinerary</h1>
       <div className="info-section">
         <h2 className="uppercase">STEN - Wed 3rd Sept (in Barcelona)</h2>

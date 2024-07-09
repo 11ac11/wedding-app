@@ -18,6 +18,7 @@ const Table = ({ searchTerm, editingGuestId, setEditingGuestId }) => {
     const fetchData = async () => {
       if (searchTerm) {
         const dataFromApi = await searchGuests(searchTerm);
+        // console.log(dataFromApi)
         setData(dataFromApi.rows);
       }
     };

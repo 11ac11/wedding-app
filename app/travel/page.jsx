@@ -6,7 +6,7 @@ import ImgCont from "../../components/img-container"
 export default async function Travel() {
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center">
+    <main>
       <h1>How to get there</h1>
       <div className="info-section">
         <h2 className="uppercase">Train from Barcelona</h2>

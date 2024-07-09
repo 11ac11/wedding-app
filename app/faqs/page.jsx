@@ -6,7 +6,7 @@ import { Socials } from "@/components/socials"
 export default async function FAQs() {
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center">
+    <main>
       <h1>FAQs</h1>
       <div className="info-section">
         <h2 className="uppercase">RSVP deadline</h2>

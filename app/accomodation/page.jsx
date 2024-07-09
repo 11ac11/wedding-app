@@ -6,7 +6,7 @@ import { ContactBox } from "./contactBox.js"
 export default async function Accomodation() {
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center">
+    <main>
       <h1>Where to stay</h1>
       <div className="info-section">
         <h2 className="uppercase">The Venue (Hotel Rey Don Jaime)</h2>

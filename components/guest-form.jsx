@@ -110,15 +110,15 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
     try {
       const response = await updateGuest(guest.id, attending, starter, main, accomodation, isChild)
       if (!!response) {
-        console.log('Guests inserted successfully');
+        console.log('Guests updated successfully');
         // Handle success, e.g., show a success message
         setEditingGuestId('')
       } else {
-        console.error('Failed to insert guests:', response.statusText);
+        console.error('Failed to update guests:', response.statusText);
         // Handle error, e.g., show an error message
       }
     } catch (error) {
-      console.error('Error inserting guests:', error.message);
+      console.error('Error updating guest:', error.message);
       // Handle error, e.g., show an error message
     }
   };

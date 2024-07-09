@@ -1,6 +1,9 @@
-// 'use client'
+'use client'
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getAllGuests } from "@/app/api";
+import InsertGuestsForm from '@/components/uploadGuests.jsx'
+
 // import styled from "styled-components";
 
 // const GuestListTable = styled.table` // TODO: use this instead of css
@@ -11,7 +14,19 @@ import React from "react";
 //   };
 // `
 
-const GuestlistTable = async ({ sortedData }) => {
+const GuestlistTable = ({ }) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const dataFromApi = await getAllGuests();
+      const sortedData = dataFromApi.rows.sort((a, b) => a.id - b.id);
+      // console.log(dataFromApi)
+      setData(sortedData);
+    };
+
+    fetchData();
+  }, []);
 
   const handleDelete = async (event) => {
     // TODO: fix this so the event passes the id
@@ -51,23 +66,31 @@ const GuestlistTable = async ({ sortedData }) => {
     });
   };
 
+  const getConfirmedAmount = () => {
+    return data.filter((guest) => guest.attending).length;
+  };
+
   return (
-    <table className="guestlist">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Guestlist</th>
-          <th>Attending</th>
-          <th>Starter</th>
-          <th>Main</th>
-          <th>Diet.</th>
-          <th>Accom.</th>
-          <th>Under 14</th>
-        </tr>
-      </thead>
-      <tbody>{renderRows(sortedData)}</tbody>
-    </table>
+    <>
+      {`confirmed: ${getConfirmedAmount(data)}`}
+      <InsertGuestsForm />
+      <table className="guestlist">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Guestlist</th>
+            <th>Attending</th>
+            <th>Starter</th>
+            <th>Main</th>
+            <th>Diet.</th>
+            <th>Accom.</th>
+            <th>Under 14</th>
+          </tr>
+        </thead>
+        <tbody>{renderRows(data)}</tbody>
+      </table>
+    </>
   );
 };
 

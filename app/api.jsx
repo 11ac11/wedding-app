@@ -43,28 +43,19 @@ export const postGuests = async (body) => {
   try {
     for (const guest of body) {
       const { name, guestlist } = guest;
-      const data = await sql.query( // Correct syntax for executing SQL query
-        'INSERT INTO guests (name, guestlist) VALUES ($1, $2) ON CONFLICT (name) DO NOTHING',
-        [name, guestlist]
-      );
-      return data
-    }
-  } catch (e) {
-    console.error('API error', e)
-    throw e;
-  }
-};
+      try {
 
-export const updateGuestInfo = async (body) => {
-  try {
-    for (const guest of body) {
-      const { name, guestlist } = guest;
-      const data = await sql.query(
-        'INSERT INTO guests (name, guestlist) VALUES ($1, $2) ON CONFLICT (name) DO NOTHING',
-        [name, guestlist]
-      );
-      return data
+        const query = `INSERT INTO guests (name, guestlist) VALUES ($1, $2)`
+        const values = [name, guestlist]
+        // Execute the post query
+        const result = await sql.query(query, values);
+        console.log(`${result.rowCount} row(s) updated`);
+        return true
+      } catch (e) {
+        console.error('ERROR in posting', name, e)
+      }
     }
+    return true
   } catch (e) {
     console.error('API error', e)
     throw e;

@@ -1,9 +1,9 @@
 'use client'
 
+import React, { useState } from 'react';
 import { postGuests } from '@/app/api';
 import * as XLSX from 'xlsx/xlsx.mjs';
 
-import { useState } from 'react';
 
 export default function InsertGuestsForm() {
   const [fileData, setFileData] = useState(null);
@@ -50,7 +50,7 @@ export default function InsertGuestsForm() {
 
     try {
       const response = await postGuests(values)
-      if (response.ok) {
+      if (!!response) {
         console.log('Guests inserted successfully');
         // Handle success, e.g., show a success message
       } else {

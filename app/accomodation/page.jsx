@@ -9,6 +9,7 @@ export default async function Accomodation() {
     <main>
       <h1>Where to stay</h1>
       <div className="info-section">
+        {/* <ImgCont src={aisle} fill={true} className='image' /> */}
         <h2 className="uppercase">The Venue (Hotel Rey Don Jaime)</h2>
         <p>
           We would love everyone to stay at the venue with us so we can enjoy afternoon,

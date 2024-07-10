@@ -16,14 +16,20 @@ const ChipContainer = styled.div`
   font-weight: 100;
 
   h3 {
-    text-transform: uppercase;
     font-weight: 500;
+    font-family: 'Best Wishes', sans-serif;
+    color: var(--blackish);
+    font-size: 1.5rem;
+    letter-spacing: 1px;
   };
 
   p {
     margin: 0;
-    font-family: 'Best Wishes', sans-serif;
-    color: var(--white)
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 200;
+    font-size: 0.8rem;
   };
 `
 
@@ -39,9 +45,9 @@ const PersonChip = ({ name, duty }) => {
 export const Vips = () => {
 
   const bridesmaids = [
+    'Georgia Hollis',
     'Ameera Najwa',
     'Angel Elliot',
-    'Georgia Hollis',
     'Geraldine Kealy',
     'Anna-May Jones'
   ]
@@ -70,7 +76,7 @@ export const Vips = () => {
     <>
       <div className="info-section">
         <h2 className="uppercase">Bridal party</h2>
-        <PersonChip name={'Ameera Najwa'} duty={'Maid of Honour'} />
+        {/* <PersonChip name={'Ameera Najwa'} duty={'Maid of Honour'} /> */}
         {renderBridesmaids()}
       </div>
       <div className="info-section">

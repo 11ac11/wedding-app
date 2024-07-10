@@ -4,11 +4,18 @@ import styled from "styled-components"
 
 const Container = styled.div`
   background: var(--gold);
-  padding: 3rem;
+  padding: 2rem;
   margin-bottom: 1rem;
   border-radius: 2px;
   color: white;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & p {
+    letter-spacing: 0;
+  };
 `
 
 const ContactInfoBold = styled.p`
@@ -25,6 +32,21 @@ const Bold = styled.span`
   font-weight: 900;
 `
 
+const ListItem = styled.li`
+`
+
+const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  list-style: circle;
+  font-weight: 400;
+  letter-spacing: 0px;
+  padding: 0;
+  margin: 0 0 1rem;
+`
+
+
 export const ContactBox = () => {
   const venueEmail = 'reservasdonjaime@grup-soteras.com';
   const weddingSubject = 'Wedding Robyn & Alex - 05 Sept 2025';
@@ -33,7 +55,7 @@ export const ContactBox = () => {
     <Container>
       <p>
         {`If you are interested in getting accommodation at the wedding venue,
-        you can contact them directly for a `}<Bold>{`15% discount`}</Bold>{` on the
+        you can contact them directly for a `}<Bold>{`10% discount`}</Bold>{` on the
         rate at the time of booking.`}
       </p>
       <p>
@@ -44,17 +66,17 @@ export const ContactBox = () => {
       </ContactInfo>
       <ContactInfoBold>{venueEmail}</ContactInfoBold>
       <ContactInfo>
-        {`with the subject:`}
+        {`With the subject:`}
       </ContactInfo>
       <ContactInfoBold>{weddingSubject}</ContactInfoBold>
-      <p>
+      <p style={{ marginBottom: 0 }}>
         {`In your email, please include:`}
       </p>
-      <ul>
-        <li>{`Number of nights`}</li>
-        <li>{`Number of rooms you'd like to book`}</li>
-        <li>{`Room types (double, twin, etc.)`}</li>
-      </ul>
+      <List>
+        <ListItem>{`Number of nights`}</ListItem>
+        <ListItem>{`Number of rooms you'd like to book`}</ListItem>
+        <ListItem>{`Room types (double, twin, etc.)`}</ListItem>
+      </List>
       <p>
         {`Alternatively, you can call: +34 93 665 13 00`}
       </p>

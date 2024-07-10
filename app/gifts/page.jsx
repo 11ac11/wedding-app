@@ -16,8 +16,7 @@ export default async function Gifts() {
       <div className="info-section">
         <p>
           {`We really appreciate many of you are travelling a long way to be here,
-          which we know isn't cheap! You being there on our special day is
-          already the best gift and we don't expect anything else.`}
+          so you being there on our special day is already the best gift and we don't expect anything else.`}
         </p>
         <p>
           {`However, if you would like to give a little extra, we would prefer a donation towards

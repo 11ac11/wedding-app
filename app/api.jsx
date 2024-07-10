@@ -42,11 +42,11 @@ export const searchGuests = async (searchTerm) => {
 export const postGuests = async (body) => {
   try {
     for (const guest of body) {
-      const { name, guestlist } = guest;
+      const { name, guestlist, partner } = guest;
       try {
 
-        const query = `INSERT INTO guests (name, guestlist) VALUES ($1, $2)`
-        const values = [name, guestlist]
+        const query = `INSERT INTO guests (name, guestlist, partner) VALUES ($1, $2, $3)`
+        const values = [name, guestlist, partner]
         // Execute the post query
         const result = await sql.query(query, values);
         console.log(`${result.rowCount} row(s) updated`);

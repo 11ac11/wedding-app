@@ -46,7 +46,7 @@ export default function InsertGuestsForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const values = fileData.map(row => ({ name: row.Name, guestlist: row.Guestlist }));
+    const values = fileData.map(row => ({ name: row.Name, partner: row.Partner, guestlist: row.Guestlist }));
 
     try {
       const response = await postGuests(values)

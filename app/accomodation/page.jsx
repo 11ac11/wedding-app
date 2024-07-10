@@ -27,12 +27,16 @@ export default async function Accomodation() {
           evening and the next day together, but understand this might not be the
           best option for everyone.`}
         </p>
+        <p>
+          {`If you would prefer a different hotel or AirBnb, we recommend staying in Castadefells
+          or Barcelona.`}
+        </p>
       </div>
 
       <div className="info-section">
         <h2 className="uppercase">In Castadefells</h2>
         <p>
-          {`The venue is located in the town of Castadefells. It has a lovely
+          {`The venue is located in the town of Castadefells, which has a lovely
           long, child-friendly beach with soft white sand and calm waters, as well
           as numerous bars and restaurants. It is easy to access Barcelona via
           public transpot for a day trip.`}

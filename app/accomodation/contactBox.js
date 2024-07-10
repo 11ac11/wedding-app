@@ -12,10 +12,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  & p {
-    letter-spacing: 0;
-  };
 `
 
 const ContactInfoBold = styled.p`
@@ -41,7 +37,6 @@ const List = styled.ul`
   align-items: flex-start;
   list-style: circle;
   font-weight: 400;
-  letter-spacing: 0px;
   padding: 0;
   margin: 0 0 1rem;
 `

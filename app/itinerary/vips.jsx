@@ -80,7 +80,7 @@ export const Vips = () => {
         {renderBridesmaids()}
       </div>
       <div className="info-section">
-        <h2 className="uppercase">Grooms party</h2>
+        <h2 className="uppercase">{`Groom's party`}</h2>
         <PersonChip name={'Ryan Keady'} duty={'Bestman'} />
         {renderGroomsmen()}
       </div>

@@ -40,7 +40,7 @@ const SearchInput = styled.input`
 
 export default function Search({ searchTerm, setSearchTerm, editingGuestId }) {
   const handleSearch = useDebouncedCallback((term) => {
-    if (term && term.includes(' ') && term.length > 2) {
+    if (term && term.length > 3) {
       setSearchTerm(term)
     } else {
       setSearchTerm('')
@@ -51,7 +51,7 @@ export default function Search({ searchTerm, setSearchTerm, editingGuestId }) {
     <>
       <SearchContainer $editingGuestId={!!editingGuestId}>
         <label htmlFor="search">
-          Search for the full names of your party:
+          Search by the surname(s) of your party:
         </label>
         <SearchInput
           className="search"

@@ -27,7 +27,12 @@ export const searchGuests = async (searchTerm) => {
   try {
     const withSpaces = searchTerm
 
-    const data = await sql`SELECT * FROM guests WHERE LOWER(name) LIKE ${'%' + withSpaces.toLowerCase() + '%'};`;
+    const data = await sql`
+      SELECT *
+      FROM guests
+      WHERE LOWER(name) LIKE ${'%' + withSpaces.toLowerCase() + '%'}
+        OR (partner IS NOT NULL AND LOWER(partner) LIKE ${'%' + withSpaces.toLowerCase() + '%'});
+    `;
     return data
   } catch (e) {
     if (e.message.includes('relation "guests" does not exist')) {

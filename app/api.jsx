@@ -5,7 +5,8 @@ import { seed } from '@/lib/guests'
 
 export const getAllGuests = async () => {
   try {
-    const data = await sql`SELECT * FROM guests;`
+    const data = await sql`SELECT * FROM guests`
+    console.log(data.rows)
     return data
   } catch (e) {
     if (e.message.includes('relation "guests" does not exist')) {
@@ -24,18 +25,22 @@ export const getAllGuests = async () => {
 
 export const searchGuests = async (searchTerm) => {
   try {
-    // Assuming case-sensitive search (remove LOWER for case-insensitive)
-    const data = await sql`
-      SELECT *
-      FROM guests
-      WHERE LOWER(name) LIKE ${'%' + searchTerm + '%'}
-    `;
+    const withSpaces = searchTerm
 
-    return data;
-  } catch (error) {
-    // Handle error here (e.g., log the error, return a default value)
-    console.error("Error searching guests:", error);
-    throw error; // Or rethrow, handle based on your application logic
+    const data = await sql`SELECT * FROM guests WHERE LOWER(name) LIKE ${'%' + withSpaces.toLowerCase() + '%'};`;
+    return data
+  } catch (e) {
+    if (e.message.includes('relation "guests" does not exist')) {
+      console.log(
+        'Table does not exist, creating and seeding it with dummy data now...'
+      )
+      // Table is not created yet
+      await seed()
+      const data = await sql`SELECT * FROM guests WHERE LOWER(name) LIKE ${'%' + withSpaces.toLowerCase() + '%'};`;
+      return data
+    } else {
+      throw e;
+    }
   }
 };
 
@@ -44,13 +49,11 @@ export const postGuests = async (body) => {
     for (const guest of body) {
       const { name, guestlist, partner } = guest;
       try {
-
         const query = `INSERT INTO guests (name, guestlist, partner) VALUES ($1, $2, $3)`
         const values = [name, guestlist, partner]
         // Execute the post query
         const result = await sql.query(query, values);
         console.log(`${result.rowCount} row(s) updated`);
-        return true
       } catch (e) {
         console.error('ERROR in posting', name, e)
       }

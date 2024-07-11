@@ -5,9 +5,9 @@ import { seed } from '@/lib/guests'
 
 export const getAllGuests = async () => {
   try {
-    const data = await sql`SELECT * FROM guests`
+    const data = await sql.query(`SELECT * FROM guests`)
     console.log(data.rows)
-    return data
+    return data.rows
   } catch (e) {
     if (e.message.includes('relation "guests" does not exist')) {
       console.log(
@@ -27,13 +27,21 @@ export const searchGuests = async (searchTerm) => {
   try {
     const withSpaces = searchTerm
 
-    const data = await sql`
-      SELECT *
-      FROM guests
-      WHERE LOWER(name) LIKE ${'%' + withSpaces.toLowerCase() + '%'}
-        OR (partner IS NOT NULL AND LOWER(partner) LIKE ${'%' + withSpaces.toLowerCase() + '%'});
-    `;
-    return data
+    const text = `
+    SELECT *
+    FROM guests
+    WHERE LOWER(name) LIKE $1
+      OR (partner IS NOT NULL AND LOWER(partner) LIKE $2)
+  `;
+
+    const values = [
+      `%${withSpaces.toLowerCase()}%`,
+      `%${withSpaces.toLowerCase()}%`,
+    ];
+
+    const data = await sql.query(text, values);
+    console.log(data)
+    return data.rows
   } catch (e) {
     if (e.message.includes('relation "guests" does not exist')) {
       console.log(
@@ -41,7 +49,12 @@ export const searchGuests = async (searchTerm) => {
       )
       // Table is not created yet
       await seed()
-      const data = await sql`SELECT * FROM guests WHERE LOWER(name) LIKE ${'%' + withSpaces.toLowerCase() + '%'};`;
+      const data = await sql`
+        SELECT *
+        FROM guests
+        WHERE LOWER(name) LIKE ${'%' + withSpaces.toLowerCase() + '%'}
+          OR (partner IS NOT NULL AND LOWER(partner) LIKE ${'%' + withSpaces.toLowerCase() + '%'});
+      `;
       return data
     } else {
       throw e;
@@ -70,17 +83,17 @@ export const postGuests = async (body) => {
   }
 };
 
-export const updateGuest = async (id, attending, starter, main, accomodation, isChild) => {
+export const updateGuest = async (id, attending, starter, main, accomodation, sten, isChild) => {
   try {
     // Your update query
     const query = `
       UPDATE guests
-      SET attending = $1, starter = $2, main = $3, accomodation = $4, is_under_14 = $5
-      WHERE id = $6
+      SET attending = $1, starter = $2, main = $3, accomodation = $4, sten = $5, is_under_14 = $6, has_amended = $7, last_amended = $8
+      WHERE id = $9
     `;
 
     // Values to be updated
-    const values = [attending, starter, main, accomodation, isChild, id];
+    const values = [attending, starter, main, accomodation, sten, isChild === 'Yes' ? true : false, true, new Date(), id];
 
     // Execute the update query
     const result = await sql.query(query, values);

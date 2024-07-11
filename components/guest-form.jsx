@@ -101,20 +101,21 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
   const [starter, setStarter] = useState(guest.starter || '')
   const [main, setMain] = useState(guest.main || '')
   const [accomodation, setAccomodation] = useState(guest.accomodation || '')
-  const [isChild, setIsChild] = useState(guest.is_under_14 || '')
+  const [sten, setSten] = useState(guest.sten || '')
+  const [isChild, setIsChild] = useState(!!guest.is_under_14 ? 'Yes' : 'No')
   const [dietaryNotes, setDietaryNotes] = useState(guest?.dietary_notes ?? '')
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await updateGuest(guest.id, attending, starter, main, accomodation, isChild)
+      const response = await updateGuest(guest.id, attending, starter, main, accomodation, sten, isChild)
       if (!!response) {
         console.log('Guests updated successfully');
         // Handle success, e.g., show a success message
         setEditingGuestId('')
       } else {
-        console.error('Failed to update guests:', response.statusText);
+        console.error('Failed to update guests:', response);
         // Handle error, e.g., show an error message
       }
     } catch (error) {
@@ -124,7 +125,7 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
   };
 
   const guestDetailsComplete = () => {
-    if ((starter, main, accomodation, isChild) || attending === 'no') {
+    if ((starter, main, accomodation, isChild, sten) || attending === 'No') {
       return true
     }
     return false
@@ -144,6 +145,8 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
   ]
   const childStarter = ['Pizza or Pasta - TBC']
   const childMain = ['Breaded Chicken Breast with French Fries']
+  const generalOptionsMaybe = ['Yes', 'No', 'Maybe']
+  const yesNoOptions = generalOptionsMaybe.slice(0, 2)
 
   return (
     <div key={guest.id} className={`table-row ${editingGuestId === guest.id ? 'expanded' : 'mini'} `}>
@@ -160,43 +163,44 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
       </GuestNameRow >
       {editingGuestId === guest.id && <GuestInfo>
         <Dropdown label="Attending"
-          options={['yes', 'no']}
+          options={yesNoOptions}
           onChange={(val) => setAttending(val)}
           value={attending}
-          defaultValue={''}
         />
-        {attending === 'yes' &&
+        {attending === 'Yes' &&
           <>
             <Dropdown
               label="Under 14"
-              options={['yes', 'no']}
+              options={yesNoOptions}
               onChange={(val) => setIsChild(val)}
               value={isChild}
-              defaultValue={''}
             />
             <Dropdown
               label="Starter"
-              options={isChild === 'yes' ? childStarter : adultStarterOptions}
+              options={isChild === 'Yes' ? childStarter : adultStarterOptions}
               onChange={(val) => setStarter(val)}
               value={starter}
-              defaultValue={''}
             />
             <Dropdown
               label="Main"
-              options={isChild === 'yes' ? childMain : adultMainOptions}
+              options={isChild === 'Yes' ? childMain : adultMainOptions}
               onChange={(val) => setMain(val)}
               value={main}
-              defaultValue={''}
             />
             <Dropdown
-              label="Accomodation"
-              options={['yes', 'no']}
+              label="Interested in staying at the venue"
+              options={generalOptionsMaybe}
               onChange={(val) => setAccomodation(val)}
               value={accomodation}
-              defaultValue={''}
+            />
+            <Dropdown
+              label="Interested in attending the STEN"
+              options={generalOptionsMaybe}
+              onChange={(val) => setSten(val)}
+              value={accomodation}
             />
             <Input
-              label="Allergies/Dietary requirements"
+              label="Allergies/Dietary requirements (leave blank if none)"
               onChange={(val) => setDietaryNotes(val)}
               value={dietaryNotes}
               isTextArea={true}

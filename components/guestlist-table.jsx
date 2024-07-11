@@ -4,15 +4,32 @@ import React, { useState, useEffect } from "react";
 import { getAllGuests } from "@/app/api";
 import InsertGuestsForm from '@/components/uploadGuests.jsx'
 
-// import styled from "styled-components";
+import styled from "styled-components";
 
-// const GuestListTable = styled.table` // TODO: use this instead of css
-//   width: 80%;
+const GuestListTable = styled.table` // TODO: use this instead of css
+  width: 100%;
+  border-collapse: collapse;
 
-//   & th {
-//   text-align: left;
-//   };
-// `
+  & tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  & th {
+    white-space: nowrap;
+    font-size: 0.7rem;
+  }
+
+  & th, td {
+    text-align: left;
+    padding: 0.1rem 1rem;
+  };
+
+  & th:first-of-type, td:first-of-type {
+    width: 10px;
+    padding: 0.1rem 0.1rem;
+    text-align: right;
+  }
+`
 
 const GuestlistTable = ({ }) => {
   const [data, setData] = useState([]);
@@ -20,7 +37,7 @@ const GuestlistTable = ({ }) => {
   useEffect(() => {
     const fetchData = async () => {
       const dataFromApi = await getAllGuests();
-      const sortedData = dataFromApi.rows.sort((a, b) => a.id - b.id);
+      const sortedData = dataFromApi.sort((a, b) => a.id - b.id);
       // console.log(dataFromApi)
       setData(sortedData);
     };
@@ -47,19 +64,38 @@ const GuestlistTable = ({ }) => {
     }
   };
 
+  const yesNoMaybe = (value) => {
+    switch (value) {
+      case 'Yes' || true:
+        return '✅';
+      case true:
+        return '✅';
+      case 'No':
+        return '❌';
+      case false:
+        return '❌';
+      default:
+        return '?';
+    }
+  };
+
   const renderRows = (sortedData) => {
     return sortedData.map((guest, index) => {
+      const { name, guestlist, attending, starter, main, dietary_requirements, accomodation, sten, is_under_14, has_amended, last_amended } = guest
       return (
-        <tr key={guest.name}>
+        <tr key={name}>
           <td>{index + 1}</td>
-          <td>{guest.name}</td>
-          <td>{guest.guestlist}</td>
-          <td>{guest.attending ? '✅' : '❌'}</td>
-          <td>{guest.starter}</td>
-          <td>{guest.main}</td>
-          <td>{guest.dietary_requirements ? 'dietary' : '-'}</td>
-          <td>{guest.interested_in_accommodation}</td>
-          <td>{guest.is_under_14 ? 'yes' : 'no'}</td>
+          <td>{name}</td>
+          <td>{guestlist}</td>
+          <td>{yesNoMaybe(has_amended)}</td>
+          <td>{!!last_amended && last_amended.toISOString().substring(0, 10)}</td>
+          <td>{yesNoMaybe(attending)}</td>
+          <td>{!!starter && (starter.includes('duck') ? '🦆' : starter.includes('salmon') ? '🐟' : '🥗')}</td>
+          <td>{!!main && (main.includes('duck') ? '🦆' : main.includes('salmon') ? '🐟' : '🥘')}</td>
+          <td>{dietary_requirements ? '⚠️' : '-'}</td>
+          <td>{yesNoMaybe(accomodation)}</td>
+          <td>{yesNoMaybe(sten)}</td>
+          <td>{yesNoMaybe(is_under_14)}</td>
           {/* <td><button onClick={(e) => handleDelete(e)}>X</button></td> */}
         </tr>
       )
@@ -74,22 +110,25 @@ const GuestlistTable = ({ }) => {
     <>
       {`confirmed: ${getConfirmedAmount(data)}`}
       <InsertGuestsForm />
-      <table className="guestlist">
+      <GuestListTable>
         <thead>
           <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Guestlist</th>
-            <th>Attending</th>
-            <th>Starter</th>
-            <th>Main</th>
+            <th>G/L</th>
+            <th>Amended?</th>
+            <th>Last amendment</th>
+            <th>Att.</th>
+            <th>1st</th>
+            <th>2nd</th>
             <th>Diet.</th>
             <th>Accom.</th>
-            <th>Under 14</th>
+            <th>STEN</th>
+            <th>Child</th>
           </tr>
         </thead>
         <tbody>{renderRows(data)}</tbody>
-      </table>
+      </GuestListTable>
     </>
   );
 };

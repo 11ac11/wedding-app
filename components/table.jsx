@@ -19,7 +19,7 @@ const Table = ({ searchTerm, editingGuestId, setEditingGuestId }) => {
       if (searchTerm) {
         const dataFromApi = await searchGuests(searchTerm);
         // console.log(dataFromApi)
-        setData(dataFromApi.rows);
+        setData(dataFromApi);
       }
     };
 

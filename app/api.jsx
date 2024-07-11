@@ -6,7 +6,6 @@ import { seed } from '@/lib/guests'
 export const getAllGuests = async () => {
   try {
     const data = await sql.query(`SELECT * FROM guests`)
-    console.log(data.rows)
     return data.rows
   } catch (e) {
     if (e.message.includes('relation "guests" does not exist')) {

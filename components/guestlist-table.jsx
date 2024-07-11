@@ -38,7 +38,7 @@ const GuestlistTable = ({ }) => {
     const fetchData = async () => {
       const dataFromApi = await getAllGuests();
       const sortedData = dataFromApi.sort((a, b) => a.id - b.id);
-      // console.log(dataFromApi)
+      // console.log(dataFromApi[0])
       setData(sortedData);
     };
 
@@ -90,8 +90,8 @@ const GuestlistTable = ({ }) => {
           <td>{yesNoMaybe(has_amended)}</td>
           <td>{!!last_amended && last_amended.toISOString().substring(0, 10)}</td>
           <td>{yesNoMaybe(attending)}</td>
-          <td>{!!starter && (starter.includes('duck') ? '🦆' : starter.includes('salmon') ? '🐟' : '🥗')}</td>
-          <td>{!!main && (main.includes('duck') ? '🦆' : main.includes('salmon') ? '🐟' : '🥘')}</td>
+          <td>{!!starter && (starter.toLowerCase().includes('duck') ? '🦆' : starter.includes('salmon') ? '🐟' : '🥗')}</td>
+          <td>{!!main && (main.toLowerCase().includes('duck') ? '🦆' : main.includes('salmon') ? '🐟' : '🥘')}</td>
           <td>{dietary_requirements ? '⚠️' : '-'}</td>
           <td>{yesNoMaybe(accomodation)}</td>
           <td>{yesNoMaybe(sten)}</td>

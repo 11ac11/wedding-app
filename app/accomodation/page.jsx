@@ -12,6 +12,13 @@ export default async function Accomodation() {
       <div className="info-section">
         {/* <ImgCont src={aisle} fill={true} className='image' /> */}
         <h2 className="uppercase">The Venue (Hotel Rey Don Jaime)</h2>
+        <ImgCont src={hotelTurret} fill={true} className='image' />
+        <ContactBox />
+        <p>
+          {`We would love everyone to stay at the venue with us so we can enjoy afternoon,
+          evening and the next day together, but understand this might not be the
+          best option for everyone.`}
+        </p>
         <p>
           {`The venue is only 400 metres from the C-32 motorway and 10 minutes by
           car from Barcelona El Prat airport. Free parking is provided for those with
@@ -20,21 +27,14 @@ export default async function Accomodation() {
           <Link href="/travel" className='inline-link'>{'travel page'}</Link>
           {`).`}
         </p>
-        <ContactBox />
-        <ImgCont src={hotelTurret} fill={true} className='image' />
         <p>
-          {`We would love everyone to stay at the venue with us so we can enjoy afternoon,
-          evening and the next day together, but understand this might not be the
-          best option for everyone.`}
-        </p>
-        <p>
-          {`If you would prefer a different hotel or AirBnb, we recommend staying in Castadefells
+          {`If you would prefer a different hotel or AirBnB, we recommend staying in Castadefells
           or Barcelona.`}
         </p>
       </div>
 
       <div className="info-section">
-        <h2 className="uppercase">In Castadefells</h2>
+        <h2 className="uppercase">Castadefells</h2>
         <p>
           {`The venue is located in the town of Castadefells, which has a lovely
           long, child-friendly beach with soft white sand and calm waters, as well
@@ -46,7 +46,7 @@ export default async function Accomodation() {
       </div>
 
       <div className="info-section">
-        <h2 className="uppercase">In Barcelona</h2>
+        <h2 className="uppercase">Barcelona</h2>
         <p>
           {`Barcelona is within 30 minutes by both train and car so is a good option
           if you want to explore the wonderful city we call home. A taxi back from

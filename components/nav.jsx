@@ -26,12 +26,13 @@ const NavContainer = styled.div`
   height: 60px;
 
   @media(max-width: 800px) {
-    height: auto;
+    height: 100vh;
     position: fixed;
     nav {
+      height: 50%;
       flex-direction: column;
       align-items: center;
-      padding: 2rem;
+      margin-top: 60px;
       a {
         margin-bottom: 1rem;
       };

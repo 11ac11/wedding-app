@@ -150,7 +150,7 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
       <GuestNameRow>
         <NameSection onClick={() => setEditingGuestId(guest.id === editingGuestId ? '' : guest.id)} $editingGuestId={!!editingGuestId}>
           <div>
-            <p className="uppercase">{guest.name}</p>
+            <p className="uppercase wide">{guest.name}</p>
             <p className="uppercase">{guestIsComplete ? '✓' : ''}</p>
           </div>
           <div className='edit'>

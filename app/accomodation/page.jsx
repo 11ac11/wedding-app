@@ -3,6 +3,7 @@ import CastelldefelsBeach from "../../public/images/castelldefels-beach.png"
 import hotelTurret from "../../public/images/hotel-turret.png"
 import { ContactBox } from "./contactBox.js"
 import Link from 'next/link'
+import PinIcon from "../../components/PinIcon"
 
 export default async function Accomodation() {
 
@@ -31,6 +32,7 @@ export default async function Accomodation() {
           {`If you would prefer a different hotel or AirBnB, we recommend staying in Castadefells
           or Barcelona.`}
         </p>
+        <Link href="https://maps.app.goo.gl/iCTxM3wwLUpX39Y36" className="inline-link"><PinIcon /> {'Click for Google Maps/Hotel address'}</Link>
       </div>
 
       <div className="info-section">

@@ -360,7 +360,9 @@ table.guestlist th {
     font-size: 1rem;
   }
 
-  p {
+  p,
+  li,
+  .inline-link {
     font-size: 0.9rem;
   }
 }

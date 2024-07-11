@@ -9,7 +9,7 @@ export const StyledButton = styled.button`
   outline: none;
   color: #fff8f4;
   border: 1px solid #231f20;
-  border-radius: 2px;
+  border-radius: 3px;
   height: 2.5rem;
   text-transform: uppercase;
   letter-spacing: 1.4px;

@@ -26,7 +26,7 @@ const Tag = styled.a`
 export const Socials = () => {
   return (
     <SocalContainer>
-      <ImgCont src={InstaIcon} fill={true} className='image' width={'25px'} />
+      <ImgCont src={InstaIcon} fill={true} className='image' width={'25px'} alt="insta-icon" />
       <Tag href="https://www.instagram.com/roybynhollis/">@roybynhollis</Tag> / <Tag href="https://www.instagram.com/crump.music/">@crump.music</Tag>
     </SocalContainer>);
 };

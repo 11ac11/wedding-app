@@ -12,7 +12,7 @@ export default async function Itinerary() {
         src={aisle}
         alt="aisle"
         fill={true}
-        width="400px"
+        width="300px"
       />
       <h1>Itinerary</h1>
       <div className="info-section">

@@ -1,12 +1,18 @@
 import { Button } from "@/components/button"
 import { Socials } from "@/components/socials"
-
-
+import Image from "../../components/hide-img"
+import Iceland from "@/public/images/iceland-circle.png"
 
 export default async function FAQs() {
 
   return (
     <main>
+      <Image
+        src={Iceland}
+        alt="Iceland"
+        fill={true}
+        width="300px"
+      />
       <h1>FAQs</h1>
       <div className="info-section">
         <h2 className="uppercase">RSVP deadline</h2>

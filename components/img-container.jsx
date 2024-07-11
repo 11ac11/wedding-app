@@ -13,6 +13,7 @@ const ImgContainer = styled.div`
     width: 100% !important;
     position: relative !important;
     height: unset !important;
+    border-radius: 3px;
   }
 `;
 

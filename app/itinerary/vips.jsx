@@ -12,7 +12,7 @@ const ChipContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 2px;
+  border-radius: 3px;
   font-weight: 100;
 
   h3 {

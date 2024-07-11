@@ -22,6 +22,7 @@ const GuestListTable = styled.table` // TODO: use this instead of css
   & th, td {
     text-align: left;
     padding: 0.1rem 1rem;
+    font-size: 0.8rem;
   };
 
   & th:first-of-type, td:first-of-type {

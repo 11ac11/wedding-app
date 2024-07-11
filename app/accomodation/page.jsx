@@ -32,7 +32,7 @@ export default async function Accomodation() {
           {`If you would prefer a different hotel or AirBnB, we recommend staying in Castadefells
           or Barcelona.`}
         </p>
-        <Link href="https://maps.app.goo.gl/iCTxM3wwLUpX39Y36" className="inline-link"><PinIcon /> {'Click for Google Maps/Hotel address'}</Link>
+        <Link href="https://maps.app.goo.gl/iCTxM3wwLUpX39Y36" className="inline-link" target="_blank"><PinIcon /> {'Click for Google Maps/Hotel address'}</Link>
       </div>
 
       <div className="info-section">

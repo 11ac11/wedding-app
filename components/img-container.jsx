@@ -17,10 +17,10 @@ const ImgContainer = styled.div`
   }
 `;
 
-export default function ImgCont({ src, fill, width }) {
+export default function ImgCont({ src, fill, width, alt }) {
   return (
     <ImgContainer width={width}>
-      <Image src={src} fill={fill} />
+      <Image src={src} fill={fill} alt={alt} />
     </ImgContainer>
   )
 }

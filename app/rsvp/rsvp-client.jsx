@@ -3,8 +3,9 @@
 import { useState } from 'react'
 import Table from '@/components/table.jsx'
 import Search from '@/components/search-two.jsx'
-import HideImage from "./hide-img"
+import HideImage from "../../components/hide-img"
 import Turrent from "@/public/images/image2 1.png"
+import Kenya from "@/public/images/kenya-circle.png"
 
 export const RsvpClient = () => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -13,10 +14,9 @@ export const RsvpClient = () => {
   return (
     <div className={`rsvp-container`}>
       <HideImage
-        src={Turrent}
-        alt="Turrent"
+        src={Kenya}
+        alt="Kenya"
         fill={true}
-        width="400px"
         isVisible={!searchTerm}
         isShrinkable
       />

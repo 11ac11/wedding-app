@@ -1,0 +1,19 @@
+/* components/CircleImage.module.css */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: all 0.3s linear;
+}
+
+.shrink {
+  transform: scale(0);
+  filter: opacity(0)
+}

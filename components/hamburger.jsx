@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 import Nav from './nav';
 
 const Container = styled.div`
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 20px;
   width: fit-content;

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import styled from 'styled-components';
 
 const NavContainer = styled.div`
-  position: relative;
+  position: fixed;
   top: 0;
   left: 0;
   background: var(--white);

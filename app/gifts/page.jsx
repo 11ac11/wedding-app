@@ -1,6 +1,6 @@
 import { ContributeButton } from "./contribute-button.js"
 import Image from "../../components/hide-img"
-import Granada from "@/public/images/granada circle.png"
+import Granada from "@/public/images/granada-circle.png"
 
 export default async function Gifts() {
 
@@ -10,7 +10,6 @@ export default async function Gifts() {
         src={Granada}
         alt="Granada"
         fill={true}
-        width="400px"
       />
       <h1>Gifts</h1>
       <div className="info-section">

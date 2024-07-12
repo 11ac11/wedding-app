@@ -2,16 +2,17 @@ import { Button } from "@/components/button"
 import { Socials } from "@/components/socials"
 import Image from "../../components/hide-img"
 import Iceland from "@/public/images/iceland-circle.png"
+import CircleImage from "../../components/shrink-img"
 
 export default async function FAQs() {
 
   return (
     <main>
+      {/* <CircleImage src={'images/iceland-circle.png'} /> */}
       <Image
         src={Iceland}
         alt="Iceland"
         fill={true}
-        width="300px"
       />
       <h1>FAQs</h1>
       <div className="info-section">

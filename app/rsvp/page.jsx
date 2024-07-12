@@ -1,4 +1,4 @@
-import RsvpClient from '@/components/rsvp.jsx'
+import RsvpClient from './rsvp-client.jsx'
 
 export default async function Rsvp() {
   return (

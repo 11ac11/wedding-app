@@ -4,16 +4,23 @@ import hotelTurret from "../../public/images/hotel-turret.png"
 import { ContactBox } from "./contactBox.js"
 import Link from 'next/link'
 import PinIcon from "../../components/PinIcon"
+import HideImage from "../../components/hide-img"
+import Mexico from "@/public/images/mexico-circle.png"
 
 export default async function Accomodation() {
 
   return (
     <main>
+      <HideImage
+        src={Mexico}
+        alt="Mexico"
+        fill={true}
+      />
       <h1>Where to stay</h1>
       <div className="info-section">
         {/* <ImgCont src={aisle} fill={true} className='image' /> */}
         <h2 className="uppercase">The Venue (Hotel Rey Don Jaime)</h2>
-        <ImgCont src={hotelTurret} fill={true} className='image' />
+        <ImgCont src={hotelTurret} fill={true} className='image' alt="Turret" />
         <ContactBox />
         <p>
           {`We would love everyone to stay at the venue with us so we can enjoy afternoon,
@@ -44,7 +51,7 @@ export default async function Accomodation() {
           public transpot for a day trip.`}
         </p>
 
-        <ImgCont src={CastelldefelsBeach} fill={true} className='image' />
+        <ImgCont src={CastelldefelsBeach} fill={true} className='image' alt="Castelldefels beach" />
       </div>
 
       <div className="info-section">

@@ -1,6 +1,8 @@
 import React from "react"
 import HideImage from "../../components/hide-img"
+import CircleImage from "../../components/shrink-img"
 import aisle from "../../public/images/aisle-circle.png"
+import Kenya from "../../public/images/kenya2-circle.png"
 import { Vips } from './vips.jsx'
 import { TimeAndEvent } from '../../components/TimeAndEvent.jsx'
 
@@ -8,11 +10,11 @@ export default async function Itinerary() {
 
   return (
     <main>
+      {/* <CircleImage src={'images/aisle-circle.png'} /> */}
       <HideImage
-        src={aisle}
-        alt="aisle"
+        src={Kenya}
+        alt="Kenya"
         fill={true}
-        width="300px"
       />
       <h1>Itinerary</h1>
       <div className="info-section">

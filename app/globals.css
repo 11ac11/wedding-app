@@ -17,6 +17,10 @@
   box-sizing: border-box;
 }
 
+html {
+  min-height: 100vh;
+}
+
 body {
   color: var(--offblack);
   background-color: var(--offwhite);
@@ -35,7 +39,7 @@ body {
 
 main {
   display: flex;
-  min-height: 100vh;
+  height: 100%;
   max-width: 800px;
   flex-direction: column;
   align-items: center;
@@ -112,7 +116,7 @@ h1.getting-married {
   top: 20%;
   font-size: 4rem;
   text-align: center;
-  z-index: 1;
+  /* z-index: 1; */
   color: var(--offblack);
   /* mix-blend-mode: overlay; */
   overflow: hidden;

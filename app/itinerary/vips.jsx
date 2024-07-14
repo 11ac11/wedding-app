@@ -45,7 +45,6 @@ const PersonChip = ({ name, duty }) => {
 export const Vips = () => {
 
   const bridesmaids = [
-    'Georgia Hollis',
     'Ameera Najwa',
     'Angel Elliot',
     'Geraldine Kealy',
@@ -76,6 +75,7 @@ export const Vips = () => {
     <>
       <div className="info-section">
         <h2 className="uppercase">Bridal party</h2>
+        <PersonChip name={'Georgia Hollis'} duty={'Maid of Honor'} />
         {renderBridesmaids()}
         <PersonChip name={'Storm Camm'} duty={'Flower Girl'} />
       </div>

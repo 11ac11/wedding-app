@@ -26,7 +26,7 @@ export default async function FAQs() {
         <p>
           {`Barcelona's early September weather is likely to be warm, so we want everyone to feel comfortable throughout the celebrations. Ties and jackets are entirely optional - think open shirts and breezy dresses, and you'll be perfectly in tune with the atmosphere.`}
         </p>
-        <p>
+        <p className="bold">
           {`A friendly heads-up: Just to avoid any accidental colour clashes, our lovely bridesmaids will be sporting burgundy, so feel free to dress to impress in any other delightful hue!`}
         </p>
         <p>
@@ -36,10 +36,12 @@ export default async function FAQs() {
       <div className="info-section">
         <h2 className="uppercase">Social Media</h2>
         <p>
-          {`We would ask that all guests tag us on any social media posts. After the wedding, please upload all photos and videos to our drive by clicking the button below so that we can share all the memories. `}
+          {`We'd love to see all the amazing moments from our special day through your eyes! Feel free to tag us on instagram using our tags below - we can't wait to see your snaps and stories.`}
         </p>
         <Socials />
-
+        <p>
+          {`To make sure we can relive all the laughter and joy, we've set up a shared drive for photos and videos. After the wedding, simply click the button below and upload your captures to contribute to our collective memory of the day!`}
+        </p>
         <Button text={'Upload photos'} />
       </div>
     </main>

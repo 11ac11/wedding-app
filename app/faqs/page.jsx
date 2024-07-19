@@ -24,7 +24,13 @@ export default async function FAQs() {
       <div className="info-section">
         <h2 className="uppercase">Dresscode</h2>
         <p>
-          {`It is likely to be warm at the start of September so we would prefer people to come in clothing that they'll feel comfortable in. Ties and blazers are completely optional, open shirts and light dresses won't be frowned upon in the slightest.`}
+          {`Barcelona's early September weather is likely to be warm, so we want everyone to feel comfortable throughout the celebrations. Ties and jackets are entirely optional - think open shirts and breezy dresses, and you'll be perfectly in tune with the atmosphere.`}
+        </p>
+        <p>
+          {`A friendly heads-up: Just to avoid any accidental colour clashes, our lovely bridesmaids will be sporting burgundy, so feel free to dress to impress in any other delightful hue!`}
+        </p>
+        <p>
+          {`We can't wait to celebrate with you in style!`}
         </p>
       </div>
       <div className="info-section">

@@ -20,7 +20,10 @@ export default async function Itinerary() {
       <div className="info-section">
         <h2 className="uppercase">{`STEN - TBC (in Barcelona)`}</h2>
         <p>
-          {`We will be having a small STEN gathering (some casual drinks) a couple of days before the wedding in Barcelona. Exact time, date and location to be confirmed.`}
+          {`To kick off the wedding celebrations, we're planning a relaxed get-together for some drinks and catching up with everyone a few days before the big day. Think of it as a chance to mingle in a casual setting and soak up the Barcelona vibes!`}
+        </p>
+        <p>
+          {`Exact details like date, time, and location are still being finalised, but we'll keep you posted soon.`}
         </p>
       </div>
       <div className="info-section">
@@ -35,7 +38,10 @@ export default async function Itinerary() {
       <div className="info-section">
         <h2 className="uppercase">Sat 6th Sept</h2>
         <p>
-          {`The day after the wedding, we will head to a bar close to the beach for those that wish to join us. The beach is a 5 minute taxi from the hotel. Time and location to be confirmed.`}
+          {`The celebrations don't have to end after the wedding! For those who want to keep the good times rolling, we'll be heading to a bar by the beach the following day. It's just a quick 5-minute taxi ride from the hotel - perfect for soaking up the sunshine, nursing any hangovers and recounting the main event.`}
+        </p>
+        <p>
+          {`We're are also still finalising the details for this, but we'll update it when things are confirmed.`}
         </p>
       </div>
       <Vips />

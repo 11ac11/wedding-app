@@ -7,8 +7,10 @@ import InsertGuestsForm from '@/components/uploadGuests.jsx'
 import styled from "styled-components";
 
 const GuestListTable = styled.table` // TODO: use this instead of css
-  width: 100%;
   border-collapse: collapse;
+  width: 800px;
+  display: block;
+  overflow: scroll;
 
   & tr:nth-child(even) {
     background-color: rgba(0, 0, 0, 0.05);
@@ -88,8 +90,6 @@ const GuestlistTable = ({ }) => {
           <td>{index + 1}</td>
           <td>{name}</td>
           <td>{guestlist}</td>
-          <td>{yesNoMaybe(has_amended)}</td>
-          <td>{!!last_amended && last_amended.toISOString().substring(0, 10)}</td>
           <td>{yesNoMaybe(attending)}</td>
           <td>{!!starter && (starter.toLowerCase().includes('duck') ? '🦆' : starter.includes('salmon') ? '🐟' : '🥗')}</td>
           <td>{!!main && (main.toLowerCase().includes('duck') ? '🦆' : main.includes('salmon') ? '🐟' : '🥘')}</td>
@@ -97,6 +97,8 @@ const GuestlistTable = ({ }) => {
           <td>{yesNoMaybe(accomodation)}</td>
           <td>{yesNoMaybe(sten)}</td>
           <td>{yesNoMaybe(is_under_14)}</td>
+          <td>{yesNoMaybe(has_amended)}</td>
+          <td>{!!last_amended && last_amended.toISOString().substring(0, 10)}</td>
           {/* <td><button onClick={(e) => handleDelete(e)}>X</button></td> */}
         </tr>
       )

@@ -119,8 +119,6 @@ const GuestlistTable = ({ }) => {
             <th>#</th>
             <th>Name</th>
             <th>G/L</th>
-            <th>Amended?</th>
-            <th>Last amendment</th>
             <th>Att.</th>
             <th>1st</th>
             <th>2nd</th>
@@ -128,6 +126,8 @@ const GuestlistTable = ({ }) => {
             <th>Accom.</th>
             <th>STEN</th>
             <th>Child</th>
+            <th>Amended?</th>
+            <th>Last amendment</th>
           </tr>
         </thead>
         <tbody>{renderRows(data)}</tbody>

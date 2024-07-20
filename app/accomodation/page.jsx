@@ -46,9 +46,7 @@ export default async function Accomodation() {
         <h2 className="uppercase">Castadefells</h2>
         <p>
           {`The venue is located in the town of Castadefells, which has a lovely
-          long, child-friendly beach with soft white sand and calm waters, as well
-          as numerous bars and restaurants. It is easy to access Barcelona via
-          public transpot for a day trip.`}
+          long, child-friendly beach with soft white sand and calm waters, as well as numerous bars and restaurants. It is easy to access Barcelona via public transpot for a day trip.`}
         </p>
 
         <ImgCont src={CastelldefelsBeach} fill={true} className='image' alt="Castelldefels beach" />
@@ -57,13 +55,10 @@ export default async function Accomodation() {
       <div className="info-section">
         <h2 className="uppercase">Barcelona</h2>
         <p>
-          {`Barcelona is within 30 minutes by both train and car so is a good option
-          if you want to explore the wonderful city we call home. A taxi back from
-          the wedding will probably cost around 40€.`}
+          {`Barcelona is within 30 minutes by both train and car. A taxi back from the wedding will probably cost around 40€.`}
         </p>
         <p>
-          {`If you would like to stay in Barcelona but would like some advice on whereabouts,
-          don't hesitate to contact us!`}
+          {`If you would like to stay in Barcelona but would like some advice on whereabouts, don't hesitate to contact us.`}
         </p>
       </div>
     </main>

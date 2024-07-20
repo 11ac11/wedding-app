@@ -197,7 +197,7 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
               label="Interested in attending the STEN"
               options={generalOptionsMaybe}
               onChange={(val) => setSten(val)}
-              value={accomodation}
+              value={sten}
             />
             <Input
               label="Allergies/Dietary requirements (leave blank if none)"

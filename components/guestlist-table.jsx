@@ -77,6 +77,8 @@ const GuestlistTable = ({ }) => {
         return '❌';
       case false:
         return '❌';
+      case 'Maybe':
+        return '🤔'
       default:
         return '?';
     }

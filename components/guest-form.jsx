@@ -109,7 +109,7 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
     e.preventDefault();
 
     try {
-      const response = await updateGuest(guest.id, attending, starter, main, accomodation, sten, isChild)
+      const response = await updateGuest(guest.id, attending, starter, main, accomodation, sten, isChild, dietaryNotes)
       if (!!response) {
         console.log('Guests updated successfully');
         // Handle success, e.g., show a success message

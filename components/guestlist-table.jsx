@@ -84,18 +84,59 @@ const GuestlistTable = ({ }) => {
     }
   };
 
+  const starterChoices = (value) => {
+    if (value) {
+      const lowerCaseValue = value.toLowerCase()
+      switch (true) {
+        case lowerCaseValue.includes('duck'):
+          return '🦆';
+        case lowerCaseValue.includes('salmon'):
+          return '🐟';
+        case lowerCaseValue.includes('veg'):
+          return '🥗'
+        case lowerCaseValue.includes('pasta'):
+          return '🍝'
+        default:
+          return '-';
+      }
+    }
+    return '-'
+  }
+
+  const mainChoices = (value) => {
+    if (value) {
+      const lowerCaseValue = value.toLowerCase()
+      switch (true) {
+        case lowerCaseValue.includes('duck'):
+          return '🦆';
+        case lowerCaseValue.includes('hake'):
+          return '🐟';
+        case lowerCaseValue.includes('paella'):
+          return '🥘'
+        case lowerCaseValue.includes('chicken'):
+          return '🍗'
+        default:
+          return '-';
+      }
+    }
+    return '-'
+  }
+
+
   const renderRows = (sortedData) => {
     return sortedData.map((guest, index) => {
       const { name, guestlist, attending, starter, main, dietary_requirements, accomodation, sten, is_under_14, has_amended, last_amended } = guest
+
+      console.log(dietary_requirements)
       return (
         <tr key={name}>
           <td>{index + 1}</td>
           <td>{name}</td>
           <td>{guestlist}</td>
           <td>{yesNoMaybe(attending)}</td>
-          <td>{!!starter && (starter.toLowerCase().includes('duck') ? '🦆' : starter.includes('salmon') ? '🐟' : '🥗')}</td>
-          <td>{!!main && (main.toLowerCase().includes('duck') ? '🦆' : main.includes('salmon') ? '🐟' : '🥘')}</td>
-          <td>{dietary_requirements ? '⚠️' : '-'}</td>
+          <td>{starterChoices(starter)}</td>
+          <td>{mainChoices(main)}</td>
+          <td>{!!dietary_requirements ? '⚠️' : '-'}</td>
           <td>{yesNoMaybe(accomodation)}</td>
           <td>{yesNoMaybe(sten)}</td>
           <td>{yesNoMaybe(is_under_14)}</td>

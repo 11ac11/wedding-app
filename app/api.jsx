@@ -82,17 +82,17 @@ export const postGuests = async (body) => {
   }
 };
 
-export const updateGuest = async (id, attending, starter, main, accomodation, sten, isChild) => {
+export const updateGuest = async (id, attending, starter, main, accomodation, sten, isChild, dietary_requirements) => {
   try {
     // Your update query
     const query = `
       UPDATE guests
-      SET attending = $1, starter = $2, main = $3, accomodation = $4, sten = $5, is_under_14 = $6, has_amended = $7, last_amended = $8
-      WHERE id = $9
+      SET attending = $1, starter = $2, main = $3, accomodation = $4, sten = $5, is_under_14 = $6, has_amended = $7, last_amended = $8, dietary_requirements = $9
+      WHERE id = $10
     `;
 
     // Values to be updated
-    const values = [attending, starter, main, accomodation, sten, isChild === 'Yes' ? true : false, true, new Date(), id];
+    const values = [attending, starter, main, accomodation, sten, isChild === 'Yes' ? true : false, true, new Date(), dietary_requirements, id];
 
     // Execute the update query
     const result = await sql.query(query, values);

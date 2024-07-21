@@ -107,8 +107,14 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
   const [dietaryNotes, setDietaryNotes] = useState(guest?.dietary_notes ?? '')
 
   useEffect(() => {
-    setStarter(isChild === 'Yes' ? childStarter[0] : adultStarterOptions[0])
-    setMain(isChild === 'Yes' ? childMain[0] : adultMainOptions[0])
+    setStarter(isChild === 'Yes'
+      ? childStarter[0]
+      : (guest.starter || adultStarterOptions[0])
+    )
+    setMain(isChild === 'Yes'
+      ? childMain[0]
+      : (guest.main || adultMainOptions[0])
+    )
   }, [isChild])
 
   const handleSubmit = async (e) => {

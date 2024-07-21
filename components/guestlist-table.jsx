@@ -6,13 +6,13 @@ import InsertGuestsForm from '@/components/uploadGuests.jsx'
 
 import styled from "styled-components";
 
-const GuestListTable = styled.table` // TODO: use this instead of css
+const GuestListTable = styled.table`
   border-collapse: collapse;
   width: 800px;
   display: block;
   overflow: scroll;
 
-  & tr:nth-child(even) {
+  & > tr:nth-child(even) {
     background-color: rgba(0, 0, 0, 0.05);
   }
 
@@ -25,14 +25,18 @@ const GuestListTable = styled.table` // TODO: use this instead of css
     text-align: left;
     padding: 0.1rem 1rem;
     font-size: 0.8rem;
-  };
+  }
 
   & th:first-of-type, td:first-of-type {
     width: 10px;
     padding: 0.1rem 0.1rem;
     text-align: right;
   }
-`
+
+  @media (max-width: 768px) {
+    width: calc(100vw - 2rem); // Adjusts based on viewport width
+  }
+`;
 
 const GuestlistTable = ({ }) => {
   const [data, setData] = useState([]);
@@ -127,7 +131,6 @@ const GuestlistTable = ({ }) => {
     return sortedData.map((guest, index) => {
       const { name, guestlist, attending, starter, main, dietary_requirements, accomodation, sten, is_under_14, has_amended, last_amended } = guest
 
-      console.log(dietary_requirements)
       return (
         <tr key={name}>
           <td>{index + 1}</td>
@@ -139,7 +142,7 @@ const GuestlistTable = ({ }) => {
           <td>{!!dietary_requirements ? '⚠️' : '-'}</td>
           <td>{yesNoMaybe(accomodation)}</td>
           <td>{yesNoMaybe(sten)}</td>
-          <td>{yesNoMaybe(is_under_14)}</td>
+          <td>{is_under_14 ? '✅' : ''}</td>
           <td>{yesNoMaybe(has_amended)}</td>
           <td>{!!last_amended && last_amended.toISOString().substring(0, 10)}</td>
           {/* <td><button onClick={(e) => handleDelete(e)}>X</button></td> */}

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Dropdown } from './dropdown'
 import { Input } from './input'
@@ -104,6 +104,11 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
   const [sten, setSten] = useState(guest.sten || '')
   const [isChild, setIsChild] = useState(!!guest.is_under_14 ? 'Yes' : 'No')
   const [dietaryNotes, setDietaryNotes] = useState(guest?.dietary_notes ?? '')
+
+  useEffect(() => {
+    setStarter(isChild === 'Yes' ? childStarter[0] : adultStarterOptions[0])
+    setMain(isChild === 'Yes' ? childMain[0] : adultMainOptions[0])
+  }, [isChild])
 
   const handleSubmit = async (e) => {
     e.preventDefault();

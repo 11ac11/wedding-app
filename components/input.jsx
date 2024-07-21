@@ -52,6 +52,17 @@ const StyledLabel = styled.span`
   font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
   font-weight: 400;
   margin-bottom: 1rem;
+
+  & a {
+    cursor: pointer;
+    display: inline-block;
+    color: var(--slategrey);
+    letter-spacing: 0;
+  }
+
+  & a::before {
+    background-color: var(--slategrey);
+  }
 `
 
 

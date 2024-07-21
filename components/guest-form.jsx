@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
 import styled from 'styled-components'
 import { Dropdown } from './dropdown'
 import { Input } from './input'
@@ -153,6 +154,10 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
   const generalOptionsMaybe = ['Yes', 'No', 'Maybe']
   const yesNoOptions = generalOptionsMaybe.slice(0, 2)
 
+  const stenLabel = (
+    <>Interested in attending the <Link href="/itinerary">STEN*</Link></>
+  )
+
   return (
     <div key={guest.id} className={`table-row ${editingGuestId === guest.id ? 'expanded' : 'mini'} `}>
       <GuestNameRow>
@@ -175,7 +180,7 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
         {attending === 'Yes' &&
           <>
             <Dropdown
-              label="Under 14"
+              label="Under 14 (Child's menu)"
               options={yesNoOptions}
               onChange={(val) => setIsChild(val)}
               value={isChild}
@@ -199,7 +204,7 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
               value={accomodation}
             />
             <Dropdown
-              label="Interested in attending the STEN"
+              label={stenLabel}
               options={generalOptionsMaybe}
               onChange={(val) => setSten(val)}
               value={sten}
@@ -212,7 +217,10 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
               width={'100%'}
             />
           </>}
-        <Button onClick={handleSubmit} text={!!guestIsComplete ? 'update' : 'save rsvp'} />
+        <Button
+          onClick={handleSubmit}
+          text={!!guestIsComplete ? 'update' : 'save rsvp'}
+          disabled={!guestIsComplete} />
       </GuestInfo>}
     </div >
   );

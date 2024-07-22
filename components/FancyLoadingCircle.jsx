@@ -39,10 +39,10 @@ const LoadingCircle = styled.div`
   margin: 1rem 0;
 `;
 
-export const FancyLoadingCircle = ({ width }) => {
+export const FancyLoadingCircle = ({ }) => {
   return (
     <Container>
-      <LoadingCircle width={width} />
+      <LoadingCircle />
     </Container>
   )
 };

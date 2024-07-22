@@ -44,7 +44,7 @@ const Table = ({ searchTerm, editingGuestId, setEditingGuestId }) => {
           </>
         }
       </div>}
-      {loading && <FancyLoadingCircle width={'15px'} />}
+      {loading && <FancyLoadingCircle />}
       {showSuccess &&
         <div>
           <p>{`Thanks, your details have been submitted succesfully.`}</p>

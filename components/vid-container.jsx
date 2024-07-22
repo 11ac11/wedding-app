@@ -31,7 +31,7 @@ export default function VidCont({ src, fill }) {
   return (
     <VidContainer>
       <video width="100%" height="100%" autoPlay loop muted preload="auto" playsInline>
-        <source src="./images/IMG_8025.mp4" type="video/mp4" />
+        <source src="./images/home_page_video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </VidContainer>

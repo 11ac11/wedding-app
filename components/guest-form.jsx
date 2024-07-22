@@ -97,7 +97,7 @@ const GuestInfo = styled.div`
 }
 `
 
-export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
+export const GuestForm = ({ guest, editingGuestId, setEditingGuestId, setShowSuccess, setLoading }) => {
   const [attending, setAttending] = useState(guest.attending || '')
   const [starter, setStarter] = useState(guest.starter || '')
   const [main, setMain] = useState(guest.main || '')
@@ -120,12 +120,14 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setLoading(true)
     try {
       const response = await updateGuest(guest.id, attending, starter, main, accomodation, sten, isChild, dietaryNotes)
       if (!!response) {
         console.log('Guests updated successfully');
         // Handle success, e.g., show a success message
-        setEditingGuestId('')
+        setLoading(false)
+        setShowSuccess(true)
       } else {
         console.error('Failed to update guests:', response);
         // Handle error, e.g., show an error message

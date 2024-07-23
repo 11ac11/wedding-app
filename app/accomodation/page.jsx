@@ -36,17 +36,15 @@ export default async function Accomodation() {
           {`).`}
         </p>
         <p>
-          {`If you would prefer a different hotel or AirBnB, we recommend staying in Castadefells
-          or Barcelona.`}
+          {`If you would prefer a different hotel or AirBnB, we recommend staying in Castelldefels or Barcelona.`}
         </p>
         <Link href="https://maps.app.goo.gl/iCTxM3wwLUpX39Y36" className="inline-link" target="_blank"><PinIcon /> {'Click for Google Maps/Hotel address'}</Link>
       </div>
 
       <div className="info-section">
-        <h2 className="uppercase">Castadefells</h2>
+        <h2 className="uppercase">Castelldefels</h2>
         <p>
-          {`The venue is located in the town of Castadefells, which has a lovely
-          long, child-friendly beach with soft white sand and calm waters, as well as numerous bars and restaurants. It is easy to access Barcelona via public transpot for a day trip.`}
+          {`The venue is located in the town of Castelldefels, which boasts a long stretch of soft, white sand that gives way to calm, shallow waters, as well as numerous bars and restaurants. It is easy to access Barcelona via public transpot for a day trip.`}
         </p>
 
         <ImgCont src={CastelldefelsBeach} fill={true} className='image' alt="Castelldefels beach" />

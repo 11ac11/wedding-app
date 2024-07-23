@@ -52,8 +52,7 @@ export const ContactBox = () => {
     <Container>
       <p>
         {`If you are interested in getting accommodation at the wedding venue,
-    you can contact them directly for a `}<Bold>{`10 % discount`}</Bold>{` on the
-        rate at the time of booking.`}
+        you can contact them directly for a`}<Bold>{` 10 % discount `}</Bold>{`on the rate at the time of booking.`}
       </p>
       <p>
         {`We'll be staying Friday and Saturday nights. Pre-wedding events in Barcelona are likely the week before, but feel free to stay at the venue for your entire trip if you prefer.`}

@@ -45,21 +45,23 @@ const List = styled.ul`
 export const ContactBox = () => {
   const venueEmail = 'reservasdonjaime@grup-soteras.com';
   const weddingSubject = 'Wedding Robyn & Alex - 05 Sept 2025';
+  const encodedSubject = encodeURIComponent(weddingSubject);
+  const mailtoLink = `mailto:${venueEmail}?subject=${encodedSubject}`;
 
   return (
     <Container>
       <p>
         {`If you are interested in getting accommodation at the wedding venue,
-        you can contact them directly for a `}<Bold>{`10% discount`}</Bold>{` on the
+    you can contact them directly for a `}<Bold>{`10 % discount`}</Bold>{` on the
         rate at the time of booking.`}
       </p>
       <p>
         {`We'll be staying Friday and Saturday nights. Pre-wedding events in Barcelona are likely the week before, but feel free to stay at the venue for your entire trip if you prefer.`}
-      </p>
+      </p >
       <ContactInfo>
         {`To book your stay, please email:`}
       </ContactInfo>
-      <ContactInfoBold>{venueEmail}</ContactInfoBold>
+      <ContactInfoBold><a href={mailtoLink}>{venueEmail}</a></ContactInfoBold>
       <ContactInfo>
         {`With the subject:`}
       </ContactInfo>
@@ -75,6 +77,6 @@ export const ContactBox = () => {
       <p>
         {`Alternatively, you can call: +34 93 665 13 00`}
       </p>
-    </Container>
+    </Container >
   );
 };

@@ -10,7 +10,7 @@ const GuestListTable = styled.table`
   border-collapse: collapse;
   width: 800px;
   display: block;
-  overflow: scroll;
+  overflow-x: scroll;
 
   & > tr:nth-child(even) {
     background-color: rgba(0, 0, 0, 0.05);

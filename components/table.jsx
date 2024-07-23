@@ -23,7 +23,8 @@ const Table = ({ searchTerm, editingGuestId, setEditingGuestId }) => {
       if (searchTerm) {
         setLoading(true)
         const dataFromApi = await searchGuests(searchTerm);
-        setData(dataFromApi);
+        const filteredData = dataFromApi.filter(person => !!person.invited);
+        setData(filteredData);
         setLoading(false)
       }
     };

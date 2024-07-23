@@ -38,6 +38,10 @@ const GuestListTable = styled.table`
   }
 `;
 
+const StyledRow = styled.tr`
+  ${({ invited }) => !invited && 'opacity: 0.2;'}
+`
+
 const GuestlistTable = ({ }) => {
   const [data, setData] = useState([]);
 
@@ -129,10 +133,10 @@ const GuestlistTable = ({ }) => {
 
   const renderRows = (sortedData) => {
     return sortedData.map((guest, index) => {
-      const { name, guestlist, attending, starter, main, dietary_requirements, accomodation, sten, is_under_14, has_amended, last_amended } = guest
+      const { name, guestlist, attending, starter, main, dietary_requirements, accomodation, sten, is_under_14, has_amended, last_amended, invited } = guest
 
       return (
-        <tr key={name}>
+        <StyledRow key={name} invited={invited}>
           <td>{index + 1}</td>
           <td>{name}</td>
           <td>{guestlist}</td>
@@ -146,7 +150,7 @@ const GuestlistTable = ({ }) => {
           <td>{yesNoMaybe(has_amended)}</td>
           <td>{!!last_amended && last_amended.toISOString().substring(0, 10)}</td>
           {/* <td><button onClick={(e) => handleDelete(e)}>X</button></td> */}
-        </tr>
+        </StyledRow>
       )
     });
   };

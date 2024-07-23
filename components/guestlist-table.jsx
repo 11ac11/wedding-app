@@ -147,7 +147,6 @@ const GuestlistTable = ({ }) => {
           <td>{yesNoMaybe(accomodation)}</td>
           <td>{yesNoMaybe(sten)}</td>
           <td>{is_under_14 ? '✅' : ''}</td>
-          <td>{yesNoMaybe(has_amended)}</td>
           <td>{!!last_amended && last_amended.toISOString().substring(0, 10)}</td>
           {/* <td><button onClick={(e) => handleDelete(e)}>X</button></td> */}
         </StyledRow>
@@ -176,7 +175,6 @@ const GuestlistTable = ({ }) => {
             <th>Accom.</th>
             <th>STEN</th>
             <th>Child</th>
-            <th>Amended?</th>
             <th>Last amendment</th>
           </tr>
         </thead>

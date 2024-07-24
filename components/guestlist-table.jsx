@@ -10,7 +10,7 @@ const GuestListTable = styled.table`
   border-collapse: collapse;
   width: 800px;
   display: block;
-  overflow-x: scroll;
+  overflow-x: auto;
 
   & > tr:nth-child(even) {
     background-color: rgba(0, 0, 0, 0.05);
@@ -36,6 +36,28 @@ const GuestListTable = styled.table`
     width: calc(100vw - 2rem); // Adjusts based on viewport width
   }
 `;
+
+const StatsContainer = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+
+  & p {
+    margin: 0;
+  }
+`
+
+const StatRow = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  width: 100%;
+`
+
+
+
 
 const StyledRow = styled.tr`
   ${({ invited }) => !invited && 'opacity: 0.2;'}
@@ -166,14 +188,38 @@ const GuestlistTable = ({ }) => {
     })
   };
 
-  const getConfirmedAmount = () => {
-    return data.filter((guest) => guest.attending).length;
+  const getTotals = (attribute) => {
+    return data.filter((guest) => guest[attribute]).length;
   };
+
+  const getYes = (attribute, value) => {
+    return data.filter((guest) => guest[attribute] === value).length;
+  };
+
+  const stenYes = getYes('sten', 'Yes')
+  const stenMaybe = getYes('sten', 'Maybe')
+  const accomYes = getYes('accomodation', 'Yes')
+  const accomMaybe = getYes('accomodation', 'Maybe')
+
 
   return (
     <>
-      {`confirmed: ${getConfirmedAmount(data)}`}
-      <InsertGuestsForm />
+      <StatsContainer>
+        <StatRow>
+          <p>{`Confirmed: ${getTotals('attending')}`}</p>
+        </StatRow>
+        <StatRow>
+          <p>{`STEN ✅: ${stenYes}`}</p> |
+          <p>{`STEN 🤔: ${stenMaybe}`}</p> |
+          <p>{`Total : ${stenYes + stenMaybe}`}</p>
+        </StatRow>
+        <StatRow>
+          <p>{`Accom. ✅: ${accomYes}`}</p> |
+          <p>{`Accom. 🤔: ${accomMaybe}`}</p> |
+          <p>{`Total : ${accomYes + accomMaybe}`}</p>
+        </StatRow>
+      </StatsContainer>
+      {/* <InsertGuestsForm /> */}
       <GuestListTable>
         <thead>
           <tr>
@@ -187,7 +233,7 @@ const GuestlistTable = ({ }) => {
             <th>Accom.</th>
             <th>STEN</th>
             <th>Child</th>
-            <th>Last amendment</th>
+            <th>Last amend.</th>
           </tr>
         </thead>
         <tbody>{renderRows(data)}</tbody>

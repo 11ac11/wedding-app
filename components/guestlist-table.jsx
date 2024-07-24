@@ -30,7 +30,6 @@ const GuestListTable = styled.table`
   & th:first-of-type, td:first-of-type {
     width: 10px;
     padding: 0.1rem 0.1rem;
-    text-align: right;
   }
 
   @media (max-width: 768px) {
@@ -137,7 +136,7 @@ const GuestlistTable = ({ }) => {
 
       return (
         <StyledRow key={name} invited={invited}>
-          <td>{index + 1}</td>
+          <td style={{ textAlign: 'right' }}>{index + 1}</td>
           <td>{name}</td>
           <td>{guestlist}</td>
           <td>{yesNoMaybe(attending)}</td>
@@ -154,6 +153,19 @@ const GuestlistTable = ({ }) => {
     });
   };
 
+  const renderDietary = (guests) => {
+    const guestsWithDietaryReqs = guests.filter(guest => !!guest.dietary_requirements)
+    return guestsWithDietaryReqs.map((guest, index) => {
+      const { name, dietary_requirements } = guest
+      return (
+        <StyledRow key={index} invited={true}>
+          <td style={{ textAlign: 'left' }}>{name}</td>
+          <td>{dietary_requirements}</td>
+        </StyledRow>
+      )
+    })
+  };
+
   const getConfirmedAmount = () => {
     return data.filter((guest) => guest.attending).length;
   };
@@ -165,7 +177,7 @@ const GuestlistTable = ({ }) => {
       <GuestListTable>
         <thead>
           <tr>
-            <th>#</th>
+            <th style={{ textAlign: 'right' }}>#</th>
             <th>Name</th>
             <th>G/L</th>
             <th>Att.</th>
@@ -179,6 +191,15 @@ const GuestlistTable = ({ }) => {
           </tr>
         </thead>
         <tbody>{renderRows(data)}</tbody>
+      </GuestListTable >
+      <GuestListTable>
+        <thead>
+          <tr>
+            <th style={{ textAlign: 'left' }}>Name</th>
+            <th>Dietary Req.</th>
+          </tr>
+        </thead>
+        <tbody>{renderDietary(data)}</tbody>
       </GuestListTable>
     </>
   );

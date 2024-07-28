@@ -8,8 +8,6 @@ import * as XLSX from 'xlsx/xlsx.mjs';
 export default function InsertGuestsForm() {
   const [fileData, setFileData] = useState(null);
 
-  console.log(fileData)
-
   // Function to parse Excel file and return data
   const parseExcel = (file) => {
     return new Promise((resolve, reject) => {

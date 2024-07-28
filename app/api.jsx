@@ -39,7 +39,6 @@ export const searchGuests = async (searchTerm) => {
     ];
 
     const data = await sql.query(text, values);
-    console.log(data)
     return data.rows
   } catch (e) {
     if (e.message.includes('relation "guests" does not exist')) {
@@ -91,11 +90,16 @@ export const updateGuest = async (id, attending, starter, main, accomodation, st
       WHERE id = $10
     `;
 
+    const isAttending = attending === 'Yes'
+    const childValue = isChild === 'Yes' ? true : false
+
     // Values to be updated
-    const values = [attending, starter, main, accomodation, sten, isChild === 'Yes' ? true : false, true, new Date(), dietary_requirements, id];
+    const values = [attending, starter, main, accomodation, sten, childValue, true, new Date(), dietary_requirements, id];
+
+    const notAttendingValues = [attending, null, null, null, null, null, true, new Date(), null, id]
 
     // Execute the update query
-    const result = await sql.query(query, values);
+    const result = await sql.query(query, isAttending ? values : notAttendingValues);
     console.log(`${result.rowCount} row(s) updated`);
     return true
   } catch (error) {

@@ -256,8 +256,6 @@ const GuestlistTable = ({ }) => {
     }
   }
 
-  console.log(getStarterNumbers())
-
   const attendingYes = getYes('attending', 'Yes')
   const stenYes = getYes('sten', 'Yes')
   const stenMaybe = getYes('sten', 'Maybe')

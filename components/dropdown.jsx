@@ -24,7 +24,6 @@ export const Dropdown = ({ label, value, options, onChange, placeholder = '' }) 
   const ref = useRef();
 
   const toggleDropdown = () => {
-    console.log('clickgin')
     setIsOpen(!isOpen);
   };
 

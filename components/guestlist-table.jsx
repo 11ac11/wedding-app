@@ -40,27 +40,67 @@ const GuestListTable = styled.table`
 const StatsContainer = styled.div`
   display: flex;
   width: 100%;
-  flex-direction: column;
   gap: 15px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: flex-end;
+  padding: 1rem;
 
   & p {
     margin: 0;
   }
 `
 
-const StatRow = styled.div`
+const StatBox = styled.div`
   display: flex;
-  justify-content: flex-end;
-  gap: 20px;
-  width: 100%;
+  flex-direction: column;
+  background-color: var(--slategrey);
+  color: var(--white);
+  padding: 0.5rem;
+  border-radius: 2px;
+  font-size: 12px;
+  justify-content: center;
+  flex: 1;
+  text-align: center;
+  min-width: 70px;
+
+  & div {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  & h4, p {
+    margin: 0;
+  }
+
+  & h4 {
+    margin-bottom: 0.5rem;
+  }
+
+  & p {
+    font-weight: 400;
+  }
+
+  @media (max-width: 800px) {
+    & div {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    p {
+      font-size: 0.7rem;
+    }
+  }
 `
 
-
-
-
 const StyledRow = styled.tr`
-  ${({ invited }) => !invited && 'opacity: 0.2;'}
+  ${({ $invited }) => !$invited && 'opacity: 0.2;'}
 `
 
 const GuestlistTable = ({ }) => {
@@ -157,7 +197,7 @@ const GuestlistTable = ({ }) => {
       const { name, guestlist, attending, starter, main, dietary_requirements, accomodation, sten, is_under_14, has_amended, last_amended, invited } = guest
 
       return (
-        <StyledRow key={name} invited={invited}>
+        <StyledRow key={name} $invited={!!invited}>
           <td style={{ textAlign: 'right' }}>{index + 1}</td>
           <td>{name}</td>
           <td>{guestlist}</td>
@@ -180,7 +220,7 @@ const GuestlistTable = ({ }) => {
     return guestsWithDietaryReqs.map((guest, index) => {
       const { name, dietary_requirements } = guest
       return (
-        <StyledRow key={index} invited={true}>
+        <StyledRow key={index} $invited={true}>
           <td style={{ textAlign: 'left' }}>{name}</td>
           <td>{dietary_requirements}</td>
         </StyledRow>
@@ -192,35 +232,84 @@ const GuestlistTable = ({ }) => {
     return data.filter((guest) => guest[attribute]).length;
   };
 
+  const getFoodTotals = (attribute, containingWord) => {
+    return data.filter((guest) => guest[attribute]?.includes(containingWord)).length;
+  };
+
   const getYes = (attribute, value) => {
     return data.filter((guest) => guest[attribute] === value).length;
   };
 
+  const getStarterNumbers = () => {
+    return {
+      duck: getFoodTotals('starter', 'Duck'),
+      fish: getFoodTotals('starter', 'Salmon'),
+      veg: getFoodTotals('starter', 'Vegetables'),
+    }
+  }
+
+  const getMainNumbers = () => {
+    return {
+      duck: getFoodTotals('main', 'Duck'),
+      fish: getFoodTotals('main', 'Hake'),
+      paella: getFoodTotals('main', 'Paella'),
+    }
+  }
+
+  console.log(getStarterNumbers())
+
+  const attendingYes = getYes('attending', 'Yes')
   const stenYes = getYes('sten', 'Yes')
   const stenMaybe = getYes('sten', 'Maybe')
   const accomYes = getYes('accomodation', 'Yes')
   const accomMaybe = getYes('accomodation', 'Maybe')
 
-
   return (
     <>
       <StatsContainer>
-        <StatRow>
-          <p>{`Confirmed: ${getTotals('attending')}`}</p>
-        </StatRow>
-        <StatRow>
-          <p>{`STEN ✅: ${stenYes}`}</p> |
-          <p>{`STEN 🤔: ${stenMaybe}`}</p> |
-          <p>{`Total : ${stenYes + stenMaybe}`}</p>
-        </StatRow>
-        <StatRow>
-          <p>{`Accom. ✅: ${accomYes}`}</p> |
-          <p>{`Accom. 🤔: ${accomMaybe}`}</p> |
-          <p>{`Total : ${accomYes + accomMaybe}`}</p>
-        </StatRow>
-      </StatsContainer>
+        <StatBox>
+          <h4>Confirmed</h4>
+          <div>
+            <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>
+              {attendingYes}
+            </p>
+          </div>
+        </StatBox>
+        <StatBox>
+          <h4>STEN</h4>
+          <div>
+            <p>{`✅ ${stenYes}`}</p>
+            <p>{`🤔 ${stenMaybe}`}</p>
+            <p>{`🟰 ${stenYes + stenMaybe}`}</p>
+          </div>
+        </StatBox>
+        <StatBox>
+          <h4>Accom.</h4>
+          <div>
+            <p>{`✅ ${accomYes}`}</p>
+            <p>{`🤔 ${accomMaybe}`}</p>
+            <p>{`🟰 ${accomYes + accomMaybe}`}</p>
+          </div>
+        </StatBox>
+        <StatBox>
+          <h4>Starter</h4>
+          <div>
+            <p>{`🦆 ${getStarterNumbers().duck}`}</p>
+            <p>{`🐟 ${getStarterNumbers().fish}`}</p>
+            <p>{`🥗 ${getStarterNumbers().veg}`}</p>
+          </div>
+        </StatBox>
+        <StatBox>
+          <h4>Main</h4>
+          <div>
+            <p>{`🦆 ${getMainNumbers().duck}`}</p>
+            <p>{`🐟 ${getMainNumbers().fish}`}</p>
+            <p>{`🥘 ${getMainNumbers().paella}`}</p>
+          </div>
+        </StatBox>
+      </StatsContainer >
       {/* <InsertGuestsForm /> */}
-      <GuestListTable>
+      < GuestListTable >
         <thead>
           <tr>
             <th style={{ textAlign: 'right' }}>#</th>

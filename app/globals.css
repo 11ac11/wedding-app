@@ -151,6 +151,18 @@ h3 {
   font-weight: 200;
 }
 
+h4 {
+  margin: 0;
+  letter-spacing: 1px;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+ul {
+  margin: 0 0 2rem 0;
+}
+
 .rsvp-container {
   display: flex;
   flex-direction: column;

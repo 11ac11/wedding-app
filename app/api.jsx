@@ -81,12 +81,12 @@ export const postGuests = async (body) => {
   }
 };
 
-export const updateGuest = async (id, attending, starter, main, accomodation, sten, isChild, dietary_requirements) => {
+export const updateGuest = async (id, attending, starter, main, accommodation, sten, isChild, dietary_requirements) => {
   try {
     // Your update query
     const query = `
       UPDATE guests
-      SET attending = $1, starter = $2, main = $3, accomodation = $4, sten = $5, is_under_14 = $6, has_amended = $7, last_amended = $8, dietary_requirements = $9
+      SET attending = $1, starter = $2, main = $3, accommodation = $4, sten = $5, is_under_14 = $6, has_amended = $7, last_amended = $8, dietary_requirements = $9
       WHERE id = $10
     `;
 
@@ -94,7 +94,7 @@ export const updateGuest = async (id, attending, starter, main, accomodation, st
     const childValue = isChild === 'Yes' ? true : false
 
     // Values to be updated
-    const values = [attending, starter, main, accomodation, sten, childValue, true, new Date(), dietary_requirements, id];
+    const values = [attending, starter, main, accommodation, sten, childValue, true, new Date(), dietary_requirements, id];
 
     const notAttendingValues = [attending, null, null, null, null, null, true, new Date(), null, id]
 

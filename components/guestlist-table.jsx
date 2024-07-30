@@ -194,7 +194,7 @@ const GuestlistTable = ({ }) => {
 
   const renderRows = (sortedData) => {
     return sortedData.map((guest, index) => {
-      const { name, guestlist, attending, starter, main, dietary_requirements, accomodation, sten, is_under_14, has_amended, last_amended, invited } = guest
+      const { name, guestlist, attending, starter, main, dietary_requirements, accommodation, sten, is_under_14, has_amended, last_amended, invited } = guest
 
       return (
         <StyledRow key={name} $invited={!!invited}>
@@ -205,7 +205,7 @@ const GuestlistTable = ({ }) => {
           <td>{starterChoices(starter)}</td>
           <td>{mainChoices(main)}</td>
           <td>{!!dietary_requirements ? '⚠️' : '-'}</td>
-          <td>{yesNoMaybe(accomodation)}</td>
+          <td>{yesNoMaybe(accommodation)}</td>
           <td>{yesNoMaybe(sten)}</td>
           <td>{is_under_14 ? '✅' : ''}</td>
           <td>{!!last_amended && last_amended.toISOString().substring(0, 10)}</td>
@@ -259,8 +259,8 @@ const GuestlistTable = ({ }) => {
   const attendingYes = getYes('attending', 'Yes')
   const stenYes = getYes('sten', 'Yes')
   const stenMaybe = getYes('sten', 'Maybe')
-  const accomYes = getYes('accomodation', 'Yes')
-  const accomMaybe = getYes('accomodation', 'Maybe')
+  const accomYes = getYes('accommodation', 'Yes')
+  const accomMaybe = getYes('accommodation', 'Maybe')
 
   return (
     <>

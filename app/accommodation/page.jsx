@@ -7,7 +7,7 @@ import PinIcon from "../../components/PinIcon"
 import HideImage from "../../components/hide-img"
 import Mexico from "@/public/images/mexico-circle.png"
 
-export default async function Accomodation() {
+export default async function Accommodation() {
 
   return (
     <main>

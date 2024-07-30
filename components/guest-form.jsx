@@ -101,7 +101,7 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId, setShowSuc
   const [attending, setAttending] = useState(guest.attending || '')
   const [starter, setStarter] = useState(guest.starter || '')
   const [main, setMain] = useState(guest.main || '')
-  const [accomodation, setAccomodation] = useState(guest.accomodation || '')
+  const [accommodation, setAccommodation] = useState(guest.accommodation || '')
   const [sten, setSten] = useState(guest.sten || '')
   const [isChild, setIsChild] = useState(!!guest.is_under_14 ? 'Yes' : 'No')
   const [dietaryNotes, setDietaryNotes] = useState(guest?.dietary_notes ?? '')
@@ -122,7 +122,7 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId, setShowSuc
 
     setLoading(true)
     try {
-      const response = await updateGuest(guest.id, attending, starter, main, accomodation, sten, isChild, dietaryNotes)
+      const response = await updateGuest(guest.id, attending, starter, main, accommodation, sten, isChild, dietaryNotes)
       if (!!response) {
         console.log('Guests updated successfully');
         // Handle success, e.g., show a success message
@@ -139,7 +139,7 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId, setShowSuc
   };
 
   const guestDetailsComplete = () => {
-    if ((starter, main, accomodation, isChild, sten) || attending === 'No') {
+    if ((starter, main, accommodation, isChild, sten) || attending === 'No') {
       return true
     }
     return false
@@ -208,8 +208,8 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId, setShowSuc
             <Dropdown
               label="Interested in staying at the venue"
               options={generalOptionsMaybe}
-              onChange={(val) => setAccomodation(val)}
-              value={accomodation}
+              onChange={(val) => setAccommodation(val)}
+              value={accommodation}
             />
             <Dropdown
               label={stenLabel}

@@ -266,14 +266,6 @@ const GuestlistTable = ({ }) => {
     <>
       <StatsContainer>
         <StatBox>
-          <h4>Confirmed</h4>
-          <div>
-            <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>
-              {attendingYes}
-            </p>
-          </div>
-        </StatBox>
-        <StatBox>
           <h4>STEN</h4>
           <div>
             <p>{`✅ ${stenYes}`}</p>
@@ -303,6 +295,14 @@ const GuestlistTable = ({ }) => {
             <p>{`🦆 ${getMainNumbers().duck}`}</p>
             <p>{`🐟 ${getMainNumbers().fish}`}</p>
             <p>{`🥘 ${getMainNumbers().paella}`}</p>
+          </div>
+        </StatBox>
+        <StatBox>
+          <h4>Confirmed</h4>
+          <div>
+            <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>
+              {attendingYes}
+            </p>
           </div>
         </StatBox>
       </StatsContainer >

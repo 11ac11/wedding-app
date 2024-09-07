@@ -333,7 +333,7 @@ const GuestlistTable = ({ }) => {
               {attendingYes}
             </p>
             <p style={{ fontSize: '0.8rem', textAlign: 'center' }}>
-              /{responded}
+              /{invited}
             </p>
           </div>
         </StatBox>
@@ -344,7 +344,7 @@ const GuestlistTable = ({ }) => {
               {attendingNo}
             </p>
             <p style={{ fontSize: '0.8rem', textAlign: 'center' }}>
-              /{responded}
+              /{invited}
             </p>
           </div>
         </StatBox>

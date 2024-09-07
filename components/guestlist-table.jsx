@@ -63,7 +63,7 @@ const StatBox = styled.div`
   justify-content: center;
   flex: 1;
   text-align: center;
-  min-width: 70px;
+  min-width: 20%;
 
   & div {
     display: flex;
@@ -236,7 +236,10 @@ const GuestlistTable = ({ }) => {
     return data.filter((guest) => guest[attribute]?.includes(containingWord)).length;
   };
 
-  const getYes = (attribute, value) => {
+  const getCount = (attribute, value) => {
+    if (Array.isArray(value)) {
+      return data.filter((guest) => value.includes(guest[attribute])).length;
+    }
     return data.filter((guest) => guest[attribute] === value).length;
   };
 
@@ -256,11 +259,15 @@ const GuestlistTable = ({ }) => {
     }
   }
 
-  const attendingYes = getYes('attending', 'Yes')
-  const stenYes = getYes('sten', 'Yes')
-  const stenMaybe = getYes('sten', 'Maybe')
-  const accomYes = getYes('accommodation', 'Yes')
-  const accomMaybe = getYes('accommodation', 'Maybe')
+  const responded = getCount('attending', ['Yes', 'No'])
+  const notResponded = getCount('attending', null) - getCount('invited', false)
+  const invited = getCount('invited', true)
+  const attendingYes = getCount('attending', 'Yes')
+  const attendingNo = getCount('attending', 'No')
+  const stenYes = getCount('sten', 'Yes')
+  const stenMaybe = getCount('sten', 'Maybe')
+  const accomYes = getCount('accommodation', 'Yes')
+  const accomMaybe = getCount('accommodation', 'Maybe')
 
   return (
     <>
@@ -298,10 +305,46 @@ const GuestlistTable = ({ }) => {
           </div>
         </StatBox>
         <StatBox>
-          <h4>Confirmed</h4>
+          <h4>Resp.</h4>
+          <div>
+            <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>
+              {responded}
+            </p>
+            <p style={{ fontSize: '0.8rem', textAlign: 'center' }}>
+              /{invited}
+            </p>
+          </div>
+        </StatBox>
+        <StatBox>
+          <h4>No resp.</h4>
+          <div>
+            <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>
+              {notResponded}
+            </p>
+            <p style={{ fontSize: '0.8rem', textAlign: 'center' }}>
+              /{invited}
+            </p>
+          </div>
+        </StatBox>
+        <StatBox>
+          <h4>Conf.</h4>
           <div>
             <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>
               {attendingYes}
+            </p>
+            <p style={{ fontSize: '0.8rem', textAlign: 'center' }}>
+              /{responded}
+            </p>
+          </div>
+        </StatBox>
+        <StatBox>
+          <h4>Decl.</h4>
+          <div>
+            <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>
+              {attendingNo}
+            </p>
+            <p style={{ fontSize: '0.8rem', textAlign: 'center' }}>
+              /{responded}
             </p>
           </div>
         </StatBox>

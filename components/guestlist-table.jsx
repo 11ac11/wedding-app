@@ -222,7 +222,7 @@ const GuestlistTable = ({ }) => {
       return (
         <StyledRow key={index} $invited={true}>
           <td style={{ textAlign: 'left' }}>{name}</td>
-          <td>{dietary_requirements}</td>
+          <td style={{ maxWidth: '100%' }}>{dietary_requirements}</td>
         </StyledRow>
       )
     })
@@ -368,7 +368,7 @@ const GuestlistTable = ({ }) => {
         </thead>
         <tbody>{renderRows(data)}</tbody>
       </GuestListTable >
-      <GuestListTable>
+      <GuestListTable style={{ marginTop: '20px' }}>
         <thead>
           <tr>
             <th style={{ textAlign: 'left' }}>Name</th>

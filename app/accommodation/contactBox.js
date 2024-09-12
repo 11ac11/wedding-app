@@ -55,7 +55,7 @@ export const ContactBox = () => {
         you can contact them directly for a`}<Bold>{` 10 % discount `}</Bold>{`on the rate at the time of booking.`}
       </p>
       <p>
-        {`We'll be staying Friday and Saturday nights. Pre-wedding events in Barcelona are likely the week before, but feel free to stay at the venue for your entire trip if you prefer.`}
+        {`We'll be staying the night of Friday 5th and Saturday 6th. Pre-wedding events in Barcelona are likely the week before, but feel free to stay at the venue for your entire trip if you prefer.`}
       </p >
       <ContactInfo>
         {`To book your stay, please email:`}

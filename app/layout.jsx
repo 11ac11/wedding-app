@@ -3,7 +3,10 @@ import StyledJsxRegistry from '../lib/registry'
 
 export const metadata = {
   metadataBase: new URL('https://postgres-starter.vercel.app'),
-  title: `Robyn + Alex's Wedding`,
+  title: {
+    template: `%s | Robyn + Alex's Wedding`,
+    default: `Robyn + Alex's Wedding`,
+  },
   description: '5 September 2025',
   appleWebApp: {
     title: `Robyn + Alex's Wedding`,

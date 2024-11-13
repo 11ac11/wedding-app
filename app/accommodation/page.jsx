@@ -7,6 +7,16 @@ import PinIcon from "../../components/PinIcon"
 import HideImage from "../../components/hide-img"
 import Mexico from "@/public/images/mexico-circle.png"
 
+export const metadata = {
+  metadataBase: new URL('https://postgres-starter.vercel.app'),
+  title: `Robyn + Alex's Wedding`,
+  description: '5 September 2025',
+  appleWebApp: {
+    title: `Robyn + Alex's Wedding`,
+    statusBarStyle: 'black-translucent',
+  },
+}
+
 export default async function Accommodation() {
 
   return (

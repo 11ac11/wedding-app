@@ -6,6 +6,16 @@ import Kenya from "../../public/images/kenya2-circle.png"
 import { Vips } from './vips.jsx'
 import { TimeAndEvent } from '../../components/TimeAndEvent.jsx'
 
+export const metadata = {
+  metadataBase: new URL('https://postgres-starter.vercel.app'),
+  title: `Robyn + Alex's Wedding`,
+  description: '5 September 2025',
+  appleWebApp: {
+    title: `Robyn + Alex's Wedding`,
+    statusBarStyle: 'black-translucent',
+  },
+}
+
 export default async function Itinerary() {
 
   return (

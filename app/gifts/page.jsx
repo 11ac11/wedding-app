@@ -2,6 +2,16 @@ import { ContributeButton } from "./contribute-button.js"
 import Image from "../../components/hide-img"
 import Granada from "@/public/images/granada-circle.png"
 
+export const metadata = {
+  metadataBase: new URL('https://postgres-starter.vercel.app'),
+  title: `Robyn + Alex's Wedding`,
+  description: '5 September 2025',
+  appleWebApp: {
+    title: `Robyn + Alex's Wedding`,
+    statusBarStyle: 'black-translucent',
+  },
+}
+
 export default async function Gifts() {
 
   return (

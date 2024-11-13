@@ -8,6 +8,16 @@ import Tenerife from "@/public/images/tenerife-circle.png"
 import R2Logo from "@/public/images/R2.svg"
 import Image from "next/image"
 
+export const metadata = {
+  metadataBase: new URL('https://postgres-starter.vercel.app'),
+  title: `Robyn + Alex's Wedding`,
+  description: '5 September 2025',
+  appleWebApp: {
+    title: `Robyn + Alex's Wedding`,
+    statusBarStyle: 'black-translucent',
+  },
+}
+
 export default async function Travel() {
 
   return (

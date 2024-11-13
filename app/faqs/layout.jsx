@@ -1,5 +1,4 @@
-import './globals.css'
-import StyledJsxRegistry from '../lib/registry'
+import StyledJsxRegistry from '../../lib/registry'
 
 export const metadata = {
   metadataBase: new URL('https://postgres-starter.vercel.app'),

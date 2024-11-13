@@ -8,6 +8,9 @@ export const metadata = {
   appleWebApp: {
     title: `Robyn + Alex's Wedding`,
     statusBarStyle: 'black-translucent',
+    startupImage: [
+      'app/icon.png',
+    ],
   },
 }
 

@@ -7,9 +7,9 @@ export const metadata = {
   description: '5 September 2025',
   appleWebApp: {
     title: `Robyn + Alex's Wedding`,
-    statusBarStyle: 'black-translucent',
+    statusBarStyle: 'default',
     startupImage: [
-      'app/icon.png',
+      '/public/images/icon.png',
     ],
   },
 }

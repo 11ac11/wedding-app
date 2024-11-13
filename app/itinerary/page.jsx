@@ -8,8 +8,7 @@ import { TimeAndEvent } from '../../components/TimeAndEvent.jsx'
 
 export const metadata = {
   metadataBase: new URL('https://postgres-starter.vercel.app'),
-  title: `Robyn + Alex's Wedding`,
-  description: '5 September 2025',
+  title: `Itinerary`,
   appleWebApp: {
     title: `Robyn + Alex's Wedding`,
     statusBarStyle: 'black-translucent',

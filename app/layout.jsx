@@ -5,15 +5,18 @@ export const metadata = {
   metadataBase: new URL('https://postgres-starter.vercel.app'),
   title: `Robyn + Alex's Wedding`,
   description: '5 September 2025',
-  appleWebApp: {
-    title: `Robyn + Alex's Wedding`,
-    statusBarStyle: 'black-translucent',
-  },
+  // appleWebApp: {
+  //   title: `Robyn + Alex's Wedding`,
+  //   statusBarStyle: 'black-translucent',
+  // },
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+      </head>
       <body>
         <StyledJsxRegistry>
           {children}

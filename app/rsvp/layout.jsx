@@ -1,5 +1,4 @@
-import './globals.css'
-import StyledJsxRegistry from '../lib/registry'
+import StyledJsxRegistry from '../../lib/registry'
 
 export const metadata = {
   metadataBase: new URL('https://postgres-starter.vercel.app'),
@@ -11,7 +10,7 @@ export const metadata = {
   },
 }
 
-export default function RootLayout({ children }) {
+export default function Layout({ children }) {
   return (
     <html lang="en">
       <body>

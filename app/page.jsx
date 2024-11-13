@@ -1,4 +1,5 @@
 import VidCont from '../components/vid-container'
+import Layout from './layout'
 
 export const runtime = 'edge'
 export const preferredRegion = 'home'

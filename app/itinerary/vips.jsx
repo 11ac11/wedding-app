@@ -4,7 +4,7 @@ import React from "react"
 import styled from "styled-components"
 
 const ChipContainer = styled.div`
-  background-color: var(--gold);
+  background-color: var(--slategrey);
   color: var(--offblack);
   padding: 0.5rem;
   margin-bottom: 1rem;

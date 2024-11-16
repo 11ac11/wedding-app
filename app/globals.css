@@ -4,13 +4,12 @@
 :root {
   --white: #fdfdfd;
   --offwhite: #F8F8F8;
-  --champagne: #fff8f4;
-  --subtlepeach: #fff6f1;
-  --offblack: #231f20;
-  --cornflowerblue: #68bfeb;
-  --lightcoral: #ed7b7b;
+  --stone: #E3DCD6;
   --slategrey: #a09c94;
-  --gold: #a09c94;
+  --mutedbrown: #827B75;
+  --offblack: #231f20;
+  --lightcoral: #ed7b7b;
+  --cornflowerblue: #68bfeb;
 }
 
 * {
@@ -23,8 +22,8 @@ html {
 
 body {
   color: var(--offblack);
-  background-color: var(--offwhite);
-  background-color: linear-gradient(180deg, var(--white) 0%, var(--offwhite) 100%);
+  /* background-color: var(--white); */
+  /* background: linear-gradient(180deg, var(--white) 0%, var(--offwhite) 100%); */
   min-height: 100vh;
   width: 100vw;
   background-attachment: fixed;
@@ -141,7 +140,7 @@ h1.getting-married.second {
 
 h2 {
   margin: 1rem 0;
-  border-bottom: 2px solid var(--gold);
+  border-bottom: 2px solid var(--mutedbrown);
   letter-spacing: 3px;
 }
 
@@ -233,7 +232,7 @@ input {
   font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
   height: 34px;
   font-weight: 200;
-  border: solid 1px var(--gold);
+  border: solid 1px var(--mutedbrown);
   outline: 2px solid transparent;
   padding: 0.1rem 1rem;
   min-width: 220px;

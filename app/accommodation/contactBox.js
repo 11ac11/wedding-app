@@ -3,7 +3,7 @@
 import styled from "styled-components"
 
 const Container = styled.div`
-  background: var(--gold);
+  background: var(--slategrey);
   padding: 2rem;
   margin-bottom: 1rem;
   border-radius: 2px;

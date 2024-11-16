@@ -12,14 +12,14 @@ const SocalContainer = styled.div`
 `
 
 const Tag = styled.a`
-  color: var(--gold);
+  color: var(--slategrey);
   cursor: pointer;
   text-decoration: none;
   margin-bottom: 0.2rem;
 
   &::before {
     bottom: 0;
-    background-color: var(--gold);
+    background-color: var(--slategrey);
 }
 `
 

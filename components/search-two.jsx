@@ -32,7 +32,7 @@ const SearchInput = styled.input`
 
   &:focus-visible,
   &:hover {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--slategrey);
     outline-offset: -2px;
     transition: outline 0.3s ease;
   }

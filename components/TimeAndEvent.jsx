@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const Container = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const Container = styled.div`
 `
 
 const Time = styled.p`
-  font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', 'Roboto', Helvetica, Arial, sans-serif;
   font-size: 1rem;
   margin: 0;
   font-weight: 400;
@@ -28,7 +28,8 @@ const Event = styled.p`
 export const TimeAndEvent = ({ time, event }) => {
   return (
     <Container>
-      {time && <Time>{time}</Time>}<Event>{event}</Event>
+      {time && <Time>{time}</Time>}
+      <Event>{event}</Event>
     </Container>
-  );
-};
+  )
+}

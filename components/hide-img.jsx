@@ -1,7 +1,7 @@
 'use client'
 
-import Image from 'next/image';
-import styled from 'styled-components';
+import Image from 'next/image'
+import styled from 'styled-components'
 
 const ImageContainerShrinkable = styled.div`
   position: relative;
@@ -20,18 +20,19 @@ const ImageContainerShrinkable = styled.div`
     height: auto;
   }
 
-
   @media (max-width: 600px) {
     height: 150px;
-  };
-`;
-
+  }
+`
 
 export default function HideImage({ isShrinkable = false, isVisible, className, src, fill, height }) {
   return (
     // TODO: convert to styled components
-    (<ImageContainerShrinkable height={height} className={`${className ? className : ''} ${isShrinkable ? (isVisible ? '' : 'shrink') : ''}`} >
+    <ImageContainerShrinkable
+      height={height}
+      className={`${className ? className : ''} ${isShrinkable ? (isVisible ? '' : 'shrink') : ''}`}
+    >
       <Image src={src} fill={fill} unoptimized={true} />
-    </ImageContainerShrinkable>)
+    </ImageContainerShrinkable>
   )
 }

@@ -1,27 +1,27 @@
 // components/CircleImage.js
-'use client';
+'use client'
 
-import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
-import styles from './CircleImage.module.css';
+import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import { motion, AnimatePresence } from 'framer-motion'
+import styles from './CircleImage.module.css'
 
 const CircleImage = ({ src }) => {
-  const pathname = usePathname();
-  const [imageSrc, setImageSrc] = useState(src);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [currentPathname, setCurrentPathname] = useState(pathname);
+  const pathname = usePathname()
+  const [imageSrc, setImageSrc] = useState(src)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [currentPathname, setCurrentPathname] = useState(pathname)
 
   useEffect(() => {
     if (pathname !== currentPathname) {
-      setIsTransitioning(true);
+      setIsTransitioning(true)
       setTimeout(() => {
-        setImageSrc(src);
-        setIsTransitioning(false);
-        setCurrentPathname(pathname);
-      }, 1000); // Adjust this duration to match the CSS animation
+        setImageSrc(src)
+        setIsTransitioning(false)
+        setCurrentPathname(pathname)
+      }, 1000) // Adjust this duration to match the CSS animation
     }
-  }, [pathname, currentPathname, src]);
+  }, [pathname, currentPathname, src])
 
   return (
     <div className={styles.container}>
@@ -38,7 +38,7 @@ const CircleImage = ({ src }) => {
         />
       </AnimatePresence>
     </div>
-  );
-};
+  )
+}
 
-export default CircleImage;
+export default CircleImage

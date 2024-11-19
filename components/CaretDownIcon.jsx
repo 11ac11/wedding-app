@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const CaretDownIcon = ({ onClick }) => (
   <svg
@@ -16,6 +16,6 @@ const CaretDownIcon = ({ onClick }) => (
   >
     <path d="M6 9l6 6 6-6" />
   </svg>
-);
+)
 
-export default CaretDownIcon;
+export default CaretDownIcon

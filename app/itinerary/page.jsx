@@ -1,8 +1,8 @@
-import React from "react"
-import HideImage from "../../components/hide-img"
-import CircleImage from "../../components/shrink-img"
-import aisle from "../../public/images/aisle-circle.png"
-import Kenya from "../../public/images/kenya2-circle.png"
+import React from 'react'
+import HideImage from '../../components/hide-img'
+import CircleImage from '../../components/shrink-img'
+import aisle from '../../public/images/aisle-circle.png'
+import Kenya from '../../public/images/kenya2-circle.png'
 import { Vips } from './vips.jsx'
 import { TimeAndEvent } from '../../components/TimeAndEvent.jsx'
 
@@ -11,20 +11,15 @@ export const metadata = {
   title: `Itinerary`,
   appleWebApp: {
     title: `Robyn + Alex's Wedding`,
-    statusBarStyle: 'black-translucent',
-  },
+    statusBarStyle: 'black-translucent'
+  }
 }
 
 export default async function Itinerary() {
-
   return (
     <main>
       {/* <CircleImage src={'images/aisle-circle.png'} /> */}
-      <HideImage
-        src={Kenya}
-        alt="Kenya"
-        fill={true}
-      />
+      <HideImage src={Kenya} alt="Kenya" fill={true} />
       <h1>Itinerary</h1>
       <div className="info-section">
         <h2 className="uppercase">{`STEN - TBC (in Barcelona)`}</h2>

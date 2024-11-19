@@ -1,7 +1,7 @@
 'use client'
 
-import styled from 'styled-components';
-import Image from 'next/image';
+import styled from 'styled-components'
+import Image from 'next/image'
 
 const ImgContainer = styled.div`
   position: relative;
@@ -15,7 +15,7 @@ const ImgContainer = styled.div`
     height: unset !important;
     border-radius: 3px;
   }
-`;
+`
 
 export default function ImgCont({ src, fill, width, alt }) {
   return (

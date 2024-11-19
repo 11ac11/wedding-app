@@ -1,17 +1,24 @@
-"use client";
+'use client'
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from 'framer-motion'
 import { Hamburger } from '@/components/hamburger'
+import { usePathname } from 'next/navigation'
 
 export default function Template({ children }) {
+  const pathname = usePathname()
+  console.log(pathname)
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ ease: "easeIn", duration: 0.5 }}
-    >
-      <Hamburger />
-      {children}
-    </motion.div>
-  );
+    <AnimatePresence>
+      <motion.div
+        // key={pathname}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ ease: 'easeIn', duration: 0.5 }}
+        exit={{ opacity: 0 }}
+      >
+        <Hamburger />
+        {children}
+      </motion.div>
+    </AnimatePresence>
+  )
 }

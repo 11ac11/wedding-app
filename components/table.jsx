@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components';
-import { searchGuests } from '@/app/api';
-import { GuestForm } from './guest-form';
+import styled from 'styled-components'
+import { searchGuests } from '@/app/api'
+import { GuestForm } from './guest-form'
 import { Button } from './button'
 import { FancyLoadingCircle } from './FancyLoadingCircle'
 
@@ -16,37 +16,47 @@ const GuestTable = styled.div`
 const Table = ({ searchTerm, editingGuestId, setEditingGuestId }) => {
   const [showSuccess, setShowSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
       if (searchTerm) {
         setLoading(true)
-        const dataFromApi = await searchGuests(searchTerm);
-        const filteredData = dataFromApi.filter(person => !!person.invited);
-        setData(filteredData);
+        const dataFromApi = await searchGuests(searchTerm)
+        const filteredData = dataFromApi.filter((person) => !!person.invited)
+        setData(filteredData)
         setLoading(false)
       }
-    };
-    fetchData();
-  }, [searchTerm]);
+    }
+    fetchData()
+  }, [searchTerm])
 
   return (
     <div className={searchTerm ? 'table-container fade-in' : 'table-container fade-out'}>
-      {!showSuccess && !loading && <div className="table-all-rows">
-        {searchTerm && data.map((guest) => {
-          if ((!!editingGuestId && editingGuestId === guest.id) || !editingGuestId) {
-            return <GuestForm key={guest.id} guest={guest} editingGuestId={editingGuestId} setEditingGuestId={setEditingGuestId} setShowSuccess={setShowSuccess} setLoading={setLoading} />
-          }
-        })}
-        {searchTerm && data.length === 0 &&
-          <>
-            {`Sorry, we can't find you! Please check your name or contact us directly.`}
-          </>
-        }
-      </div>}
+      {!showSuccess && !loading && (
+        <div className="table-all-rows">
+          {searchTerm &&
+            data.map((guest) => {
+              if ((!!editingGuestId && editingGuestId === guest.id) || !editingGuestId) {
+                return (
+                  <GuestForm
+                    key={guest.id}
+                    guest={guest}
+                    editingGuestId={editingGuestId}
+                    setEditingGuestId={setEditingGuestId}
+                    setShowSuccess={setShowSuccess}
+                    setLoading={setLoading}
+                  />
+                )
+              }
+            })}
+          {searchTerm && data.length === 0 && (
+            <>{`Sorry, we can't find you! Please check your name or contact us directly.`}</>
+          )}
+        </div>
+      )}
       {loading && <FancyLoadingCircle />}
-      {showSuccess &&
+      {showSuccess && (
         <div>
           <p>{`Thanks, your details have been submitted succesfully.`}</p>
           <p style={{ fontSize: '3rem', textAlign: 'center' }}>{`✓`}</p>
@@ -55,11 +65,12 @@ const Table = ({ searchTerm, editingGuestId, setEditingGuestId }) => {
               setEditingGuestId('')
               setShowSuccess(false)
             }}
-            text={'Search again'} />
+            text={'Search again'}
+          />
         </div>
-      }
+      )}
     </div>
-  );
-};
+  )
+}
 
-export default Table;
+export default Table

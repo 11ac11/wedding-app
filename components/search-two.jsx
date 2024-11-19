@@ -1,17 +1,20 @@
-'use client';
+'use client'
 
-import { useDebouncedCallback } from 'use-debounce';
-import styled from 'styled-components';
+import { useDebouncedCallback } from 'use-debounce'
+import styled from 'styled-components'
 
 const ANIMATION_STYLE = 'cubic-bezier(100,50,60,100)'
 
 const SearchContainer = styled.div`
-  height: ${({ $editingGuestId }) => $editingGuestId ? '0' : '1rem'};
-  height: ${({ $editingGuestId }) => $editingGuestId ? '0' : '110px'};
-  opacity: ${({ $editingGuestId }) => $editingGuestId ? 0 : 1};
+  height: ${({ $editingGuestId }) => ($editingGuestId ? '0' : '1rem')};
+  height: ${({ $editingGuestId }) => ($editingGuestId ? '0' : '110px')};
+  opacity: ${({ $editingGuestId }) => ($editingGuestId ? 0 : 1)};
   width: 300px;
   overflow: hidden;
-  transition: height 0.5s ${ANIMATION_STYLE}, opacity 0.5s ${ANIMATION_STYLE}, margin 0.5s ${ANIMATION_STYLE};
+  transition:
+    height 0.5s ${ANIMATION_STYLE},
+    opacity 0.5s ${ANIMATION_STYLE},
+    margin 0.5s ${ANIMATION_STYLE};
 
   & label {
     display: block;
@@ -45,14 +48,12 @@ export default function Search({ searchTerm, setSearchTerm, editingGuestId }) {
     } else {
       setSearchTerm('')
     }
-  }, 300);
+  }, 300)
 
   return (
     <>
       <SearchContainer $editingGuestId={!!editingGuestId}>
-        <label htmlFor="search">
-          Search by the surname(s) of your party:
-        </label>
+        <label htmlFor="search">Search by the surname(s) of your party:</label>
         <SearchInput
           className="search"
           placeholder={''}
@@ -61,5 +62,5 @@ export default function Search({ searchTerm, setSearchTerm, editingGuestId }) {
         />
       </SearchContainer>
     </>
-  );
+  )
 }

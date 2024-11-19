@@ -1,52 +1,46 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react';
-import './dropdown.css';
-import { Input } from './input';
+import { useState, useRef, useEffect } from 'react'
+import './dropdown.css'
+import { Input } from './input'
 
 const useOutsideClick = (ref, callback) => {
   const handleClick = (e) => {
     if (ref.current && !ref.current.contains(e.target)) {
-      callback();
+      callback()
     }
-  };
+  }
 
   useEffect(() => {
-    document.addEventListener('click', handleClick);
+    document.addEventListener('click', handleClick)
     return () => {
-      document.removeEventListener('click', handleClick);
-    };
-  });
-};
+      document.removeEventListener('click', handleClick)
+    }
+  })
+}
 
 export const Dropdown = ({ label, value, options, onChange, placeholder = '' }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const ref = useRef();
+  const [isOpen, setIsOpen] = useState(false)
+  const ref = useRef()
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
 
   const handleSelectOption = (option) => {
-    onChange(option);
+    onChange(option)
     toggleDropdown()
-  };
+  }
 
   const handleClickOutside = () => {
-    setIsOpen(false);
-  };
+    setIsOpen(false)
+  }
 
-  useOutsideClick(ref, handleClickOutside);
+  useOutsideClick(ref, handleClickOutside)
 
   return (
     <div className="dropdown-wrap" ref={ref}>
-      <Input
-        label={label}
-        onClick={toggleDropdown}
-        value={value}
-        onChange={() => { }}
-        isDropdown={true}
-      />
+      <Input label={label} onClick={toggleDropdown} value={value} onChange={() => {}} isDropdown={true} />
       {isOpen && (
         <div className="dropdown-options">
           <ul>
@@ -59,5 +53,5 @@ export const Dropdown = ({ label, value, options, onChange, placeholder = '' }) 
         </div>
       )}
     </div>
-  );
-};
+  )
+}

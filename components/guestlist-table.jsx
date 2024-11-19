@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useState, useEffect } from "react";
-import { getAllGuests } from "@/app/api";
+import React, { useState, useEffect } from 'react'
+import { getAllGuests } from '@/app/api'
 import InsertGuestsForm from '@/components/uploadGuests.jsx'
 
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const GuestListTable = styled.table`
   border-collapse: collapse;
@@ -21,13 +21,15 @@ const GuestListTable = styled.table`
     font-size: 0.7rem;
   }
 
-  & th, td {
+  & th,
+  td {
     text-align: left;
     padding: 0.1rem 1rem;
     font-size: 0.8rem;
   }
 
-  & th:first-of-type, td:first-of-type {
+  & th:first-of-type,
+  td:first-of-type {
     width: 10px;
     padding: 0.1rem 0.1rem;
   }
@@ -35,7 +37,7 @@ const GuestListTable = styled.table`
   @media (max-width: 768px) {
     width: calc(100vw - 2rem); // Adjusts based on viewport width
   }
-`;
+`
 
 const StatsContainer = styled.div`
   display: flex;
@@ -73,7 +75,8 @@ const StatBox = styled.div`
     flex-wrap: wrap;
   }
 
-  & h4, p {
+  & h4,
+  p {
     margin: 0;
   }
 
@@ -103,70 +106,70 @@ const StyledRow = styled.tr`
   ${({ $invited }) => !$invited && 'opacity: 0.2;'}
 `
 
-const GuestlistTable = ({ }) => {
-  const [data, setData] = useState([]);
+const GuestlistTable = ({}) => {
+  const [data, setData] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
-      const dataFromApi = await getAllGuests();
-      const sortedData = dataFromApi.sort((a, b) => a.id - b.id);
+      const dataFromApi = await getAllGuests()
+      const sortedData = dataFromApi.sort((a, b) => a.id - b.id)
       // console.log(dataFromApi[0])
-      setData(sortedData);
-    };
+      setData(sortedData)
+    }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   const handleDelete = async (event) => {
     // TODO: fix this so the event passes the id
-    e.preventDefault();
+    e.preventDefault()
 
     try {
       const response = await deleteGuest(guest.id)
       if (!!response) {
-        console.log('Guest deleted successfully');
+        console.log('Guest deleted successfully')
         // Handle success, e.g., show a success message
       } else {
-        console.error('Failed to delete guest:', response.statusText);
+        console.error('Failed to delete guest:', response.statusText)
         // Handle error, e.g., show an error message
       }
     } catch (error) {
-      console.error('Error deleting guests:', error.message);
+      console.error('Error deleting guests:', error.message)
       // Handle error, e.g., show an error message
     }
-  };
+  }
 
   const yesNoMaybe = (value) => {
     switch (value) {
       case 'Yes' || true:
-        return '✅';
+        return '✅'
       case true:
-        return '✅';
+        return '✅'
       case 'No':
-        return '❌';
+        return '❌'
       case false:
-        return '❌';
+        return '❌'
       case 'Maybe':
         return '🤔'
       default:
-        return '?';
+        return '?'
     }
-  };
+  }
 
   const starterChoices = (value) => {
     if (value) {
       const lowerCaseValue = value.toLowerCase()
       switch (true) {
         case lowerCaseValue.includes('duck'):
-          return '🦆';
+          return '🦆'
         case lowerCaseValue.includes('salmon'):
-          return '🐟';
+          return '🐟'
         case lowerCaseValue.includes('veg'):
           return '🥗'
         case lowerCaseValue.includes('pasta'):
           return '🍝'
         default:
-          return '-';
+          return '-'
       }
     }
     return '-'
@@ -177,24 +180,36 @@ const GuestlistTable = ({ }) => {
       const lowerCaseValue = value.toLowerCase()
       switch (true) {
         case lowerCaseValue.includes('duck'):
-          return '🦆';
+          return '🦆'
         case lowerCaseValue.includes('hake'):
-          return '🐟';
+          return '🐟'
         case lowerCaseValue.includes('paella'):
           return '🥘'
         case lowerCaseValue.includes('chicken'):
           return '🍗'
         default:
-          return '-';
+          return '-'
       }
     }
     return '-'
   }
 
-
   const renderRows = (sortedData) => {
     return sortedData.map((guest, index) => {
-      const { name, guestlist, attending, starter, main, dietary_requirements, accommodation, sten, is_under_14, has_amended, last_amended, invited } = guest
+      const {
+        name,
+        guestlist,
+        attending,
+        starter,
+        main,
+        dietary_requirements,
+        accommodation,
+        sten,
+        is_under_14,
+        has_amended,
+        last_amended,
+        invited
+      } = guest
 
       return (
         <StyledRow key={name} $invited={!!invited}>
@@ -212,11 +227,11 @@ const GuestlistTable = ({ }) => {
           {/* <td><button onClick={(e) => handleDelete(e)}>X</button></td> */}
         </StyledRow>
       )
-    });
-  };
+    })
+  }
 
   const renderDietary = (guests) => {
-    const guestsWithDietaryReqs = guests.filter(guest => !!guest.dietary_requirements)
+    const guestsWithDietaryReqs = guests.filter((guest) => !!guest.dietary_requirements)
     return guestsWithDietaryReqs.map((guest, index) => {
       const { name, dietary_requirements } = guest
       return (
@@ -226,28 +241,28 @@ const GuestlistTable = ({ }) => {
         </StyledRow>
       )
     })
-  };
+  }
 
   const getTotals = (attribute) => {
-    return data.filter((guest) => guest[attribute]).length;
-  };
+    return data.filter((guest) => guest[attribute]).length
+  }
 
   const getFoodTotals = (attribute, containingWord) => {
-    return data.filter((guest) => guest[attribute]?.includes(containingWord)).length;
-  };
+    return data.filter((guest) => guest[attribute]?.includes(containingWord)).length
+  }
 
   const getCount = (attribute, value) => {
     if (Array.isArray(value)) {
-      return data.filter((guest) => value.includes(guest[attribute])).length;
+      return data.filter((guest) => value.includes(guest[attribute])).length
     }
-    return data.filter((guest) => guest[attribute] === value).length;
-  };
+    return data.filter((guest) => guest[attribute] === value).length
+  }
 
   const getStarterNumbers = () => {
     return {
       duck: getFoodTotals('starter', 'Duck'),
       fish: getFoodTotals('starter', 'Salmon'),
-      veg: getFoodTotals('starter', 'Vegetables'),
+      veg: getFoodTotals('starter', 'Vegetables')
     }
   }
 
@@ -255,7 +270,7 @@ const GuestlistTable = ({ }) => {
     return {
       duck: getFoodTotals('main', 'Duck'),
       fish: getFoodTotals('main', 'Hake'),
-      paella: getFoodTotals('main', 'Paella'),
+      paella: getFoodTotals('main', 'Paella')
     }
   }
 
@@ -307,50 +322,34 @@ const GuestlistTable = ({ }) => {
         <StatBox>
           <h4>Resp.</h4>
           <div>
-            <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>
-              {responded}
-            </p>
-            <p style={{ fontSize: '0.8rem', textAlign: 'center' }}>
-              /{invited}
-            </p>
+            <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>{responded}</p>
+            <p style={{ fontSize: '0.8rem', textAlign: 'center' }}>/{invited}</p>
           </div>
         </StatBox>
         <StatBox>
           <h4>No resp.</h4>
           <div>
-            <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>
-              {notResponded}
-            </p>
-            <p style={{ fontSize: '0.8rem', textAlign: 'center' }}>
-              /{invited}
-            </p>
+            <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>{notResponded}</p>
+            <p style={{ fontSize: '0.8rem', textAlign: 'center' }}>/{invited}</p>
           </div>
         </StatBox>
         <StatBox>
           <h4>Conf.</h4>
           <div>
-            <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>
-              {attendingYes}
-            </p>
-            <p style={{ fontSize: '0.8rem', textAlign: 'center' }}>
-              /{invited}
-            </p>
+            <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>{attendingYes}</p>
+            <p style={{ fontSize: '0.8rem', textAlign: 'center' }}>/{invited}</p>
           </div>
         </StatBox>
         <StatBox>
           <h4>Decl.</h4>
           <div>
-            <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>
-              {attendingNo}
-            </p>
-            <p style={{ fontSize: '0.8rem', textAlign: 'center' }}>
-              /{invited}
-            </p>
+            <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>{attendingNo}</p>
+            <p style={{ fontSize: '0.8rem', textAlign: 'center' }}>/{invited}</p>
           </div>
         </StatBox>
-      </StatsContainer >
+      </StatsContainer>
       {/* <InsertGuestsForm /> */}
-      < GuestListTable >
+      <GuestListTable>
         <thead>
           <tr>
             <th style={{ textAlign: 'right' }}>#</th>
@@ -367,7 +366,7 @@ const GuestlistTable = ({ }) => {
           </tr>
         </thead>
         <tbody>{renderRows(data)}</tbody>
-      </GuestListTable >
+      </GuestListTable>
       <GuestListTable style={{ marginTop: '20px' }}>
         <thead>
           <tr>
@@ -378,7 +377,7 @@ const GuestlistTable = ({ }) => {
         <tbody>{renderDietary(data)}</tbody>
       </GuestListTable>
     </>
-  );
-};
+  )
+}
 
-export default GuestlistTable;
+export default GuestlistTable

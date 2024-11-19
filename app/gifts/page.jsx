@@ -1,25 +1,20 @@
-import { ContributeButton } from "./contribute-button.js"
-import Image from "../../components/hide-img"
-import Granada from "@/public/images/granada-circle.png"
+import { ContributeButton } from './contribute-button.js'
+import Image from '../../components/hide-img'
+import Granada from '@/public/images/granada-circle.png'
 
 export const metadata = {
   metadataBase: new URL('https://postgres-starter.vercel.app'),
   title: `Gifts`,
   appleWebApp: {
     title: `Robyn + Alex's Wedding`,
-    statusBarStyle: 'black-translucent',
-  },
+    statusBarStyle: 'black-translucent'
+  }
 }
 
 export default async function Gifts() {
-
   return (
     <main>
-      <Image
-        src={Granada}
-        alt="Granada"
-        fill={true}
-      />
+      <Image src={Granada} alt="Granada" fill={true} />
       <h1>Gifts</h1>
       <div className="info-section">
         <p>

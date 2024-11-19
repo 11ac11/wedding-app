@@ -5,12 +5,11 @@ export const metadata = {
   title: `Guestlist`,
   appleWebApp: {
     title: `Robyn + Alex's Wedding`,
-    statusBarStyle: 'black-translucent',
-  },
+    statusBarStyle: 'black-translucent'
+  }
 }
 
-export default async function Guestlist({ }) {
-
+export default async function Guestlist({}) {
   return (
     <main>
       <h1>Guestlist</h1>

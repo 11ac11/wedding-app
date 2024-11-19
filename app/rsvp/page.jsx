@@ -5,8 +5,8 @@ export const metadata = {
   title: `RSVP`,
   appleWebApp: {
     title: `Robyn + Alex's Wedding`,
-    statusBarStyle: 'black-translucent',
-  },
+    statusBarStyle: 'black-translucent'
+  }
 }
 
 export default async function Rsvp() {

@@ -1,7 +1,7 @@
 'use client'
 
-import styled from 'styled-components';
-import CaretDownIcon from './CaretDownIcon';
+import styled from 'styled-components'
+import CaretDownIcon from './CaretDownIcon'
 
 const InputWrap = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const InputContainer = styled.div`
 `
 
 const StyledInput = styled.input`
-  font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', 'Roboto', Helvetica, Arial, sans-serif;
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
   border-radius: 3px;
@@ -49,7 +49,7 @@ const StyledInput = styled.input`
 `
 
 const StyledLabel = styled.span`
-  font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', 'Roboto', Helvetica, Arial, sans-serif;
   font-weight: 400;
   margin-bottom: 1rem;
 
@@ -65,26 +65,26 @@ const StyledLabel = styled.span`
   }
 `
 
-
 export const Input = ({ label, value, onChange, placeholder = '', isTextArea, onClick, isDropdown }) => {
-
   const handleChange = (event) => {
-    onChange(event.target.value);
-  };
+    onChange(event.target.value)
+  }
 
   return (
     <InputWrap>
       <StyledLabel>{label}:</StyledLabel>
       <InputContainer>
-        {isTextArea
-          ? <StyledInput as="textarea"
+        {isTextArea ? (
+          <StyledInput
+            as="textarea"
             value={value}
             placeholder={placeholder}
             onChange={(e) => handleChange(e)}
             onClick={onClick}
             $isTextArea={isTextArea}
           />
-          : (<>
+        ) : (
+          <>
             <StyledInput
               value={value}
               placeholder={placeholder}
@@ -93,9 +93,9 @@ export const Input = ({ label, value, onChange, placeholder = '', isTextArea, on
               $isTextArea={isTextArea}
             />
             {!!isDropdown && <CaretDownIcon onClick={onClick} />}
-          </>)
-        }
+          </>
+        )}
       </InputContainer>
     </InputWrap>
-  );
-};
+  )
+}

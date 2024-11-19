@@ -9,9 +9,7 @@ export const getAllGuests = async () => {
     return data.rows
   } catch (e) {
     if (e.message.includes('relation "guests" does not exist')) {
-      console.log(
-        'Table does not exist, creating and seeding it with dummy data now...'
-      )
+      console.log('Table does not exist, creating and seeding it with dummy data now...')
       // Table is not created yet
       await seed()
       const data = await sql`SELECT * FROM guests`
@@ -31,20 +29,15 @@ export const searchGuests = async (searchTerm) => {
     FROM guests
     WHERE LOWER(name) LIKE $1
       OR (partner IS NOT NULL AND LOWER(partner) LIKE $2)
-  `;
+  `
 
-    const values = [
-      `%${withSpaces.toLowerCase()}%`,
-      `%${withSpaces.toLowerCase()}%`,
-    ];
+    const values = [`%${withSpaces.toLowerCase()}%`, `%${withSpaces.toLowerCase()}%`]
 
-    const data = await sql.query(text, values);
+    const data = await sql.query(text, values)
     return data.rows
   } catch (e) {
     if (e.message.includes('relation "guests" does not exist')) {
-      console.log(
-        'Table does not exist, creating and seeding it with dummy data now...'
-      )
+      console.log('Table does not exist, creating and seeding it with dummy data now...')
       // Table is not created yet
       await seed()
       const data = await sql`
@@ -52,24 +45,24 @@ export const searchGuests = async (searchTerm) => {
         FROM guests
         WHERE LOWER(name) LIKE ${'%' + withSpaces.toLowerCase() + '%'}
           OR (partner IS NOT NULL AND LOWER(partner) LIKE ${'%' + withSpaces.toLowerCase() + '%'});
-      `;
+      `
       return data
     } else {
-      throw e;
+      throw e
     }
   }
-};
+}
 
 export const postGuests = async (body) => {
   try {
     for (const guest of body) {
-      const { name, guestlist, partner } = guest;
+      const { name, guestlist, partner } = guest
       try {
         const query = `INSERT INTO guests (name, guestlist, partner) VALUES ($1, $2, $3)`
         const values = [name, guestlist, partner]
         // Execute the post query
-        const result = await sql.query(query, values);
-        console.log(`${result.rowCount} row(s) updated`);
+        const result = await sql.query(query, values)
+        console.log(`${result.rowCount} row(s) updated`)
       } catch (e) {
         console.error('ERROR in posting', name, e)
       }
@@ -77,9 +70,9 @@ export const postGuests = async (body) => {
     return true
   } catch (e) {
     console.error('API error', e)
-    throw e;
+    throw e
   }
-};
+}
 
 export const updateGuest = async (id, attending, starter, main, accommodation, sten, isChild, dietary_requirements) => {
   try {
@@ -88,35 +81,46 @@ export const updateGuest = async (id, attending, starter, main, accommodation, s
       UPDATE guests
       SET attending = $1, starter = $2, main = $3, accommodation = $4, sten = $5, is_under_14 = $6, has_amended = $7, last_amended = $8, dietary_requirements = $9
       WHERE id = $10
-    `;
+    `
 
     const isAttending = attending === 'Yes'
     const childValue = isChild === 'Yes' ? true : false
 
     // Values to be updated
-    const values = [attending, starter, main, accommodation, sten, childValue, true, new Date(), dietary_requirements, id];
+    const values = [
+      attending,
+      starter,
+      main,
+      accommodation,
+      sten,
+      childValue,
+      true,
+      new Date(),
+      dietary_requirements,
+      id
+    ]
 
     const notAttendingValues = [attending, null, null, null, null, null, true, new Date(), null, id]
 
     // Execute the update query
-    const result = await sql.query(query, isAttending ? values : notAttendingValues);
-    console.log(`${result.rowCount} row(s) updated`);
+    const result = await sql.query(query, isAttending ? values : notAttendingValues)
+    console.log(`${result.rowCount} row(s) updated`)
     return true
   } catch (error) {
-    console.error('Error during update:', error);
+    console.error('Error during update:', error)
   }
 }
 
 export const deleteGuest = async (ids) => {
   try {
     // Your delete query TODO: check
-    const query = `DELETE guests WHERE id = $1`;
+    const query = `DELETE guests WHERE id = $1`
 
     // Execute the deleted query
-    const result = await sql.query(query, ids);
-    console.log(`${result.rowCount} row(s) delete`);
+    const result = await sql.query(query, ids)
+    console.log(`${result.rowCount} row(s) delete`)
     return true
   } catch (error) {
-    console.error('Error during delete:', error);
+    console.error('Error during delete:', error)
   }
 }

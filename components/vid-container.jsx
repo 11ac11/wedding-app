@@ -1,6 +1,6 @@
 'use client'
 
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const VidContainer = styled.div`
   // margin-top: 60px;

@@ -1,7 +1,7 @@
 'use client'
 
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 
 const ChipContainer = styled.div`
   background-color: var(--slategrey);
@@ -21,7 +21,7 @@ const ChipContainer = styled.div`
     color: var(--blackish);
     font-size: 1.5rem;
     letter-spacing: 1px;
-  };
+  }
 
   p {
     margin: 0;
@@ -30,7 +30,7 @@ const ChipContainer = styled.div`
     letter-spacing: 3px;
     font-weight: 200;
     font-size: 0.8rem;
-  };
+  }
 `
 
 const PersonChip = ({ name, duty }) => {
@@ -43,21 +43,9 @@ const PersonChip = ({ name, duty }) => {
 }
 
 export const Vips = () => {
+  const bridesmaids = ['Ameera Najwa', 'Angel Elliot', 'Geraldine Kealy', 'Anna-May Jones']
 
-  const bridesmaids = [
-    'Ameera Najwa',
-    'Angel Elliot',
-    'Geraldine Kealy',
-    'Anna-May Jones'
-  ]
-
-  const groomsmen = [
-    'Andrew Speak',
-    'Alistair Hobson',
-    'Samuel Rodd',
-    'Christian Newmann',
-    'Joseph Bailey'
-  ]
+  const groomsmen = ['Andrew Speak', 'Alistair Hobson', 'Samuel Rodd', 'Christian Newmann', 'Joseph Bailey']
 
   const renderBridesmaids = () => {
     return bridesmaids.map((bridesmaid, key) => {

@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import Table from '@/components/table.jsx'
 import Search from '@/components/search-two.jsx'
-import HideImage from "../../components/hide-img"
-import Turrent from "@/public/images/image2 1.png"
-import Kenya from "@/public/images/kenya-circle.png"
+import HideImage from '../../components/hide-img'
+import Turrent from '@/public/images/image2 1.png'
+import Kenya from '@/public/images/kenya-circle.png'
 
 export const RsvpClient = () => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -13,13 +13,7 @@ export const RsvpClient = () => {
 
   return (
     <div className={`rsvp-container`}>
-      <HideImage
-        src={Kenya}
-        alt="Kenya"
-        fill={true}
-        isVisible={!searchTerm}
-        isShrinkable
-      />
+      <HideImage src={Kenya} alt="Kenya" fill={true} isVisible={!searchTerm} isShrinkable />
       <h1>R.S.V.P.</h1>
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} editingGuestId={editingGuestId} />
       <Table searchTerm={searchTerm} editingGuestId={editingGuestId} setEditingGuestId={setEditingGuestId} />
@@ -27,4 +21,4 @@ export const RsvpClient = () => {
   )
 }
 
-export default RsvpClient;
+export default RsvpClient

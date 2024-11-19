@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
-import Nav from './nav';
+import React, { useState } from 'react'
+import styled, { css } from 'styled-components'
+import Nav from './nav'
 
 const Container = styled.div`
   position: fixed;
@@ -38,7 +38,7 @@ const Container = styled.div`
         transform: rotate(-45deg) translate(3px, -9px);
       }
     `}
-`;
+`
 
 const Line = styled.div`
   height: 2px;
@@ -46,7 +46,7 @@ const Line = styled.div`
   background: black;
   border-radius: 1rem;
   transition: all 0.2s linear;
-`;
+`
 
 export const Hamburger = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -64,5 +64,5 @@ export const Hamburger = () => {
       </Container>
       {<Nav openClose={openClose} className={isOpen ? 'open' : 'close'} />}
     </>
-  );
-};
+  )
+}

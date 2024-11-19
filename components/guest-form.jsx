@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { Dropdown } from './dropdown'
 import { Input } from './input'
 import { Button } from './button'
-import { updateGuest } from '@/app/api';
+import { updateGuest } from '@/app/api'
 
 const GuestTableRow = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ const GuestTableRow = styled.div`
 
   & .expanded {
     height: auto;
-  };
+  }
 `
 
 const GuestNameRow = styled.div`
@@ -51,7 +51,7 @@ const NameSection = styled.div`
   }
 
   & > .edit > p {
-    opacity: ${({ $editingGuestId }) => $editingGuestId ? 1 : 0};
+    opacity: ${({ $editingGuestId }) => ($editingGuestId ? 1 : 0)};
     transition: opacity 0.2s ease;
   }
 
@@ -60,12 +60,12 @@ const NameSection = styled.div`
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 2px;
-    background-color: #3B3B3B;
+    background-color: #3b3b3b;
     transform: scaleX(0);
     transform-origin: center;
     transition: transform 0.2s ease;
@@ -91,10 +91,10 @@ const GuestInfo = styled.div`
   }
 
   @media (max-width: 900px) {
-  & > * {
-    width: 100%;
+    & > * {
+      width: 100%;
+    }
   }
-}
 `
 
 export const GuestForm = ({ guest, editingGuestId, setEditingGuestId, setShowSuccess, setLoading }) => {
@@ -107,36 +107,30 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId, setShowSuc
   const [dietaryNotes, setDietaryNotes] = useState(guest?.dietary_notes ?? '')
 
   useEffect(() => {
-    setStarter(isChild === 'Yes'
-      ? childStarter[0]
-      : (guest.starter || adultStarterOptions[0])
-    )
-    setMain(isChild === 'Yes'
-      ? childMain[0]
-      : (guest.main || adultMainOptions[0])
-    )
+    setStarter(isChild === 'Yes' ? childStarter[0] : guest.starter || adultStarterOptions[0])
+    setMain(isChild === 'Yes' ? childMain[0] : guest.main || adultMainOptions[0])
   }, [isChild])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     setLoading(true)
     try {
       const response = await updateGuest(guest.id, attending, starter, main, accommodation, sten, isChild, dietaryNotes)
       if (!!response) {
-        console.log('Guests updated successfully');
+        console.log('Guests updated successfully')
         // Handle success, e.g., show a success message
         setLoading(false)
         setShowSuccess(true)
       } else {
-        console.error('Failed to update guests:', response);
+        console.error('Failed to update guests:', response)
         // Handle error, e.g., show an error message
       }
     } catch (error) {
-      console.error('Error updating guest:', error.message);
+      console.error('Error updating guest:', error.message)
       // Handle error, e.g., show an error message
     }
-  };
+  }
 
   const guestDetailsComplete = () => {
     if ((starter, main, accommodation, isChild, sten) || attending === 'No') {
@@ -163,73 +157,75 @@ export const GuestForm = ({ guest, editingGuestId, setEditingGuestId, setShowSuc
   const yesNoOptions = generalOptionsMaybe.slice(0, 2)
 
   const stenLabel = (
-    <>Interested in attending the <Link href="/itinerary">STEN*</Link></>
+    <>
+      Interested in attending the <Link href="/itinerary">STEN*</Link>
+    </>
   )
 
   return (
     <div key={guest.id} className={`table-row ${editingGuestId === guest.id ? 'expanded' : 'mini'} `}>
       <GuestNameRow>
-        <NameSection onClick={() => setEditingGuestId(guest.id === editingGuestId ? '' : guest.id)} $editingGuestId={!!editingGuestId}>
+        <NameSection
+          onClick={() => setEditingGuestId(guest.id === editingGuestId ? '' : guest.id)}
+          $editingGuestId={!!editingGuestId}
+        >
           <div>
             <p className="uppercase wide">{guest.name}</p>
             <p className="uppercase">{guestIsComplete ? '✓' : ''}</p>
           </div>
-          <div className='edit'>
-            <p style={{ marginBottom: "0px" }} onClick={() => setEditingGuestId('')}>{editingGuestId ? 'X' : guestIsComplete ? 'EDIT' : 'RSVP'}</p>
+          <div className="edit">
+            <p style={{ marginBottom: '0px' }} onClick={() => setEditingGuestId('')}>
+              {editingGuestId ? 'X' : guestIsComplete ? 'EDIT' : 'RSVP'}
+            </p>
           </div>
         </NameSection>
-      </GuestNameRow >
-      {editingGuestId === guest.id && <GuestInfo>
-        <Dropdown label="Attending"
-          options={yesNoOptions}
-          onChange={(val) => setAttending(val)}
-          value={attending}
-        />
-        {attending === 'Yes' &&
-          <>
-            <Dropdown
-              label="Under 14 (Child's menu)"
-              options={yesNoOptions}
-              onChange={(val) => setIsChild(val)}
-              value={isChild}
-            />
-            <Dropdown
-              label="Starter"
-              options={isChild === 'Yes' ? childStarter : adultStarterOptions}
-              onChange={(val) => setStarter(val)}
-              value={starter}
-            />
-            <Dropdown
-              label="Main"
-              options={isChild === 'Yes' ? childMain : adultMainOptions}
-              onChange={(val) => setMain(val)}
-              value={main}
-            />
-            <Dropdown
-              label="Interested in staying at the venue"
-              options={generalOptionsMaybe}
-              onChange={(val) => setAccommodation(val)}
-              value={accommodation}
-            />
-            <Dropdown
-              label={stenLabel}
-              options={generalOptionsMaybe}
-              onChange={(val) => setSten(val)}
-              value={sten}
-            />
-            <Input
-              label="Allergies/Dietary requirements (leave blank if none)"
-              onChange={(val) => setDietaryNotes(val)}
-              value={dietaryNotes}
-              isTextArea={true}
-              width={'100%'}
-            />
-          </>}
-        <Button
-          onClick={handleSubmit}
-          text={!!guestIsComplete ? 'update' : 'save rsvp'}
-          disabled={!guestIsComplete} />
-      </GuestInfo>}
-    </div >
-  );
-};
+      </GuestNameRow>
+      {editingGuestId === guest.id && (
+        <GuestInfo>
+          <Dropdown label="Attending" options={yesNoOptions} onChange={(val) => setAttending(val)} value={attending} />
+          {attending === 'Yes' && (
+            <>
+              <Dropdown
+                label="Under 14 (Child's menu)"
+                options={yesNoOptions}
+                onChange={(val) => setIsChild(val)}
+                value={isChild}
+              />
+              <Dropdown
+                label="Starter"
+                options={isChild === 'Yes' ? childStarter : adultStarterOptions}
+                onChange={(val) => setStarter(val)}
+                value={starter}
+              />
+              <Dropdown
+                label="Main"
+                options={isChild === 'Yes' ? childMain : adultMainOptions}
+                onChange={(val) => setMain(val)}
+                value={main}
+              />
+              <Dropdown
+                label="Interested in staying at the venue"
+                options={generalOptionsMaybe}
+                onChange={(val) => setAccommodation(val)}
+                value={accommodation}
+              />
+              <Dropdown label={stenLabel} options={generalOptionsMaybe} onChange={(val) => setSten(val)} value={sten} />
+              <Input
+                label="Allergies/Dietary requirements (leave blank if none)"
+                onChange={(val) => setDietaryNotes(val)}
+                value={dietaryNotes}
+                isTextArea={true}
+                width={'100%'}
+              />
+            </>
+          )}
+          <Button
+            onClick={handleSubmit}
+            text={!!guestIsComplete ? 'update' : 'save rsvp'}
+            disabled={!guestIsComplete}
+          />
+        </GuestInfo>
+      )}
+    </div>
+  )
+}

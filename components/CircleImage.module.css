@@ -15,5 +15,5 @@
 
 .shrink {
   transform: scale(0);
-  filter: opacity(0)
+  filter: opacity(0);
 }

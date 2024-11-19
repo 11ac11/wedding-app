@@ -1,7 +1,7 @@
 'use client'
 
-import React from "react";
-import styled, { keyframes } from "styled-components";
+import React from 'react'
+import styled, { keyframes } from 'styled-components'
 
 const Container = styled.div`
   width: 100%;
@@ -25,7 +25,7 @@ const spinAnimation = keyframes`
   100% {
     transform: rotate(360deg);
   }
-`;
+`
 
 const LoadingCircle = styled.div`
   width: 30px;
@@ -37,12 +37,12 @@ const LoadingCircle = styled.div`
   border-top: 5px solid var(--offblack);
   animation: ${spinAnimation} 1s linear infinite;
   margin: 1rem 0;
-`;
+`
 
-export const FancyLoadingCircle = ({ }) => {
+export const FancyLoadingCircle = ({}) => {
   return (
     <Container>
       <LoadingCircle />
     </Container>
   )
-};
+}

@@ -1,12 +1,11 @@
 @import url('https://fonts.cdnfonts.com/css/best-wishes-2');
 
-
 :root {
   --white: #fdfdfd;
-  --offwhite: #F8F8F8;
-  --stone: #E3DCD6;
+  --offwhite: #f8f8f8;
+  --stone: #e3dcd6;
   --slategrey: #a09c94;
-  --mutedbrown: #827B75;
+  --mutedbrown: #827b75;
   --offblack: #231f20;
   --lightcoral: #ed7b7b;
   --cornflowerblue: #68bfeb;
@@ -27,7 +26,7 @@ body {
   min-height: 100vh;
   width: 100vw;
   background-attachment: fixed;
-  font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', 'Roboto', Helvetica, Arial, sans-serif;
   font-weight: 200;
   line-height: 1.5;
   margin: 0;
@@ -84,7 +83,7 @@ a.inline-link {
 }
 
 a::before {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -0.25rem;
   width: 100%;
@@ -229,7 +228,7 @@ td {
 }
 
 input {
-  font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', 'Roboto', Helvetica, Arial, sans-serif;
   height: 34px;
   font-weight: 200;
   border: solid 1px var(--mutedbrown);
@@ -239,7 +238,7 @@ input {
   box-sizing: border-box;
 }
 
-input[type="file"] {
+input[type='file'] {
   height: unset;
   border: none;
   outline: none;
@@ -309,7 +308,6 @@ table.guestlist th {
 }
 
 @media (max-width: 600px) {
-
   h1,
   h1.getting-married {
     font-size: 2.75rem;
@@ -322,7 +320,6 @@ table.guestlist th {
 }
 
 @media (max-width: 500px) {
-
   h1,
   h1.getting-married {
     font-size: 2rem;

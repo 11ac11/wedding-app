@@ -197,6 +197,7 @@ const GuestlistTable = ({}) => {
   const renderRows = (sortedData) => {
     return sortedData.map((guest, index) => {
       const {
+        id,
         name,
         guestlist,
         attending,
@@ -215,6 +216,7 @@ const GuestlistTable = ({}) => {
         <StyledRow key={name} $invited={!!invited}>
           <td style={{ textAlign: 'right' }}>{index + 1}</td>
           <td>{name}</td>
+          <td>{id}</td>
           <td>{guestlist}</td>
           <td>{yesNoMaybe(attending)}</td>
           <td>{starterChoices(starter)}</td>
@@ -236,8 +238,8 @@ const GuestlistTable = ({}) => {
       const { name, dietary_requirements } = guest
       return (
         <StyledRow key={index} $invited={true}>
-          <td style={{ textAlign: 'left' }}>{name}</td>
-          <td style={{ maxWidth: '100%' }}>{dietary_requirements}</td>
+          <td style={{ textAlign: 'left', fontSize: '0.8rem' }}>{name}</td>
+          <td style={{ maxWidth: '100%', fontSize: '0.8rem' }}>{dietary_requirements}</td>
         </StyledRow>
       )
     })
@@ -354,6 +356,7 @@ const GuestlistTable = ({}) => {
           <tr>
             <th style={{ textAlign: 'right' }}>#</th>
             <th>Name</th>
+            <th>id</th>
             <th>G/L</th>
             <th>Att.</th>
             <th>1st</th>

@@ -7,13 +7,15 @@ import InstaIcon from '@/public/images/instagram-icon.png'
 
 const SocalContainer = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-bottom: 1rem;
 `
 
 const Tag = styled.a`
   color: var(--slategrey);
   cursor: pointer;
+  letter-spacing: 0.5px;
+  font-weight: 400;
   text-decoration: none;
   margin-bottom: 0.2rem;
 
@@ -28,7 +30,7 @@ export const Socials = () => {
     <SocalContainer>
       <ImgCont src={InstaIcon} fill={true} className="image" width={'25px'} alt="insta-icon" />
       <Tag href="https://www.instagram.com/roybynhollis/">@roybynhollis</Tag> /{' '}
-      <Tag href="https://www.instagram.com/crump.music/">@crump.music</Tag>
+      <Tag href="https://www.instagram.com/crumpalex_/">@crumpalex_</Tag>
     </SocalContainer>
   )
 }

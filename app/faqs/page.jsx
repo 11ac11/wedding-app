@@ -21,7 +21,7 @@ export default async function FAQs() {
       <h1>FAQs</h1>
       <div className="info-section">
         <h2 className="uppercase">RSVP deadline</h2>
-        <p>{`Please RSVP by 1st July 2025.`}</p>
+        <p>{`Please RSVP by 1st June 2025.`}</p>
       </div>
       <div className="info-section">
         <h2 className="uppercase">Dresscode</h2>

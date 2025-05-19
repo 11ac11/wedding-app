@@ -48,6 +48,10 @@ export default async function Itinerary() {
           {`We're are also still finalising the details for this, but we'll update everyone when things are confirmed.`}
         </p>
       </div>
+      <div className="info-section">
+        <h2 className="uppercase">Sun 7th Sept</h2>
+        <p>{`Robyn and I will be leaving the hotel around midday to go on our minimoon.`}</p>
+      </div>
       <Vips />
     </main>
   )

@@ -36,7 +36,7 @@ export default async function Itinerary() {
         <TimeAndEvent time={'18:30'} event={'Appetizers'} />
         <TimeAndEvent time={'19:30'} event={'Dinner'} />
         <TimeAndEvent time={'21:30'} event={'Pre-disco'} />
-        <TimeAndEvent time={'00:00'} event={'Club'} />
+        <TimeAndEvent time={'00:00'} event={'Club (on-site in hotel)'} />
         <TimeAndEvent time={'04:00'} event={'Fin.'} />
       </div>
       <div className="info-section">

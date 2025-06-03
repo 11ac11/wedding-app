@@ -19,9 +19,9 @@ const Time = styled.p`
 `
 
 const Event = styled.p`
-  font-family: 'Best Wishes', sans-serif;
-  transform: translateY(3px);
-  font-size: 1.4rem;
+  // font-family: 'Best Wishes', sans-serif;
+  // transform: translateY(3px);
+  // font-size: 1.4rem;
   margin: 0;
 `
 

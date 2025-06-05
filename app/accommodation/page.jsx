@@ -1,9 +1,8 @@
 import ImgCont from '../../components/img-container'
 import CastelldefelsBeach from '../../public/images/castelldefels-beach.png'
 import hotelTurret from '../../public/images/hotel-turret.png'
-import { ContactBox } from './contactBox.js'
+import { ContactBox } from './contactBox.jsx'
 import Link from 'next/link'
-import PinIcon from '../../components/PinIcon'
 import HideImage from '../../components/hide-img'
 import LocationInfo from '@/components/LocationInfo'
 import Mexico from '@/public/images/mexico-circle.png'
@@ -45,9 +44,9 @@ export default async function Accommodation() {
         <LocationInfo handleCloseId={'hotel'} linkColor={'var(--offblack)'} openText={'Click here for map/location'}>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11995.800152543743!2d1.9570958105940228!3d41.26642372454822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4829b7646e45d%3A0x8d152959c81572f3!2sGran%20Hotel%20Rey%20Don%20Jaime!5e0!3m2!1sen!2ses!4v1749114223960!5m2!1sen!2ses"
-            width="600"
+            width="100%"
             height="450"
-            style={{ border: '0px' }}
+            style={{ border: '0px', borderRadius: '2px' }}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>

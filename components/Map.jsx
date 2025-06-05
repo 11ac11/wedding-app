@@ -3,11 +3,8 @@
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow } from '@vis.gl/react-google-maps'
 import styled from 'styled-components'
 
-const StyledPin = styled(Pin)`
-  ::before {
-    content: 'TEST';
-  }
-`
+const laTextil = { lat: 41.3912446114636, lng: 2.172894267910162 }
+const weddingHotel = { lat: 41.27062189255106, lng: 1.9618787544095255 }
 
 export default function CustomMap({ pinCoords }) {
   return (
@@ -35,14 +32,6 @@ export default function CustomMap({ pinCoords }) {
           </InfoWindow>
         </Map>
       </APIProvider> */}
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5986.426761201096!2d2.16775515595104!3d41.39117217129941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a3791b6168ed%3A0xccdc2cc0ad2626ca!2sla%20textil%20collective%20%2F%20303%20audiophile%20bar!5e0!3m2!1sen!2ses!4v1749059566683!5m2!1sen!2ses"
-        width="600px"
-        height="450"
-        style={{ border: '0px', borderRadius: '2px' }}
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-      ></iframe>
     </div>
   )
 }

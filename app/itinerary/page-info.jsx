@@ -1,14 +1,14 @@
 'use client'
 
 import React from 'react'
-import HideImage from '../../components/hide-img'
-import Kenya from '../../public/images/kenya2-circle.png'
+import HideImage from '@/components/hide-img'
+import Kenya from '@/public/images/kenya2-circle.png'
 import { Vips } from './vips.jsx'
-import { TimeAndEvent } from '../../components/TimeAndEvent.jsx'
+import { TimeAndEvent } from '@/components/TimeAndEvent.jsx'
 import CustomMap from '@/components/Map'
 import LocationInfo from '@/components/LocationInfo'
-
 import styled from 'styled-components'
+import Image from '@/components/hide-img'
 
 export const StyledDate = styled.h3`
   text-transform: uppercase;
@@ -52,43 +52,6 @@ export const ToggleMoreInfo = styled.a`
   }
 `
 
-export const MoreInfo = styled.div`
-  background-color: var(--stone);
-  border-radius: 2px;
-  padding: 1.8rem 1.2rem;
-
-  & > h2,
-  & > h4,
-  & > h3 {
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-  }
-
-  & > h2 {
-    font-size: 1.2rem;
-    border-bottom: none;
-    letter-spacing: 1px;
-    margin-top: 0;
-  }
-
-  & > h3 {
-    font-size: 1.2rem;
-  }
-
-  & > h4 {
-    font-size: 1rem;
-  }
-
-  & > p {
-    font-size: 1rem;
-  }
-`
-
-const laTextil = { lat: 41.3912446114636, lng: 2.172894267910162 }
-const weddingHotel = { lat: 41.27062189255106, lng: 1.9618787544095255 }
-
 export default function PageInfo({}) {
   return (
     <>
@@ -106,8 +69,15 @@ export default function PageInfo({}) {
         </p>
         <LocationInfo handleCloseId={'la-textil'} linkColor={'var(--offblack)'}>
           <h2>Location</h2>
-          <CustomMap pinCoords={laTextil} />
-          <h2>How to get there</h2>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5986.426761201096!2d2.16775515595104!3d41.39117217129941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a3791b6168ed%3A0xccdc2cc0ad2626ca!2sla%20textil%20collective%20%2F%20303%20audiophile%20bar!5e0!3m2!1sen!2ses!4v1749059566683!5m2!1sen!2ses"
+            width="100%"
+            height="450"
+            style={{ border: '0px', borderRadius: '2px' }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+          <h2 style={{ marginTop: '1rem' }}>How to get there</h2>
           <h3 style={{ marginTop: '2rem' }}>{`I'm staying in Barcelona`}</h3>
           <p style={{ marginTop: '1rem' }}>
             This is right in the centre of Barcelona, near Placa Catalunya. If you are staying in Barcelona, you will be
@@ -156,20 +126,31 @@ export default function PageInfo({}) {
           <h2>Location</h2>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8925.427584258634!2d1.9570958105940228!3d41.26642372454822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a483593695db05%3A0x78cbea94e46c0516!2sCocody%20chiringuito%20Castelldefels!5e0!3m2!1sen!2ses!4v1749107862111!5m2!1sen!2ses"
-            width="600"
+            width="100%"
             height="450"
-            style={{ border: '0px' }}
+            style={{ border: '0px', borderRadius: '2px' }}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
-          <h2>How to get there</h2>
-          {/* <h3 style={{ marginTop: '2rem' }}>{`I'm staying at the wedding venue (Castelldefels)`}</h3> */}
+          <h2 style={{ marginTop: '1rem' }}>How to get there</h2>
           <p style={{ marginTop: '1rem' }}>
-            {`The hotel is a 5 minute taxi to the venue. You will most likely be dropped off at the roundabout, and then it's a 2 minute walk across the beach (on the wooden path) to the beach bar.`}
+            {`The hotel is a 5 minute taxi to the venue. You will most likely be dropped off at the roundabout, next to the "Dar y Tomar" art installation ("Give and take" in English). The beach bar is directly behind the sculpture on the beach, you can see the venue in the background on the photo below.`}
+          </p>
+          <Image
+            src="https://www.shutterstock.com/image-photo/modern-sculpture-two-hands-forming-600nw-2580603513.jpg"
+            alt="'Dar y Tomar' art installation"
+            fill={true}
+          />
+          <h2 style={{ marginTop: '1rem' }}>Is it walkable?</h2>
+          <p style={{ marginTop: '1rem' }}>
+            {`If you want to get your steps in, and don't mind a 15-minute downhill walk, going from the hotel to the beach IS walkable. You would need to cross the motorway/railway line over the bridge, but other than that it is pretty straight forward.`}
           </p>
           <p style={{ marginTop: '1rem' }}>
-            {`If you look at the mp above, you ccan see the Gran Hotel Rey Don Jaime in pink near the top, almost directly above the beachbar. Going from the hotel down to the beach is walkable if you want to get your steps in as it is all downhill. It would take around 15 minutes, and you would need to cross the road/railway over the bridge. However, We don't recommend walking back up as the hotel is on top of a big hill.`}
+            {`If you look at the map above, you can see the Gran Hotel Rey Don Jaime in pink near the top, almost directly above the beachbar.`}
           </p>
+          <p
+            style={{ marginTop: '1rem' }}
+          >{`However, for the return journey, we don't recommend walking back up as the hotel is on top of a big hill.`}</p>
         </LocationInfo>
       </div>
       <div className="info-section" style={{ marginBottom: '4rem' }}>

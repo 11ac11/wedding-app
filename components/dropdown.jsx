@@ -1,8 +1,58 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import './dropdown.css'
+// import './dropdown.css'
 import { Input } from './input'
+import styled from 'styled-components'
+
+const StyledInput = styled(Input)`
+  position: relative;
+  width: 100%;
+`
+
+const DropdownWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+  width: 45%;
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
+`
+
+const DropdownOptions = styled.div`
+  border: 1px solid var(--slategrey);
+  border-radius: 3px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 2px;
+
+  & > ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  & > ul > li {
+    padding: 0.5rem;
+    cursor: pointer;
+    border-bottom: 1px solid var(--slategrey);
+  }
+
+  & > ul > li:hover {
+    background-color: var(--slategrey);
+  }
+`
 
 const useOutsideClick = (ref, callback) => {
   const handleClick = (e) => {
@@ -39,10 +89,10 @@ export const Dropdown = ({ label, value, options, onChange, placeholder = '' }) 
   useOutsideClick(ref, handleClickOutside)
 
   return (
-    <div className="dropdown-wrap" ref={ref}>
-      <Input label={label} onClick={toggleDropdown} value={value} onChange={() => {}} isDropdown={true} />
+    <DropdownWrap ref={ref}>
+      <StyledInput isDropdown={true} label={label} onClick={toggleDropdown} value={value} onChange={() => {}} />
       {isOpen && (
-        <div className="dropdown-options">
+        <DropdownOptions>
           <ul>
             {options.map((option, index) => (
               <li key={index} className="dropdown-item" onClick={() => handleSelectOption(option)}>
@@ -50,8 +100,8 @@ export const Dropdown = ({ label, value, options, onChange, placeholder = '' }) 
               </li>
             ))}
           </ul>
-        </div>
+        </DropdownOptions>
       )}
-    </div>
+    </DropdownWrap>
   )
 }

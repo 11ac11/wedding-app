@@ -249,6 +249,30 @@ td {
 }
 
 input {
+  padding: 0.1rem 0.75rem;
+  font-size: 1rem;
+  caret-color: transparent;
+  border-radius: 3px;
+  border: 1px solid var(--slategrey);
+  letter-spacing: 1px;
+  font-weight: 200;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+input:hover {
+  cursor: pointer;
+  border: 1px solid var(--slategrey);
+  outline: 1px solid var(--slategrey);
+}
+
+input:focus {
+  border: 1px solid var(--slategrey);
+  outline: 1px solid var(--slategrey);
+}
+
+input {
   font-family: 'Helvetica Neue', 'Roboto', Helvetica, Arial, sans-serif;
   height: 34px;
   font-weight: 200;

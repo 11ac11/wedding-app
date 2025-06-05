@@ -15,6 +15,15 @@ const InputWrap = styled.div`
 const InputContainer = styled.div`
   position: relative;
   width: 100%;
+
+  & > .caret-icon {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--slategrey);
+  }
 `
 
 const StyledInput = styled.input`

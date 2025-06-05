@@ -4,6 +4,7 @@ import Image from 'next/image'
 import styled from 'styled-components'
 
 const ImageContainerShrinkable = styled.div`
+  margin-top: 2rem;
   position: relative;
   width: 100%;
   height: ${({ height }) => height || '300px'};
@@ -27,7 +28,6 @@ const ImageContainerShrinkable = styled.div`
 
 export default function HideImage({ isShrinkable = false, isVisible, className, src, fill, height }) {
   return (
-    // TODO: convert to styled components
     <ImageContainerShrinkable
       height={height}
       className={`${className ? className : ''} ${isShrinkable ? (isVisible ? '' : 'shrink') : ''}`}

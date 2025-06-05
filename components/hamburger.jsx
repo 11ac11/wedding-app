@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import Nav from './nav'
 
@@ -50,19 +50,37 @@ const Line = styled.div`
 
 export const Hamburger = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isWideScreen, setIsWideScreen] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      const wide = window.innerWidth >= 1000
+      setIsWideScreen(wide)
+      setIsOpen(wide)
+    }
+
+    handleResize() // Initial check
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const openClose = () => {
-    setIsOpen(!isOpen)
+    if (!isWideScreen) {
+      setIsOpen(!isOpen)
+    }
   }
 
   return (
     <>
-      <Container onClick={() => openClose()} $isOpen={isOpen}>
-        <Line className={isOpen ? 'lineOne' : 'lineOne closed'} />
-        <Line className={isOpen ? 'lineTwo' : 'lineTwo closed'} />
-        <Line className={isOpen ? 'lineThree' : 'lineThree closed'} />
-      </Container>
-      {<Nav openClose={openClose} className={isOpen ? 'open' : 'close'} />}
+      {!isWideScreen && (
+        <Container onClick={openClose} $isOpen={isOpen}>
+          <Line className="lineOne" />
+          <Line className="lineTwo" />
+          <Line className="lineThree" />
+        </Container>
+      )}
+      <Nav openClose={openClose} className={isOpen ? 'open' : 'close'} />
     </>
   )
 }

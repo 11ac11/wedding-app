@@ -15,8 +15,9 @@ export const RsvpClient = () => {
     <div className={`rsvp-container`}>
       <HideImage src={Kenya} alt="Kenya" fill={true} isVisible={!searchTerm} isShrinkable />
       <h1>R.S.V.P.</h1>
-      <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} editingGuestId={editingGuestId} />
-      <Table searchTerm={searchTerm} editingGuestId={editingGuestId} setEditingGuestId={setEditingGuestId} />
+      <span>{`The RSVP is now closed, we can't wait to see you!`}</span>
+      {/* <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} editingGuestId={editingGuestId} />
+      <Table searchTerm={searchTerm} editingGuestId={editingGuestId} setEditingGuestId={setEditingGuestId} /> */}
     </div>
   )
 }

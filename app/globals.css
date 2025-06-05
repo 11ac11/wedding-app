@@ -9,6 +9,8 @@
   --offblack: #231f20;
   --lightcoral: #ed7b7b;
   --cornflowerblue: #68bfeb;
+  --darkolive: #6f7158;
+  --lightolive: #d4d7a8;
 }
 
 * {
@@ -76,10 +78,13 @@ a {
 }
 
 a.inline-link {
-  display: inline;
-  font-weight: 900;
-  letter-spacing: 1px;
-  color: var(--slategrey);
+  display: inline-flex;
+  font-weight: 400;
+  /* letter-spacing: 1px; */
+  color: #231f20;
+  letter-spacing: 0;
+  gap: 5px;
+  align-items: center;
 }
 
 a::before {

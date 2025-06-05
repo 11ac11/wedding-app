@@ -1,7 +1,7 @@
 import React from 'react'
 
 const PinIcon = ({ color }) => (
-  <svg fill="var(--slategrey)" height="15px" width="15px" viewBox="0 0 425.963 425.963">
+  <svg fill={color ? color : 'var(--slategrey)'} height="15px" width="15px" viewBox="0 0 425.963 425.963">
     <g>
       <path
         d="M213.285,0h-0.608C139.114,0,79.268,59.826,79.268,133.361c0,48.202,21.952,111.817,65.246,189.081

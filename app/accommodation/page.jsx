@@ -5,6 +5,7 @@ import { ContactBox } from './contactBox.js'
 import Link from 'next/link'
 import PinIcon from '../../components/PinIcon'
 import HideImage from '../../components/hide-img'
+import LocationInfo from '@/components/LocationInfo'
 import Mexico from '@/public/images/mexico-circle.png'
 
 export const metadata = {
@@ -21,7 +22,7 @@ export default async function Accommodation() {
     <main>
       <HideImage src={Mexico} alt="Mexico" fill={true} />
       <h1>Where to stay</h1>
-      <div className="info-section">
+      <div className="info-section" id="hotel">
         {/* <ImgCont src={aisle} fill={true} className='image' /> */}
         <h2 className="uppercase">The Venue (Hotel Rey Don Jaime)</h2>
         <ImgCont src={hotelTurret} fill={true} className="image" alt="Turret" />
@@ -41,13 +42,22 @@ export default async function Accommodation() {
           </Link>
           {`).`}
         </p>
-        <p>{`If you would prefer a different hotel or AirBnB, we recommend staying in Castelldefels or Barcelona.`}</p>
-        <Link href="https://maps.app.goo.gl/iCTxM3wwLUpX39Y36" className="inline-link" target="_blank">
-          <PinIcon /> {'Click for Google Maps/Hotel address'}
-        </Link>
+        <LocationInfo handleCloseId={'hotel'} linkColor={'var(--offblack)'} openText={'Click here for map/location'}>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11995.800152543743!2d1.9570958105940228!3d41.26642372454822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4829b7646e45d%3A0x8d152959c81572f3!2sGran%20Hotel%20Rey%20Don%20Jaime!5e0!3m2!1sen!2ses!4v1749114223960!5m2!1sen!2ses"
+            width="600"
+            height="450"
+            style={{ border: '0px' }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </LocationInfo>
       </div>
-
       <div className="info-section">
+        <h2 className="uppercase">Other options</h2>
+        <p
+          style={{ marginTop: '1rem' }}
+        >{`If you would prefer a different hotel or AirBnB, we recommend staying in Castelldefels or Barcelona.`}</p>
         <h2 className="uppercase">Castelldefels</h2>
         <p>
           {`The venue is located in the town of Castelldefels, which boasts a long stretch of soft, white sand that gives way to calm, shallow waters, as well as numerous bars and restaurants. It is easy to access Barcelona via public transpot for a day trip.`}

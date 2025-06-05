@@ -66,6 +66,7 @@ export const Vips = () => {
         <PersonChip name={'Georgia Hollis'} duty={'Maid of Honor'} />
         {renderBridesmaids()}
         <PersonChip name={'Storm Camm'} duty={'Flower Girl'} />
+        <PersonChip name={'Navy Camm'} duty={'Flower Girl'} />
       </div>
       <div className="info-section">
         <h2 className="uppercase">{`Groom's party`}</h2>

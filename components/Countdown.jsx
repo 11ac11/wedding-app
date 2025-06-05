@@ -26,7 +26,7 @@ const Container = styled.div`
 `
 
 const calculateTimeLeft = () => {
-  const targetDate = new Date(2025, 8, 5)
+  const targetDate = new Date(2025, 8, 5, 18, 0)
   const now = new Date()
   const difference = targetDate - now
 

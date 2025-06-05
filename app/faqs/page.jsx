@@ -2,7 +2,6 @@ import { Button } from '@/components/button'
 import { Socials } from '@/components/socials'
 import Image from '../../components/hide-img'
 import Iceland from '@/public/images/iceland-circle.png'
-import CircleImage from '../../components/shrink-img'
 
 export const metadata = {
   metadataBase: new URL('https://postgres-starter.vercel.app'),
@@ -16,7 +15,6 @@ export const metadata = {
 export default async function FAQs() {
   return (
     <main>
-      {/* <CircleImage src={'images/iceland-circle.png'} /> */}
       <Image src={Iceland} alt="Iceland" fill={true} />
       <h1>FAQs</h1>
       <div className="info-section">

@@ -6,11 +6,10 @@ import { usePathname } from 'next/navigation'
 
 export default function Template({ children }) {
   const pathname = usePathname()
-  console.log(pathname)
   return (
     <AnimatePresence>
       <motion.div
-        // key={pathname}
+        key={pathname}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ ease: 'easeIn', duration: 0.5 }}

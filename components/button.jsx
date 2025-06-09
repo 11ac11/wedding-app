@@ -4,7 +4,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 export const StyledButton = styled.button`
-  width: 100%;
+  width: ${({ width }) => (width ? width : '100%')};
   background-color: ${({ disabled }) => (disabled ? 'var(--slategrey)' : 'var(--offblack)')};
   outline: none;
   color: #fff8f4;
@@ -27,9 +27,9 @@ export const StyledButton = styled.button`
   }
 `
 
-export const Button = ({ onClick, width, text, disabled }) => {
+export const Button = ({ style, className, onClick, width, text, disabled }) => {
   return (
-    <StyledButton onClick={onClick} disabled={disabled}>
+    <StyledButton onClick={onClick} disabled={disabled} className={className} style={style} width={width}>
       {text}
     </StyledButton>
   )

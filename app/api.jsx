@@ -2,18 +2,42 @@
 
 import { sql } from '@vercel/postgres'
 import { seed } from '@/lib/guests'
-
-export const getAllGuests = async () => {
+export const getAllGuests = async (filters = { attending: 'Yes' }) => {
   try {
-    const data = await sql.query(`SELECT * FROM guests`)
+    const conditions = []
+    const values = []
+    let index = 1
+
+    let baseQuery = `
+      SELECT *
+      FROM guests
+    `
+
+    if (typeof filters.attending === 'string' && filters.attending === 'Yes') {
+      conditions.push(`attending IS DISTINCT FROM $${index} AND invited = TRUE`)
+      values.push('No')
+      index++
+    }
+
+    // Add more filters here, e.g. name:
+    // if (filters.name) {
+    //   conditions.push(`LOWER(name) LIKE $${index}`);
+    //   values.push(`%${filters.name.toLowerCase()}%`);
+    //   index++;
+    // }
+
+    if (conditions.length > 0) {
+      baseQuery += ` WHERE ` + conditions.join(' AND ')
+    }
+
+    const data = await sql.query(baseQuery, values)
     return data.rows
   } catch (e) {
     if (e.message.includes('relation "guests" does not exist')) {
       console.log('Table does not exist, creating and seeding it with dummy data now...')
-      // Table is not created yet
       await seed()
-      const data = await sql`SELECT * FROM guests`
-      return data
+      const data = await sql.query('SELECT * FROM guests')
+      return data.rows
     } else {
       throw e
     }

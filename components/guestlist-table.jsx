@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { getAllGuests } from '@/app/api'
 import InsertGuestsForm from '@/components/uploadGuests.jsx'
+import { Button } from './button'
 
 import styled from 'styled-components'
 
@@ -104,21 +105,35 @@ const StatBox = styled.div`
 
 const StyledRow = styled.tr`
   ${({ $invited }) => !$invited && 'opacity: 0.2;'}
+
+  & > td {
+    min-width: 20px;
+    max-width: 20px;
+  }
 `
 
 const GuestlistTable = ({}) => {
+  const [loading, setLoading] = useState(true)
   const [data, setData] = useState([])
+  const [filters, setFilters] = useState({
+    attending: 'Yes', // values: 'Yes', 'No', 'all'
+    invited: 'all' // values: TRUE/FALSE
+  })
+
+  const fetchData = async (filters) => {
+    setLoading(true)
+    const dataFromApi = await getAllGuests(filters)
+    const sortedData = dataFromApi.sort((a, b) => a.id - b.id)
+    // console.log(dataFromApi[0])
+    setData(sortedData)
+    setLoading(false)
+  }
 
   useEffect(() => {
-    const fetchData = async () => {
-      const dataFromApi = await getAllGuests()
-      const sortedData = dataFromApi.sort((a, b) => a.id - b.id)
-      // console.log(dataFromApi[0])
-      setData(sortedData)
+    if (!!filters?.attending) {
+      fetchData(filters)
     }
-
-    fetchData()
-  }, [])
+  }, [filters])
 
   const handleDelete = async (event) => {
     // TODO: fix this so the event passes the id
@@ -215,17 +230,17 @@ const GuestlistTable = ({}) => {
       return (
         <StyledRow key={name} $invited={!!invited}>
           <td style={{ textAlign: 'right' }}>{index + 1}</td>
-          <td>{name}</td>
-          <td>{id}</td>
-          <td>{guestlist}</td>
-          <td>{yesNoMaybe(attending)}</td>
-          <td>{starterChoices(starter)}</td>
-          <td>{mainChoices(main)}</td>
-          <td>{!!dietary_requirements ? '⚠️' : '-'}</td>
-          <td>{yesNoMaybe(accommodation)}</td>
-          <td>{yesNoMaybe(sten)}</td>
-          <td>{is_under_14 ? '✅' : ''}</td>
-          <td>{!!last_amended && last_amended.toISOString().substring(0, 10)}</td>
+          <td style={{ minWidth: '150px' }}>{loading ? '-' : name}</td>
+          <td style={{ padding: '0', textAlign: 'center' }}>{loading ? '-' : id}</td>
+          <td style={{ minWidth: '35px', padding: '0 0.5rem' }}>{loading ? '-' : guestlist}</td>
+          <td>{loading ? '-' : yesNoMaybe(attending)}</td>
+          <td>{loading ? '-' : starterChoices(starter)}</td>
+          <td>{loading ? '-' : mainChoices(main)}</td>
+          <td>{loading ? '-' : !!dietary_requirements ? '⚠️' : '-'}</td>
+          <td>{loading ? '-' : yesNoMaybe(accommodation)}</td>
+          <td>{loading ? '-' : yesNoMaybe(sten)}</td>
+          <td>{loading ? '-' : is_under_14 ? '✅' : ''}</td>
+          <td>{loading ? '-' : !!last_amended && last_amended.toISOString().substring(0, 10)}</td>
           {/* <td><button onClick={(e) => handleDelete(e)}>X</button></td> */}
         </StyledRow>
       )
@@ -238,7 +253,7 @@ const GuestlistTable = ({}) => {
       const { name, dietary_requirements } = guest
       return (
         <StyledRow key={index} $invited={true}>
-          <td style={{ textAlign: 'left', fontSize: '0.8rem' }}>{name}</td>
+          <td style={{ textAlign: 'left', fontSize: '0.8rem', minWidth: '150px' }}>{name}</td>
           <td style={{ maxWidth: '100%', fontSize: '0.8rem' }}>{dietary_requirements}</td>
         </StyledRow>
       )
@@ -250,10 +265,13 @@ const GuestlistTable = ({}) => {
   }
 
   const getFoodTotals = (attribute, containingWord) => {
+    if (loading) return '-'
+
     return data.filter((guest) => guest[attribute]?.includes(containingWord)).length
   }
 
   const getCount = (attribute, value) => {
+    if (loading) return '-'
     if (Array.isArray(value)) {
       return data.filter((guest) => value.includes(guest[attribute])).length
     }
@@ -277,7 +295,7 @@ const GuestlistTable = ({}) => {
   }
 
   const responded = getCount('attending', ['Yes', 'No'])
-  const notResponded = getCount('attending', null) - getCount('invited', false)
+  const notResponded = loading ? '-' : getCount('attending', null) - getCount('invited', false)
   const invited = getCount('invited', true)
   const attendingYes = getCount('attending', 'Yes')
   const attendingNo = getCount('attending', 'No')
@@ -285,6 +303,7 @@ const GuestlistTable = ({}) => {
   const stenMaybe = getCount('sten', 'Maybe')
   const accomYes = getCount('accommodation', 'Yes')
   const accomMaybe = getCount('accommodation', 'Maybe')
+  const isChild = getCount('is_under_14', true)
 
   return (
     <>
@@ -297,14 +316,15 @@ const GuestlistTable = ({}) => {
             <p>{`🟰 ${stenYes + stenMaybe}`}</p>
           </div>
         </StatBox>
-        <StatBox>
+
+        {/* <StatBox>
           <h4>Accom.</h4>
           <div>
             <p>{`✅ ${accomYes}`}</p>
             <p>{`🤔 ${accomMaybe}`}</p>
             <p>{`🟰 ${accomYes + accomMaybe}`}</p>
           </div>
-        </StatBox>
+        </StatBox> */}
         <StatBox>
           <h4>Starter</h4>
           <div>
@@ -319,6 +339,12 @@ const GuestlistTable = ({}) => {
             <p>{`🦆 ${getMainNumbers().duck}`}</p>
             <p>{`🐟 ${getMainNumbers().fish}`}</p>
             <p>{`🥘 ${getMainNumbers().paella}`}</p>
+          </div>
+        </StatBox>
+        <StatBox>
+          <h4>Children</h4>
+          <div>
+            <p>{isChild}</p>
           </div>
         </StatBox>
         <StatBox>
@@ -348,6 +374,34 @@ const GuestlistTable = ({}) => {
             <p style={{ fontSize: '1.5rem', textAlign: 'center' }}>{attendingNo}</p>
             <p style={{ fontSize: '0.8rem', textAlign: 'center' }}>/{invited}</p>
           </div>
+        </StatBox>
+        <StatBox
+          style={{
+            backgroundColor: 'unset',
+            color: 'var(--offblack)',
+            justifyContent: 'flex-end',
+            padding: '0'
+          }}
+        >
+          <span style={{ textAlign: 'left' }}>
+            {filters?.attending === 'Yes' ? 'Showing confirmed guests' : 'Showing all guests'}
+          </span>
+        </StatBox>
+        <StatBox
+          style={{
+            backgroundColor: 'unset',
+            color: 'var(--offblack)',
+            justifyContent: 'flex-end',
+            padding: '0'
+          }}
+        >
+          <Button
+            onClick={() =>
+              setFilters((prevFilters) => ({ ...prevFilters, attending: filters.attending === 'Yes' ? 'all' : 'Yes' }))
+            }
+            text={filters?.attending === 'Yes' ? 'Show all' : 'Show declined and uninvited'}
+            style={{ marginTop: '0' }}
+          />
         </StatBox>
       </StatsContainer>
       {/* <InsertGuestsForm /> */}

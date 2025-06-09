@@ -399,7 +399,7 @@ const GuestlistTable = ({}) => {
             onClick={() =>
               setFilters((prevFilters) => ({ ...prevFilters, attending: filters.attending === 'Yes' ? 'all' : 'Yes' }))
             }
-            text={filters?.attending === 'Yes' ? 'Show all' : 'Show declined and uninvited'}
+            text={filters?.attending === 'Yes' ? 'Show all' : 'Hide declined and uninvited'}
             style={{ marginTop: '0' }}
           />
         </StatBox>

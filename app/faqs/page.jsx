@@ -1,4 +1,5 @@
 import { Button } from '@/components/button'
+import { UploadPhotoButton } from '@/components/UploadPhotoButton'
 import { Socials } from '@/components/socials'
 import Image from '../../components/hide-img'
 import Iceland from '@/public/images/iceland-circle.png'
@@ -53,7 +54,7 @@ export default async function FAQs() {
         <p>
           {`We've also set up a shared drive for photos and videos. After the wedding, click the button below and upload your captures to contribute to our collective memory of the day!`}
         </p>
-        <Button text={'Upload photos'} />
+        <UploadPhotoButton />
       </div>
     </main>
   )

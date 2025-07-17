@@ -30,7 +30,7 @@ export const StyledButton = styled(CldUploadButton)`
 export const UploadPhotoButton = () => {
   return (
     <>
-      <StyledButton uploadPreset="<Upload Preset>" />
+      <StyledButton uploadPreset="wedding" />
     </>
   )
 }

@@ -1,5 +1,4 @@
-import GuestlistTable from '@/components/guestlist-table.jsx'
-import Stats from './Stats'
+import Client from './Client'
 import { getAllGuests } from '@/app/api' // your API function
 
 export const metadata = {
@@ -19,9 +18,7 @@ export default async function Guestlist({}) {
   return (
     <main>
       <h1>Guestlist</h1>
-      <Stats guestlistData={sortedData} />
-      <GuestlistTable initialData={sortedData} />
-      {/* todo: add guestlist menu table - but extract the components */}
+      <Client guestlistData={sortedData} />
     </main>
   )
 }

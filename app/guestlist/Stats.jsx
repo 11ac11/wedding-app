@@ -13,10 +13,13 @@ const StatsContainer = styled.div`
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: flex-end;
-  padding: 1rem;
 
   & p {
     margin: 0;
+  }
+
+  @media (max-width: 800px) {
+    padding: 1rem;
   }
 `
 
@@ -68,13 +71,7 @@ const StatBox = styled.div`
   }
 `
 
-const Stats = ({ guestlistData = [] }) => {
-  const [loading, setLoading] = useState(false)
-  const [filters, setFilters] = useState({
-    attending: 'Yes', // values: 'Yes', 'No', 'all'
-    invited: 'all' // values: TRUE/FALSE
-  })
-
+const Stats = ({ guestlistData = [], loading }) => {
   const getFoodTotals = (attribute, containingWord) => {
     if (loading) return '-'
 

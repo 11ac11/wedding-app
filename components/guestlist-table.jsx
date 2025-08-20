@@ -1,10 +1,7 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { getAllGuests } from '@/app/api'
+import React from 'react'
 import InsertGuestsForm from '@/components/uploadGuests.jsx'
-import { Button } from './button'
-
 import styled from 'styled-components'
 
 const GuestListTable = styled.table`
@@ -40,21 +37,6 @@ const GuestListTable = styled.table`
   }
 `
 
-const StatsContainer = styled.div`
-  display: flex;
-  width: 100%;
-  gap: 15px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  align-items: stretch;
-  justify-content: flex-end;
-  padding: 1rem;
-
-  & p {
-    margin: 0;
-  }
-`
-
 const StyledRow = styled.tr`
   ${({ $invited }) => !$invited && 'opacity: 0.2;'}
 
@@ -64,29 +46,7 @@ const StyledRow = styled.tr`
   }
 `
 
-const GuestlistTable = ({ guestlistData = [] }) => {
-  const [loading, setLoading] = useState(false)
-  const [data, setData] = useState(guestlistData)
-  const [filters, setFilters] = useState({
-    attending: 'Yes', // values: 'Yes', 'No', 'all'
-    invited: 'all' // values: TRUE/FALSE
-  })
-
-  const fetchData = async (filters) => {
-    setLoading(true)
-    const dataFromApi = await getAllGuests(filters)
-    const sortedData = dataFromApi.sort((a, b) => a.id - b.id)
-    // console.log(dataFromApi[0])
-    setData(sortedData)
-    setLoading(false)
-  }
-
-  useEffect(() => {
-    if (!!filters?.attending) {
-      fetchData(filters)
-    }
-  }, [filters])
-
+const GuestlistTable = ({ guestlistData = [], loading }) => {
   const handleDelete = async (event) => {
     // TODO: fix this so the event passes the id
     e.preventDefault()
@@ -214,16 +174,6 @@ const GuestlistTable = ({ guestlistData = [] }) => {
 
   return (
     <>
-      <span style={{ textAlign: 'left' }}>
-        {filters?.attending === 'Yes' ? 'Showing confirmed guests' : 'Showing all guests'}
-      </span>
-      <Button
-        onClick={() =>
-          setFilters((prevFilters) => ({ ...prevFilters, attending: filters.attending === 'Yes' ? 'all' : 'Yes' }))
-        }
-        text={filters?.attending === 'Yes' ? 'Show all' : 'Hide declined and uninvited'}
-        style={{ marginTop: '0' }}
-      />
       {/* <InsertGuestsForm /> */}
       <GuestListTable>
         <thead>
@@ -242,7 +192,7 @@ const GuestlistTable = ({ guestlistData = [] }) => {
             <th>Last amend.</th>
           </tr>
         </thead>
-        <tbody>{renderRows(data)}</tbody>
+        <tbody>{renderRows(guestlistData)}</tbody>
       </GuestListTable>
       <GuestListTable style={{ marginTop: '20px' }}>
         <thead>
@@ -251,7 +201,7 @@ const GuestlistTable = ({ guestlistData = [] }) => {
             <th>Dietary Req.</th>
           </tr>
         </thead>
-        <tbody>{renderDietary(data)}</tbody>
+        <tbody>{renderDietary(guestlistData)}</tbody>
       </GuestListTable>
     </>
   )

@@ -2,10 +2,29 @@
 
 import styled from 'styled-components'
 
+const TableContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5rem;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+`
+
 const TableNumberTitle = styled.h3`
   font-weight: 400;
   letter-spacing: 0;
   text-decoration: underline;
+  align-self: flex-start;
+`
+
+const BothCountsContainer = styled.div`
+  display: flex;
+  align-self: flex-start;
+  margin: 1rem 0 2rem;
+  flex-wrap: wrap;
 `
 
 const TableMenuCountContainer = styled.div`
@@ -48,6 +67,12 @@ const GuestListTable = styled.table`
 
   @media (max-width: 768px) {
     width: calc(100vw - 2rem);
+
+    & th,
+    td {
+      font-size: 0.7rem;
+      min-width: 100px;
+    }
   }
 `
 
@@ -68,8 +93,7 @@ const GuestlistMenuTable = ({ guestlistData, loading }) => {
         width: '1em',
         height: '1em',
         borderRadius: '50%',
-        backgroundColor: color,
-        marginLeft: '0.25em'
+        backgroundColor: color
       }}
     />
   )
@@ -81,7 +105,7 @@ const GuestlistMenuTable = ({ guestlistData, loading }) => {
     if (type === 'starter') {
       if (lower.includes('duck')) return { label: 'pato', color: '#959172' }
       if (lower.includes('salmon')) return { label: 'salmon', color: '#FFBCBF' }
-      if (lower.includes('veg')) return { label: 'ensalada', color: '#A8E7A9' }
+      if (lower.includes('veg')) return { label: 'vegetales', color: '#A8E7A9' }
       if (lower.includes('pasta')) return { label: 'pasta', color: '#FBEA62' }
     }
 
@@ -162,42 +186,46 @@ const GuestlistMenuTable = ({ guestlistData, loading }) => {
       const mainCounts = countChoices(guests, 'main')
 
       return (
-        <div key={tableNumber} style={{ marginBottom: '2rem' }}>
+        <TableContainer key={tableNumber}>
           <TableNumberTitle>
             Mesa {tableNumber} ({guests.length} {guests.length === 1 ? 'persona' : 'personas'})
           </TableNumberTitle>
-          <div style={{ marginBottom: '10px' }}>
+          <BothCountsContainer>
             {/* Starter counts */}
             <TableMenuCountContainer>
               <div style={{ width: '80px' }}>
                 <strong>Primeros:</strong>
               </div>
-              {Object.entries(starterCounts)
-                .sort(([a], [b]) => a.localeCompare(b)) // ✅ alphabetical by label
-                .map(([label, { count, color }]) => (
-                  <div key={label}>
-                    <span>
-                      <ColoredCircle color={color} /> {label}: {count}
-                    </span>
-                  </div>
-                ))}
+              <div>
+                {Object.entries(starterCounts)
+                  .sort(([a], [b]) => a.localeCompare(b)) // ✅ alphabetical by label
+                  .map(([label, { count, color }]) => (
+                    <div key={label}>
+                      <span>
+                        <ColoredCircle color={color} /> {label}: {count}
+                      </span>
+                    </div>
+                  ))}
+              </div>
             </TableMenuCountContainer>
             {/* Main counts */}
             <TableMenuCountContainer>
               <div style={{ width: '80px' }}>
                 <strong>Segundos:</strong>
               </div>
-              {Object.entries(mainCounts)
-                .sort(([a], [b]) => a.localeCompare(b)) // ✅ alphabetical by label
-                .map(([label, { count, color }]) => (
-                  <div key={label}>
-                    <span>
-                      <ColoredCircle color={color} /> {label}: {count}
-                    </span>
-                  </div>
-                ))}
+              <div>
+                {Object.entries(mainCounts)
+                  .sort(([a], [b]) => a.localeCompare(b)) // ✅ alphabetical by label
+                  .map(([label, { count, color }]) => (
+                    <div key={label}>
+                      <span>
+                        <ColoredCircle color={color} /> {label}: {count}
+                      </span>
+                    </div>
+                  ))}
+              </div>
             </TableMenuCountContainer>
-          </div>
+          </BothCountsContainer>
           <GuestListTable>
             <thead>
               <tr>
@@ -209,7 +237,7 @@ const GuestlistMenuTable = ({ guestlistData, loading }) => {
             </thead>
             <tbody>{renderRowsMenus(guests)}</tbody>
           </GuestListTable>
-        </div>
+        </TableContainer>
       )
     })
   }

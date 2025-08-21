@@ -13,11 +13,11 @@ const TableContainer = styled.div`
   }
 `
 
-const TableNumberTitle = styled.h3`
-  font-weight: 400;
-  letter-spacing: 0;
-  text-decoration: underline;
+const TableNumberTitle = styled.h2`
+  font-weight: 800;
+  letter-spacing: 1px;
   align-self: flex-start;
+  text-transform: uppercase;
 `
 
 const BothCountsContainer = styled.div`
@@ -25,6 +25,7 @@ const BothCountsContainer = styled.div`
   align-self: flex-start;
   margin: 1rem 0 2rem;
   flex-wrap: wrap;
+  gap: 2rem;
 `
 
 const TableMenuCountContainer = styled.div`
@@ -34,6 +35,11 @@ const TableMenuCountContainer = styled.div`
   & > div {
     width: 120px;
   }
+`
+
+const MenuLabel = styled.div`
+  opacity: ${({ count }) => (count === 0 ? '0.25' : '1')};
+  font-weight: ${({ count }) => (count === 0 ? '200' : '400')};
 `
 
 const GuestListTable = styled.table`
@@ -86,14 +92,15 @@ const StyledRow = styled.tr`
 `
 
 const GuestlistMenuTable = ({ guestlistData, loading }) => {
-  const ColoredCircle = ({ color }) => (
+  const ColoredCircle = ({ color, count }) => (
     <span
       style={{
         display: 'inline-block',
         width: '1em',
         height: '1em',
         borderRadius: '50%',
-        backgroundColor: color
+        backgroundColor: color,
+        opacity: !!count && count === '0' ? '0.25' : '1'
       }}
     />
   )
@@ -185,6 +192,20 @@ const GuestlistMenuTable = ({ guestlistData, loading }) => {
       const starterCounts = countChoices(guests, 'starter')
       const mainCounts = countChoices(guests, 'main')
 
+      const STARTER_ORDER = [
+        { label: 'pato', color: '#959172' },
+        { label: 'salmon', color: '#FFBCBF' },
+        { label: 'vegetales', color: '#A8E7A9' },
+        { label: 'pasta (niño)', color: '#FBEA62' }
+      ]
+
+      const MAIN_ORDER = [
+        { label: 'pato', color: '#9C709F' },
+        { label: 'merluza', color: '#CCEDFF' },
+        { label: 'paella', color: '#F4AC69' },
+        { label: 'pollo (niño)', color: '#5A6CE3' }
+      ]
+
       return (
         <TableContainer key={tableNumber}>
           <TableNumberTitle>
@@ -197,15 +218,14 @@ const GuestlistMenuTable = ({ guestlistData, loading }) => {
                 <strong>Primeros:</strong>
               </div>
               <div>
-                {Object.entries(starterCounts)
-                  .sort(([a], [b]) => a.localeCompare(b)) // ✅ alphabetical by label
-                  .map(([label, { count, color }]) => (
-                    <div key={label}>
-                      <span>
-                        <ColoredCircle color={color} /> {label}: {count}
-                      </span>
-                    </div>
-                  ))}
+                {STARTER_ORDER.map(({ label, color }) => {
+                  const count = starterCounts[label]?.count || 0
+                  return (
+                    <MenuLabel key={label} count={count}>
+                      <ColoredCircle color={color} /> {label}: {count}
+                    </MenuLabel>
+                  )
+                })}
               </div>
             </TableMenuCountContainer>
             {/* Main counts */}
@@ -214,15 +234,14 @@ const GuestlistMenuTable = ({ guestlistData, loading }) => {
                 <strong>Segundos:</strong>
               </div>
               <div>
-                {Object.entries(mainCounts)
-                  .sort(([a], [b]) => a.localeCompare(b)) // ✅ alphabetical by label
-                  .map(([label, { count, color }]) => (
-                    <div key={label}>
-                      <span>
-                        <ColoredCircle color={color} /> {label}: {count}
-                      </span>
-                    </div>
-                  ))}
+                {MAIN_ORDER.map(({ label, color }) => {
+                  const count = mainCounts[label]?.count || 0
+                  return (
+                    <MenuLabel key={label} count={count}>
+                      <ColoredCircle color={color} /> {label}: {count}
+                    </MenuLabel>
+                  )
+                })}
               </div>
             </TableMenuCountContainer>
           </BothCountsContainer>

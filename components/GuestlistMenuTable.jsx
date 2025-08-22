@@ -30,6 +30,9 @@ const BothCountsContainer = styled.div`
   margin: 1rem 0 2rem;
   flex-wrap: wrap;
   gap: 2rem;
+  border: 1px solid var(--slategrey);
+  border-radius: 2px;
+  padding: 1rem;
 `
 
 const TableMenuCountContainer = styled.div`
@@ -72,7 +75,7 @@ const GuestListTable = styled.table`
     text-align: left;
     padding: 0.1rem 1rem;
     font-size: 0.8rem;
-    min-width: 150px;
+    min-width: 100px;
   }
 
   & th:first-of-type,

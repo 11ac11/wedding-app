@@ -11,11 +11,21 @@ import styled from 'styled-components'
 
 const ButtonContainer = styled.div`
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
   width: 100%;
 
   @media (max-width: 800px) {
     padding: 1rem;
   }
+`
+
+const ShowingGuestInfo = styled.span`
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.2rem;
 `
 
 const Client = ({ guestlistData = [] }) => {
@@ -45,9 +55,9 @@ const Client = ({ guestlistData = [] }) => {
     <>
       <Stats guestlistData={data} loading={loading} />
       <ButtonContainer>
-        <span style={{ textAlign: 'left' }}>
+        <ShowingGuestInfo>
           {filters?.attending === 'Yes' ? 'Showing confirmed guests' : 'Showing all guests'}
-        </span>
+        </ShowingGuestInfo>
         <Button
           onClick={() =>
             setFilters((prevFilters) => ({ ...prevFilters, attending: filters.attending === 'Yes' ? 'all' : 'Yes' }))

@@ -50,8 +50,8 @@ const MealCourseTitle = styled.div`
 `
 
 const MenuLabel = styled.div`
-  opacity: ${({ count }) => (count === 0 ? '0.25' : '1')};
-  font-weight: ${({ count }) => (count === 0 ? '200' : '400')};
+  opacity: ${({ $count }) => ($count === 0 ? '0.25' : '1')};
+  font-weight: ${({ $count }) => ($count === 0 ? '200' : '400')};
 `
 
 const GuestListTable = styled.table`
@@ -234,7 +234,7 @@ const GuestlistMenuTable = ({ guestlistData, loading }) => {
                 {STARTER_ORDER.map(({ label, color }) => {
                   const count = starterCounts[label]?.count || 0
                   return (
-                    <MenuLabel key={label} count={count}>
+                    <MenuLabel key={label} $count={count}>
                       <ColoredCircle color={color} /> {label}: {count}
                     </MenuLabel>
                   )

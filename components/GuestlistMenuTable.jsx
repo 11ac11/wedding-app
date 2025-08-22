@@ -2,6 +2,12 @@
 
 import styled from 'styled-components'
 
+const uppercaseStyles = `
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+`
+
 const TableContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -14,10 +20,8 @@ const TableContainer = styled.div`
 `
 
 const TableNumberTitle = styled.h2`
-  font-weight: 800;
-  letter-spacing: 1px;
   align-self: flex-start;
-  text-transform: uppercase;
+  ${uppercaseStyles}
 `
 
 const BothCountsContainer = styled.div`
@@ -35,6 +39,11 @@ const TableMenuCountContainer = styled.div`
   & > div {
     width: 120px;
   }
+`
+
+const MealCourseTitle = styled.div`
+  width: 90%;
+  ${uppercaseStyles}
 `
 
 const MenuLabel = styled.div`
@@ -55,6 +64,7 @@ const GuestListTable = styled.table`
   & th {
     white-space: nowrap;
     font-size: 0.7rem;
+    ${uppercaseStyles}
   }
 
   & th,
@@ -214,9 +224,9 @@ const GuestlistMenuTable = ({ guestlistData, loading }) => {
           <BothCountsContainer>
             {/* Starter counts */}
             <TableMenuCountContainer>
-              <div style={{ width: '80px' }}>
+              <MealCourseTitle>
                 <strong>Primeros:</strong>
-              </div>
+              </MealCourseTitle>
               <div>
                 {STARTER_ORDER.map(({ label, color }) => {
                   const count = starterCounts[label]?.count || 0
@@ -230,9 +240,9 @@ const GuestlistMenuTable = ({ guestlistData, loading }) => {
             </TableMenuCountContainer>
             {/* Main counts */}
             <TableMenuCountContainer>
-              <div style={{ width: '80px' }}>
+              <MealCourseTitle>
                 <strong>Segundos:</strong>
-              </div>
+              </MealCourseTitle>
               <div>
                 {MAIN_ORDER.map(({ label, color }) => {
                   const count = mainCounts[label]?.count || 0

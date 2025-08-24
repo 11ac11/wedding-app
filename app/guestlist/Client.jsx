@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { getAllGuests } from '@/app/api'
 import InsertGuestsForm from '@/components/uploadGuests.jsx'
 import GuestlistTable from '@/components/guestlist-table.jsx'
-import GuestlistMenuTable from '@/components/GuestlistMenuTable.jsx'
+import GuestlistMenuTableWithDrag from '@/components/GuestlistMenuTableWithDrag.jsx'
 import Stats from './Stats'
 import { Button } from '@/components/button'
 import styled from 'styled-components'
@@ -67,7 +67,7 @@ const Client = ({ guestlistData = [] }) => {
         />
       </ButtonContainer>
       {/* <GuestlistTable guestlistData={data} loading={loading} /> */}
-      <GuestlistMenuTable guestlistData={data} loading={loading} fetchGuestlist={fetchGuestlist} />
+      <GuestlistMenuTableWithDrag guestlistData={data} loading={loading} fetchGuestlist={fetchGuestlist} />
     </>
   )
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import styled from 'styled-components'
+import GuestMenuTableRow from './GuestMenuTableRow'
 
 const uppercaseStyles = `
   font-weight: 900;
@@ -67,15 +68,11 @@ const GuestListTable = styled.table`
   & th {
     white-space: nowrap;
     font-size: 0.7rem;
+    padding: 0.1rem 1rem;
     ${uppercaseStyles}
-  }
-
-  & th,
-  td {
     text-align: left;
     padding: 0.1rem 1rem;
     font-size: 0.8rem;
-    min-width: 100px;
   }
 
   & th:first-of-type,
@@ -104,7 +101,7 @@ const StyledRow = styled.tr`
   }
 `
 
-const GuestlistMenuTable = ({ guestlistData, loading }) => {
+const GuestlistMenuTable = ({ guestlistData, loading, fetchGuestlist }) => {
   const ColoredCircle = ({ color, count }) => (
     <span
       style={{
@@ -160,14 +157,15 @@ const GuestlistMenuTable = ({ guestlistData, loading }) => {
   }
 
   const renderGuestRow = (guest) => {
-    const { name, starter, main, dietary_requirements, invited } = guest
     return (
-      <StyledRow key={name} $invited={!!invited}>
-        <td style={{ minWidth: '150px' }}>{loading ? '-' : name}</td>
-        <td>{loading ? '-' : starterChoices(starter)}</td>
-        <td>{loading ? '-' : mainChoices(main)}</td>
-        <td style={{ width: '400px' }}>{loading ? '-' : dietary_requirements ? `⚠️ ${dietary_requirements}` : '-'}</td>
-      </StyledRow>
+      <GuestMenuTableRow
+        key={guest.id}
+        guest={guest}
+        loading={loading}
+        starterChoices={starterChoices}
+        mainChoices={mainChoices}
+        fetchGuestlist={fetchGuestlist}
+      />
     )
   }
 
@@ -202,6 +200,13 @@ const GuestlistMenuTable = ({ guestlistData, loading }) => {
     })
 
     return sortedEntries.map(([tableNumber, guests]) => {
+      // Sort by seat_number
+      guests.sort((a, b) => {
+        const seatA = a.seat_number ? Number(a.seat_number) : Infinity
+        const seatB = b.seat_number ? Number(b.seat_number) : Infinity
+        return seatA - seatB
+      })
+
       const starterCounts = countChoices(guests, 'starter')
       const mainCounts = countChoices(guests, 'main')
 
@@ -250,7 +255,7 @@ const GuestlistMenuTable = ({ guestlistData, loading }) => {
                 {MAIN_ORDER.map(({ label, color }) => {
                   const count = mainCounts[label]?.count || 0
                   return (
-                    <MenuLabel key={label} count={count}>
+                    <MenuLabel key={label} $count={count}>
                       <ColoredCircle color={color} /> {label}: {count}
                     </MenuLabel>
                   )
@@ -265,6 +270,9 @@ const GuestlistMenuTable = ({ guestlistData, loading }) => {
                 <th>Primero</th>
                 <th>Segundo</th>
                 <th style={{ width: '400px' }}>Restricciones dietéticas</th>
+                <th style={{ minWidth: '50px' }}>Mesa #</th>
+                <th style={{ minWidth: '50px' }}>Silla #</th>
+                <th style={{ minWidth: '50px' }}></th>
               </tr>
             </thead>
             <tbody>{renderRowsMenus(guests)}</tbody>

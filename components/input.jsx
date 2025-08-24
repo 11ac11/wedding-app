@@ -38,6 +38,7 @@ const StyledInput = styled.input`
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
+  min-width: 100%;
   padding-right: 10%;
   ${({ $isTextArea }) => $isTextArea && 'height: 5rem;'}
 
@@ -74,14 +75,14 @@ const StyledLabel = styled.span`
   }
 `
 
-export const Input = ({ label, value, onChange, placeholder = '', isTextArea, onClick, isDropdown }) => {
+export const Input = ({ label, value, onChange, placeholder = '', isTextArea, onClick, isDropdown, onBlur }) => {
   const handleChange = (event) => {
     onChange(event.target.value)
   }
 
   return (
     <InputWrap>
-      <StyledLabel>{label}:</StyledLabel>
+      {label && <StyledLabel>{label}:</StyledLabel>}
       <InputContainer>
         {isTextArea ? (
           <StyledInput
@@ -91,6 +92,7 @@ export const Input = ({ label, value, onChange, placeholder = '', isTextArea, on
             onChange={(e) => handleChange(e)}
             onClick={onClick}
             $isTextArea={isTextArea}
+            onBlur={() => onBlur?.()} // no event is passed
           />
         ) : (
           <>
@@ -100,6 +102,7 @@ export const Input = ({ label, value, onChange, placeholder = '', isTextArea, on
               onChange={(e) => handleChange(e)}
               onClick={onClick}
               $isTextArea={isTextArea}
+              onBlur={() => onBlur?.()} // no event is passed
             />
             {!!isDropdown && <CaretDownIcon onClick={onClick} />}
           </>

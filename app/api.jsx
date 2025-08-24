@@ -135,6 +135,34 @@ export const updateGuest = async (id, attending, starter, main, accommodation, s
   }
 }
 
+export const updateGuestSeating = async (id, tableNumber, seatNumber) => {
+  try {
+    const query = `
+      UPDATE guests
+      SET table_number = $1,
+          seat_number = $2,
+          has_amended = $3,
+          last_amended = $4
+      WHERE id = $5
+    `
+
+    const values = [
+      tableNumber,
+      seatNumber,
+      true, // mark as amended
+      new Date(), // timestamp
+      id
+    ]
+
+    const result = await sql.query(query, values)
+    console.log(`${result.rowCount} row(s) updated`)
+    return true
+  } catch (error) {
+    console.error('Error during seating update:', error)
+    return false
+  }
+}
+
 export const deleteGuest = async (ids) => {
   try {
     // Your delete query TODO: check

@@ -36,7 +36,7 @@ const Client = ({ guestlistData = [] }) => {
     invited: 'all' // values: TRUE/FALSE
   })
 
-  const fetchData = async (filters) => {
+  const fetchGuestlist = async (filters) => {
     setLoading(true)
     const dataFromApi = await getAllGuests(filters)
     const sortedData = dataFromApi.sort((a, b) => a.id - b.id)
@@ -47,7 +47,7 @@ const Client = ({ guestlistData = [] }) => {
 
   useEffect(() => {
     if (!!filters?.attending) {
-      fetchData(filters)
+      fetchGuestlist(filters)
     }
   }, [filters])
 
@@ -67,7 +67,7 @@ const Client = ({ guestlistData = [] }) => {
         />
       </ButtonContainer>
       {/* <GuestlistTable guestlistData={data} loading={loading} /> */}
-      <GuestlistMenuTable guestlistData={data} loading={loading} />
+      <GuestlistMenuTable guestlistData={data} loading={loading} fetchGuestlist={fetchGuestlist} />
     </>
   )
 }

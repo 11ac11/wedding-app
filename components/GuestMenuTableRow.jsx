@@ -16,7 +16,7 @@ const StyledRow = styled.tr`
   & td {
     padding: 0;
     text-align: left;
-    padding: 0.1rem 1rem;
+    padding: 0.1rem 0.5rem;
     font-size: 0.8rem;
   }
 
@@ -107,14 +107,14 @@ const GuestMenuTableRow = forwardRef(({ guest, loading, fetchGuestlist, style, d
       <td {...dragHandleProps} style={{ cursor: 'grab' }}>
         ☰
       </td>
+      <td style={{ padding: '0 0', textAlign: 'center' }}>{guest.seat_number}</td>
       <td style={{ width: '200px' }}>{loading ? '-' : guest.name}</td>
       <td>{loading ? '-' : starterChoices(guest.starter)}</td>
       <td>{loading ? '-' : mainChoices(guest.main)}</td>
-      <td style={{ width: '400px' }}>
+      <td style={{ width: '300px', minWidth: '300px', wordWrap: 'normal' }}>
         {loading ? '-' : guest.dietary_requirements ? `⚠️ ${guest.dietary_requirements}` : '-'}
       </td>
-      <td>{guest.seat_number}</td>
-      <td>
+      <td onClick={() => setIsEditMode(!isEditMode)} style={{ cursor: 'pointer', padding: '0 0', minWidth: '85px' }}>
         {isEditMode ? (
           <Input
             type="text"
@@ -123,12 +123,11 @@ const GuestMenuTableRow = forwardRef(({ guest, loading, fetchGuestlist, style, d
             onChange={(e) => setTableNumber(e.target.value)}
             onBlur={handleTableUpdate}
           />
+        ) : guest.table_number === 'principal' ? (
+          'Principal'
         ) : (
           guest.table_number
         )}
-      </td>
-      <td onClick={() => setIsEditMode(!isEditMode)} style={{ cursor: 'pointer' }}>
-        {isEditMode ? 'save' : 'edit'}
       </td>
     </StyledRow>
   )

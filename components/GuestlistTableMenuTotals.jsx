@@ -47,14 +47,14 @@ const GuestlistMenuTableTotals = ({ guestTableData, loading }) => {
       if (lower.includes('duck')) return { label: 'pato', color: '#959172' }
       if (lower.includes('salmon')) return { label: 'salmon', color: '#FFBCBF' }
       if (lower.includes('veg')) return { label: 'vegetales', color: '#A8E7A9' }
-      if (lower.includes('pasta')) return { label: 'pasta', color: '#FBEA62' }
+      if (lower.includes('pasta')) return { label: 'pasta (niño)', color: '#FBEA62' }
     }
 
     if (type === 'main') {
       if (lower.includes('duck')) return { label: 'pato', color: '#9C709F' }
       if (lower.includes('hake')) return { label: 'merluza', color: '#CCEDFF' }
       if (lower.includes('paella')) return { label: 'paella', color: '#F4AC69' }
-      if (lower.includes('chicken')) return { label: 'pollo', color: '#5A6CE3' }
+      if (lower.includes('chicken')) return { label: 'pollo (niño)', color: '#5A6CE3' }
     }
 
     return { label: 'otro', color: null }

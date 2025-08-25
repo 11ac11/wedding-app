@@ -266,13 +266,12 @@ const GuestlistMenuTable = ({ guestlistData, loading, fetchGuestlist }) => {
           <GuestListTable>
             <thead>
               <tr>
+                <th style={{ minWidth: '50px', textAlign: 'center' }}>#</th>
                 <th>Nombre</th>
                 <th>Primero</th>
                 <th>Segundo</th>
-                <th style={{ width: '400px' }}>Restricciones dietéticas</th>
+                <th style={{ width: '300px' }}>Restricciones dietéticas</th>
                 <th style={{ minWidth: '50px' }}>Mesa #</th>
-                <th style={{ minWidth: '50px' }}>Silla #</th>
-                <th style={{ minWidth: '50px' }}></th>
               </tr>
             </thead>
             <tbody>{renderRowsMenus(guests)}</tbody>

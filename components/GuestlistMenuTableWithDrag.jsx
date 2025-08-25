@@ -49,10 +49,9 @@ const GuestListTable = styled.table`
   & th {
     white-space: nowrap;
     font-size: 0.7rem;
-    padding: 0.1rem 1rem;
+    padding: 0.1rem 0.5rem;
     ${uppercaseStyles}
     text-align: left;
-    padding: 0.1rem 1rem;
     font-size: 0.8rem;
   }
 
@@ -152,13 +151,32 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
                 <thead>
                   <tr>
                     <th></th>
-                    <th style={{ width: '200px' }}>Nombre</th>
+                    <th
+                      style={{
+                        width: '50px',
+                        maxWidth: '50px',
+                        whiteSpace: 'nowrap',
+                        padding: '0 0',
+                        textAlign: 'center'
+                      }}
+                    >
+                      #
+                    </th>
+                    <th style={{ width: '200px', minWidth: '200px' }}>Nombre</th>
                     <th>Primero</th>
                     <th>Segundo</th>
-                    <th style={{ width: '400px' }}>Restricciones</th>
-                    <th>Silla #</th>
-                    <th>Mesa #</th>
-                    <th></th>
+                    <th style={{ width: '300px', minWidth: '300px' }}>Restricciones/Notas</th>
+                    <th
+                      style={{
+                        width: '85px',
+                        maxWidth: '85px',
+                        whiteSpace: 'nowrap',
+                        padding: '0 0',
+                        minWidth: '85px'
+                      }}
+                    >
+                      Mesa #
+                    </th>
                   </tr>
                 </thead>
                 <SortableContext items={tableGuests.map((g) => g.id)} strategy={verticalListSortingStrategy}>

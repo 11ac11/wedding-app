@@ -100,6 +100,7 @@ const GuestlistMenuTableTotals = ({ guestTableData, loading }) => {
     { label: 'paella', color: '#F4AC69' },
     { label: 'pollo (niño)', color: '#5A6CE3' }
   ]
+
   return (
     <BothCountsContainer>
       <TableMenuCountContainer>

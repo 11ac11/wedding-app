@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import styled from 'styled-components'
 import GuestMenuTableRow from './GuestMenuTableRow'
 
@@ -89,15 +90,6 @@ const GuestListTable = styled.table`
       font-size: 0.7rem;
       min-width: 100px;
     }
-  }
-`
-
-const StyledRow = styled.tr`
-  ${({ $invited }) => !$invited && 'opacity: 0.2;'}
-
-  & > td {
-    min-width: 20px;
-    max-width: 20px;
   }
 `
 

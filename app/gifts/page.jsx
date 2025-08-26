@@ -1,3 +1,4 @@
+import React from 'react'
 import { ContributeButton } from './contribute-button.js'
 import Image from '../../components/hide-img'
 import Granada from '@/public/images/granada-circle.png'

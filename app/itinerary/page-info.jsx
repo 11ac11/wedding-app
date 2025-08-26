@@ -52,7 +52,7 @@ export const ToggleMoreInfo = styled.a`
   }
 `
 
-export default function PageInfo({}) {
+export default function PageInfo() {
   return (
     <>
       <HideImage src={Kenya} alt="Kenya" fill={true} />

@@ -1,3 +1,64 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@next/next/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["react", "react-hooks", "prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "array-callback-return": "off",
+    "no-extra-boolean-cast": "off",
+    "react/void-dom-elements-no-children": ["error"],
+    "react/no-unused-state": ["warn"],
+    "react/no-unused-class-component-methods": ["warn"],
+    "react-hooks/exhaustive-deps": "off",
+    "react/prop-types": "off",
+    "react/jsx-no-target-blank": [
+      "error",
+      {
+        "warnOnSpreadAttributes": true,
+        "links": true,
+        "forms": false
+      }
+    ],
+    "react/boolean-prop-naming": [
+      "warn",
+      {
+        "rule": "^(is|has)[A-Z]([A-Za-z0-9]?)+",
+        "validateNested": false
+      }
+    ],
+    "no-console": "warn",
+    "no-async-promise-executor": "warn",
+    "no-unsafe-finally": "warn",
+    "no-extra-semi": "off",
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }

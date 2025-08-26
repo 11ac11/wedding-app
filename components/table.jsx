@@ -1,17 +1,10 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
 import { searchGuests } from '@/app/api'
 import { GuestForm } from './guest-form'
 import { Button } from './button'
 import { FancyLoadingCircle } from './FancyLoadingCircle'
-
-const GuestTable = styled.div`
-  display: flex;
-  width: 75vw;
-  max-width: 800px;
-`
 
 const Table = ({ searchTerm, editingGuestId, setEditingGuestId }) => {
   const [showSuccess, setShowSuccess] = useState(false)

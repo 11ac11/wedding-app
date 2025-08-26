@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 // import './dropdown.css'
 import { Input } from './input'
 import styled from 'styled-components'

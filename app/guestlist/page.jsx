@@ -1,3 +1,4 @@
+import React from 'react'
 import Client from './Client'
 import { getAllGuests } from '@/app/api' // your API function
 
@@ -10,7 +11,7 @@ export const metadata = {
   }
 }
 
-export default async function Guestlist({}) {
+export default async function Guestlist() {
   // Fetch data on the server
   const filters = { attending: 'Yes', invited: 'all' }
   const dataFromApi = await getAllGuests(filters)

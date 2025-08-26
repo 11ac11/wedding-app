@@ -1,8 +1,9 @@
 'use client'
 
+import React from 'react'
 import { Button } from '../../components/button'
 
-export const ContributeButton = ({}) => {
+export const ContributeButton = () => {
   return (
     <Button
       text="I'd like to contribute"

@@ -1,4 +1,6 @@
 import './globals.css'
+
+import React from 'react'
 import StyledJsxRegistry from '../lib/registry'
 
 export const metadata = {

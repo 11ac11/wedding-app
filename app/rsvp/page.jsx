@@ -1,3 +1,4 @@
+import React from 'react'
 import RsvpClient from './rsvp-client.jsx'
 
 export const metadata = {

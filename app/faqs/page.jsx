@@ -1,3 +1,4 @@
+import React from 'react'
 import { Button } from '@/components/button'
 import { UploadPhotoButton } from '@/components/UploadPhotoButton'
 import { Socials } from '@/components/socials'

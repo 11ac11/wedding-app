@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow } from '@vis.gl/react-google-maps'
 import styled from 'styled-components'
 

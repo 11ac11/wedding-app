@@ -1,3 +1,4 @@
+import React from 'react'
 import VidCont from '../components/vid-container'
 import Layout from './layout'
 import Countdown from '@/components/Countdown.jsx'

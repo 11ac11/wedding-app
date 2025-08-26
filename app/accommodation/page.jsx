@@ -1,3 +1,4 @@
+import React from 'react'
 import ImgCont from '../../components/img-container'
 import CastelldefelsBeach from '../../public/images/castelldefels-beach.png'
 import hotelTurret from '../../public/images/hotel-turret.png'

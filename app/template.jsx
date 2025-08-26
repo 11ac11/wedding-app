@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Hamburger } from '@/components/hamburger'
 import { usePathname } from 'next/navigation'

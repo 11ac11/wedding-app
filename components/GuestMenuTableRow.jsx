@@ -109,10 +109,10 @@ const GuestMenuTableRow = forwardRef(({ guest, loading, fetchGuestlist, style, d
         ☰
       </td>
       <td style={{ padding: '0 0', textAlign: 'center' }}>{guest.seat_number}</td>
-      <td style={{ width: '200px' }}>{loading ? '-' : guest.name}</td>
+      <td className="name-cell">{loading ? '-' : guest.name}</td>
       <td>{loading ? '-' : starterChoices(guest.starter)}</td>
       <td>{loading ? '-' : mainChoices(guest.main)}</td>
-      <td style={{ width: '300px', minWidth: '300px', wordWrap: 'normal' }}>
+      <td className="dieatary-cell">
         {loading ? '-' : guest.dietary_requirements ? `⚠️ ${guest.dietary_requirements}` : '-'}
       </td>
       <td onClick={() => setIsEditMode(!isEditMode)} style={{ cursor: 'pointer', padding: '0 0', minWidth: '85px' }}>

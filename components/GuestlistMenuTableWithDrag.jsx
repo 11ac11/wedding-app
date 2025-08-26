@@ -62,13 +62,33 @@ const GuestListTable = styled.table`
     padding: 0.1rem 0.1rem;
   }
 
+  .name-cell {
+    width: 200px;
+    max-width: 200px;
+  }
+
+  .dietary-cell {
+    width: 300px;
+    max-width: 300px;
+    word-wrap: normal;
+  }
+
   @media (max-width: 768px) {
     width: calc(100vw - 2rem);
 
     & th,
     td {
       font-size: 0.7rem;
-      min-width: 100px;
+    }
+
+    .name-cell {
+      width: 120px;
+      max-width: 120px;
+    }
+
+    .dietary-cell {
+      width: 200px;
+      max-width: 200px;
     }
   }
 `
@@ -163,10 +183,10 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
                     >
                       #
                     </th>
-                    <th style={{ width: '200px', minWidth: '200px' }}>Nombre</th>
+                    <th className="name-cell">Nombre</th>
                     <th>Primero</th>
                     <th>Segundo</th>
-                    <th style={{ width: '300px', minWidth: '300px' }}>Restricciones/Notas</th>
+                    <th className="dietary-cell">Restricciones/Notas</th>
                     <th
                       style={{
                         width: '85px',

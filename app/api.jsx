@@ -45,9 +45,8 @@ export const getAllGuests = async (filters = { attending: 'Yes' }) => {
 }
 
 export const searchGuests = async (searchTerm) => {
+  const withSpaces = searchTerm
   try {
-    const withSpaces = searchTerm
-
     const text = `
     SELECT *
     FROM guests

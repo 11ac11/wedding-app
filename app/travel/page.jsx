@@ -1,3 +1,4 @@
+import React from 'react'
 import fromBcnTrain from '../../public/images/bcn-castelldefels.jpg'
 import fromAirportCar from '../../public/images/airport-venue-car.jpg'
 import taxiRanks from '../../public/images/train-stations-taxi-rank.jpg'

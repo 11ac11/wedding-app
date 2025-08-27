@@ -36,12 +36,22 @@ const Client = ({ guestlistData = [] }) => {
     invited: 'all' // values: TRUE/FALSE
   })
 
-  const fetchGuestlist = async (filters) => {
+  const fetchGuestlist = async () => {
     setLoading(true)
-    const dataFromApi = await getAllGuests(filters)
-    const sortedData = dataFromApi.sort((a, b) => a.id - b.id)
-    setData(sortedData)
-    setLoading(false)
+    try {
+      // const query = new URLSearchParams(filters).toString()
+      const res = await fetch(`/api/guestlist`, { cache: 'no-store' })
+
+      if (!res.ok) throw new Error('Failed to fetch guestlist')
+
+      const dataFromApi = await res.json()
+      const sortedData = dataFromApi.sort((a, b) => a.id - b.id)
+      setData(sortedData)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {

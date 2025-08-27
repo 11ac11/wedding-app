@@ -9,7 +9,6 @@ import styled from 'styled-components'
 import GuestMenuTableRow from './GuestMenuTableRow'
 import GuestlistTableMenuTotals from './GuestlistTableMenuTotals'
 import CircularTable from '@/components/CircularTable'
-import { updateGuestSeatPosition } from '@/app/api'
 
 const uppercaseStyles = `
   font-weight: 900;
@@ -144,10 +143,18 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
     )
 
     try {
-      // Persist all updates with correct seat numbers
-      await Promise.all(newGuests.map((guest) => updateGuestSeatPosition(guest.id, guest.seat_number)))
+      // Persist all updates via API
+      await Promise.all(
+        newGuests.map((guest) =>
+          fetch(`/api/guest/${guest.id}/seat`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ seat_number: guest.seat_number })
+          })
+        )
+      )
 
-      // Optionally refresh from DB
+      // Fetch fresh data
       await fetchGuestlist()
     } catch (err) {
       console.error('Failed to update seat numbers', err)

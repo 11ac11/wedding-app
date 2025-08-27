@@ -3,7 +3,7 @@
 import { sql } from '@vercel/postgres'
 import { seed } from '@/lib/guests'
 
-export const dynamic = 'force-dynamic'
+// TODO: review this file and find better structure using actual routes
 
 export const getAllGuests = async (filters = { attending: 'Yes' }) => {
   try {
@@ -21,13 +21,6 @@ export const getAllGuests = async (filters = { attending: 'Yes' }) => {
       values.push('No')
       index++
     }
-
-    // Add more filters here, e.g. name:
-    // if (filters.name) {
-    //   conditions.push(`LOWER(name) LIKE $${index}`);
-    //   values.push(`%${filters.name.toLowerCase()}%`);
-    //   index++;
-    // }
 
     if (conditions.length > 0) {
       baseQuery += ` WHERE ` + conditions.join(' AND ')

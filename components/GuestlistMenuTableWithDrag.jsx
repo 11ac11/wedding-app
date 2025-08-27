@@ -112,37 +112,38 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
   }, {})
 
   const handleDragEnd = async (event, tableNumber) => {
-    const { active, over } = event
-    if (!over || active.id === over.id) return
+    console.log('disabled on drag end as list should be complete')
+    // const { active, over } = event
+    // if (!over || active.id === over.id) return
 
-    // Get the current table guests
-    const tableGuests = data.filter((g) => g.table_number === tableNumber)
-    const oldIndex = tableGuests.findIndex((g) => g.id === active.id)
-    const newIndex = tableGuests.findIndex((g) => g.id === over.id)
+    // // Get the current table guests
+    // const tableGuests = data.filter((g) => g.table_number === tableNumber)
+    // const oldIndex = tableGuests.findIndex((g) => g.id === active.id)
+    // const newIndex = tableGuests.findIndex((g) => g.id === over.id)
 
-    // Reorder and assign seat_number
-    const updatedGuests = arrayMove([...tableGuests], oldIndex, newIndex).map((g, i) => ({
-      ...g,
-      seat_number: i + 1
-    }))
+    // // Reorder and assign seat_number
+    // const updatedGuests = arrayMove([...tableGuests], oldIndex, newIndex).map((g, i) => ({
+    //   ...g,
+    //   seat_number: i + 1
+    // }))
 
-    // Update state immutably: replace only this table's guests
-    setData((prev) => [...prev.filter((g) => g.table_number !== tableNumber), ...updatedGuests])
+    // // Update state immutably: replace only this table's guests
+    // setData((prev) => [...prev.filter((g) => g.table_number !== tableNumber), ...updatedGuests])
 
-    try {
-      // Persist to DB
-      await Promise.all(
-        updatedGuests.map((guest) =>
-          fetch(`/api/guest/${guest.id}/seat`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ seat_number: guest.seat_number })
-          })
-        )
-      )
-    } catch (err) {
-      console.error('Failed to update seat numbers', err)
-    }
+    // try {
+    //   // Persist to DB
+    //   await Promise.all(
+    //     updatedGuests.map((guest) =>
+    //       fetch(`/api/guest/${guest.id}/seat`, {
+    //         method: 'PUT',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify({ seat_number: guest.seat_number })
+    //       })
+    //     )
+    //   )
+    // } catch (err) {
+    //   console.error('Failed to update seat numbers', err)
+    // }
   }
 
   // Sort tables, "principal" comes first, then numeric order

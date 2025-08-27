@@ -125,26 +125,22 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
     const { active, over } = event
     if (!over || active.id === over.id) return
 
-    const tableGuests = grouped[tableNumber]
+    // Get the current table guests
+    const tableGuests = data.filter((g) => g.table_number === tableNumber)
     const oldIndex = tableGuests.findIndex((g) => g.id === active.id)
     const newIndex = tableGuests.findIndex((g) => g.id === over.id)
 
-    const newTableGuests = arrayMove([...tableGuests], oldIndex, newIndex)
-    const updatedGuests = newTableGuests.map((g, i) => ({
+    // Reorder and assign seat_number
+    const updatedGuests = arrayMove([...tableGuests], oldIndex, newIndex).map((g, i) => ({
       ...g,
       seat_number: i + 1
     }))
 
-    // Update state immutably
-    setData((prev) =>
-      prev
-        .filter((g) => g.table_number !== tableNumber)
-        .concat(updatedGuests)
-        .sort((a, b) => a.table_number - b.table_number || a.seat_number - b.seat_number)
-    )
+    // Update state immutably: replace only this table's guests
+    setData((prev) => [...prev.filter((g) => g.table_number !== tableNumber), ...updatedGuests])
 
     try {
-      // Persist all seat numbers in parallel
+      // Persist to DB
       await Promise.all(
         updatedGuests.map((guest) =>
           fetch(`/api/guest/${guest.id}/seat`, {
@@ -159,33 +155,45 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
     }
   }
 
+  // Prepare sorted tables and guests
+  const sortedTables = Object.values(
+    data.reduce((acc, g) => {
+      if (!acc[g.table_number]) acc[g.table_number] = { table_number: g.table_number, guests: [] }
+      acc[g.table_number].guests.push(g)
+      return acc
+    }, {})
+  )
+    .sort((a, b) => a.table_number - b.table_number) // sort tables
+    .map((table) => ({
+      ...table,
+      guests: table.guests
+        .slice()
+        .sort((a, b) => (Number(a.seat_number) || Infinity) - (Number(b.seat_number) || Infinity)) // sort guests
+    }))
+
   return (
     <>
-      {sortedEntries.map(([tableNumber, tableGuests]) => {
-        const sortedTableGuests = [...tableGuests].sort(
-          (a, b) => (Number(a.seat_number) || Infinity) - (Number(b.seat_number) || Infinity)
-        )
-
+      {sortedTables.map((table) => {
         return (
-          <TableContainer key={tableNumber}>
+          <TableContainer key={table.table_number}>
             <TableNumberTitle>
-              Mesa {tableNumber} ({sortedTableGuests.length})
+              Mesa {table.table_number} ({table.guests.length})
             </TableNumberTitle>
             <OverviewContainer>
-              <GuestlistTableMenuTotals guestTableData={sortedTableGuests} />
+              <GuestlistTableMenuTotals guestTableData={table.guests} />
               <CircularTable
-                seats={sortedTableGuests.length}
-                tableDiameter={tableNumber === 'principal' ? 20 : 50}
+                seats={table.guests.length}
+                tableDiameter={table.table_number === 'principal' ? 20 : 50}
                 seatDiameter={20}
                 gap={10}
-                label={tableNumber}
-                isPrincipal={tableNumber === 'principal'}
+                label={table.table_number}
+                isPrincipal={table.table_number === 'principal'}
               />
             </OverviewContainer>
             <DndContext
               sensors={sensors}
               collisionDetection={closestCenter}
-              onDragEnd={(event) => handleDragEnd(event, tableNumber)}
+              onDragEnd={(event) => handleDragEnd(event, table.table_number)}
             >
               <GuestListTable>
                 <thead>
@@ -208,9 +216,9 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
                     <th className="dietary-cell">Restricciones/Notas</th>
                   </tr>
                 </thead>
-                <SortableContext items={sortedTableGuests.map((g) => g.id)} strategy={verticalListSortingStrategy}>
+                <SortableContext items={table.guests.map((g) => g.id)} strategy={verticalListSortingStrategy}>
                   <tbody>
-                    {sortedTableGuests.map((guest) => (
+                    {table.guests.map((guest) => (
                       <SortableRow key={guest.id} guest={guest} loading={loading} fetchGuestlist={fetchGuestlist} />
                     ))}
                   </tbody>

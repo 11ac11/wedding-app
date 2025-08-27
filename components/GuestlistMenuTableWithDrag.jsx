@@ -101,6 +101,8 @@ const GuestListTable = styled.table`
 const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) => {
   const [data, setData] = useState(guestlistData)
 
+  console.log('data:', data)
+
   const sensors = useSensors(useSensor(PointerSensor))
 
   const groupByTable = (guests) =>

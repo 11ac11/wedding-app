@@ -28,9 +28,9 @@ const ShowingGuestInfo = styled.span`
   margin-bottom: 0.2rem;
 `
 
-const Client = ({ guestlistData = [] }) => {
+const Client = () => {
   const [loading, setLoading] = useState(false)
-  const [data, setData] = useState(guestlistData)
+  const [data, setData] = useState([])
   const [filters, setFilters] = useState({
     attending: 'Yes', // values: 'Yes', 'No', 'all'
     invited: 'all' // values: TRUE/FALSE
@@ -46,6 +46,8 @@ const Client = ({ guestlistData = [] }) => {
 
       const dataFromApi = await res.json()
       const sortedData = dataFromApi.sort((a, b) => a.id - b.id)
+
+      console.log('dataFromApi:', dataFromApi)
       setData(sortedData)
     } catch (err) {
       console.error(err)
@@ -53,6 +55,10 @@ const Client = ({ guestlistData = [] }) => {
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    fetchGuestlist(filters)
+  }, [])
 
   useEffect(() => {
     if (!!filters?.attending) {
@@ -76,7 +82,9 @@ const Client = ({ guestlistData = [] }) => {
         />
       </ButtonContainer>
       {/* <GuestlistTable guestlistData={data} loading={loading} /> */}
-      <GuestlistMenuTableWithDrag guestlistData={data} loading={loading} fetchGuestlist={fetchGuestlist} />
+      {data?.length && (
+        <GuestlistMenuTableWithDrag guestlistData={data} loading={loading} fetchGuestlist={fetchGuestlist} />
+      )}
     </>
   )
 }

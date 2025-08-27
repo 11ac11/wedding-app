@@ -134,19 +134,17 @@ export const updateGuest = async (id, attending, starter, main, accommodation, s
   }
 }
 
-export const updateGuestSeating = async (id, tableNumber, seatNumber) => {
+export const updateGuestSeatPosition = async (id, seatNumber) => {
   try {
     const query = `
       UPDATE guests
-      SET table_number = $1,
-          seat_number = $2,
-          has_amended = $3,
-          last_amended = $4
-      WHERE id = $5
+      SET seat_number = $1,
+          has_amended = $2,
+          last_amended = $3
+      WHERE id = $4
     `
 
     const values = [
-      tableNumber,
       seatNumber,
       true, // mark as amended
       new Date(), // timestamp

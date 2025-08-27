@@ -3,7 +3,7 @@
 import React from 'react'
 import { forwardRef, useState } from 'react'
 import styled from 'styled-components'
-import { updateGuestSeating } from '@/app/api'
+import { updateGuestSeatPosition } from '@/app/api'
 import { Input } from './input'
 
 const StyledRow = styled.tr`
@@ -92,7 +92,7 @@ const GuestMenuTableRow = forwardRef(({ guest, loading, fetchGuestlist, style, d
     if (tableNumber !== guest.table_number) {
       try {
         setUpdating(true)
-        await updateGuestSeating(guest.id, tableNumber || '', guest.seat_number || null)
+        await updateGuestSeatPosition(guest.id, guest.seat_number || null)
         await fetchGuestlist()
         setIsEditMode(false)
       } catch (err) {

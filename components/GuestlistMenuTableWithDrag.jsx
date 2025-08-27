@@ -9,7 +9,7 @@ import styled from 'styled-components'
 import GuestMenuTableRow from './GuestMenuTableRow'
 import GuestlistTableMenuTotals from './GuestlistTableMenuTotals'
 import CircularTable from '@/components/CircularTable'
-import { updateGuestSeating } from '@/app/api'
+import { updateGuestSeatPosition } from '@/app/api'
 
 const uppercaseStyles = `
   font-weight: 900;
@@ -130,6 +130,8 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
     const oldIndex = tableGuests.findIndex((g) => g.id === active.id)
     const newIndex = tableGuests.findIndex((g) => g.id === over.id)
 
+    console.log('oldIndex, newIndex:', oldIndex, newIndex)
+
     // Reorder locally
     const newGuests = arrayMove(tableGuests, oldIndex, newIndex)
 
@@ -144,8 +146,8 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
     )
 
     try {
-      // Persist all updates
-      await Promise.all(newGuests.map((guest) => updateGuestSeating(guest.id, tableNumber, guest.seat_number)))
+      // Persist all updates with correct seat numbers
+      await Promise.all(newGuests.map((guest) => updateGuestSeatPosition(guest.id, guest.seat_number)))
 
       // Optionally refresh from DB
       await fetchGuestlist()

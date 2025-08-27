@@ -143,20 +143,18 @@ export const updateGuestSeatPosition = async (id, seatNumber) => {
           last_amended = $3
       WHERE id = $4
     `
-
-    const values = [
-      seatNumber,
-      true, // mark as amended
-      new Date(), // timestamp
-      id
-    ]
+    const values = [seatNumber, true, new Date(), id]
 
     const result = await sql.query(query, values)
-    console.log(`${result.rowCount} row(s) updated`)
+    if (result.rowCount === 0) {
+      throw new Error(`No guest found with id=${id}`)
+    }
+
+    console.log(`Guest ${id} updated to seat ${seatNumber}`)
     return true
   } catch (error) {
-    console.error('Error during seating update:', error)
-    return false
+    console.error(`❌ Error during seating update for id=${id}:`, error)
+    throw error // let caller see the error too
   }
 }
 

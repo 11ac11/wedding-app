@@ -14,6 +14,7 @@ import React from 'react'
  * - label: string – optional text shown in the center of the table (circular) or inside the rectangle
  * - startAngle: number (degrees) – where seat #1 begins (default -90° = top, circular only)
  */
+
 export default function CircularTable({
   seats = 10,
   isPrincipal = false,
@@ -31,12 +32,8 @@ export default function CircularTable({
     const tableHeight = 30
     const padding = 10
 
-    // SVG size to accommodate seats
     const sizeW = tableWidth + padding * 2
     const sizeH = tableHeight + padding * 3 + seatDiameter
-
-    const cx = padding
-    const cy = padding
 
     // Generate 6 seats along bottom
     const seatSpacing = tableWidth / 6
@@ -100,10 +97,8 @@ export default function CircularTable({
   const clampedSeats = Math.max(1, Math.min(10, Math.floor(seats || 0)))
   const rTable = tableDiameter / 2
 
-  // Radius at which the seat CENTERS are placed
   const ringRadius = rTable + gap + rSeat
-  // Entire SVG canvas radius so nothing gets clipped
-  const outerRadius = rTable + gap + seatDiameter // = ringRadius + rSeat
+  const outerRadius = rTable + gap + seatDiameter
   const size = outerRadius * 2
   const cx = outerRadius
   const cy = outerRadius
@@ -116,7 +111,39 @@ export default function CircularTable({
   })
 
   return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+    <svg width={size + 100} height={size} viewBox={`0 0 ${size + 60} ${size}`}>
+      {/* Arrow + Label to the right of the table */}
+      <g>
+        {/* Arrow line pointing down */}
+        <line
+          x1={cx + rTable + gap / 2 + 50}
+          y1={cy - rTable - 10}
+          x2={cx + rTable + gap / 2 + 50}
+          y2={cy - rTable + 20}
+          stroke="var(--slategrey)"
+          strokeWidth={1}
+          markerEnd="url(#arrowhead)"
+        />
+        <text
+          x={cx + rTable + gap / 2 + 50}
+          y={cy - rTable - 20}
+          textAnchor="middle"
+          dominantBaseline="baseline"
+          fontFamily="system-ui, sans-serif"
+          fontSize={10}
+          fill="var(--slategrey)"
+        >
+          Principal
+        </text>
+      </g>
+
+      {/* Arrowhead marker definition */}
+      <defs>
+        <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="var(--slategrey)" />
+        </marker>
+      </defs>
+
       {/* Table */}
       <circle cx={cx} cy={cy} r={rTable} fill="white" stroke="var(--slategrey)" strokeWidth={1} />
 
@@ -155,13 +182,3 @@ export default function CircularTable({
     </svg>
   )
 }
-
-/*
-USAGE EXAMPLES
-
-// Circular table with 8 seats
-<CircularTable seats={8} tableDiameter={180} seatDiameter={36} gap={18} label="Table 1" />
-
-// Principal rectangular table
-<CircularTable isPrincipal={true} seatDiameter={36} label="Main" />
-*/

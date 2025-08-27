@@ -204,17 +204,6 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
                     <th>Primero</th>
                     <th>Segundo</th>
                     <th className="dietary-cell">Restricciones/Notas</th>
-                    <th
-                      style={{
-                        width: '85px',
-                        maxWidth: '85px',
-                        whiteSpace: 'nowrap',
-                        padding: '0 0',
-                        minWidth: '85px'
-                      }}
-                    >
-                      Mesa #
-                    </th>
                   </tr>
                 </thead>
                 <SortableContext items={tableGuests.map((g) => g.id)} strategy={verticalListSortingStrategy}>

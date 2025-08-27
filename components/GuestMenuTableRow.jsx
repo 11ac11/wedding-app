@@ -115,7 +115,7 @@ const GuestMenuTableRow = forwardRef(({ guest, loading, fetchGuestlist, style, d
       <td className="dieatary-cell">
         {loading ? '-' : guest.dietary_requirements ? `⚠️ ${guest.dietary_requirements}` : '-'}
       </td>
-      <td onClick={() => setIsEditMode(!isEditMode)} style={{ cursor: 'pointer', padding: '0 0', minWidth: '85px' }}>
+      {/* <td onClick={() => setIsEditMode(!isEditMode)} style={{ cursor: 'pointer', padding: '0 0', minWidth: '85px' }}>
         {isEditMode ? (
           <Input
             type="text"
@@ -129,7 +129,7 @@ const GuestMenuTableRow = forwardRef(({ guest, loading, fetchGuestlist, style, d
         ) : (
           guest.table_number
         )}
-      </td>
+      </td> */}
     </StyledRow>
   )
 })

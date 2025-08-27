@@ -101,26 +101,15 @@ const GuestListTable = styled.table`
 const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) => {
   const [data, setData] = useState(guestlistData)
 
-  console.log('data:', data)
-
   const sensors = useSensors(useSensor(PointerSensor))
 
-  const groupByTable = (guests) =>
-    guests.reduce((acc, guest) => {
-      const table = guest.table_number || 'Unassigned'
-      if (!acc[table]) acc[table] = []
-      acc[table].push(guest)
-      return acc
-    }, {})
-
-  const grouped = groupByTable(data)
-
-  // Sort tables: "principal" comes first
-  const sortedEntries = Object.entries(grouped).sort(([a], [b]) => {
-    if (a.toLowerCase() === 'principal') return -1
-    if (b.toLowerCase() === 'principal') return 1
-    return 0
-  })
+  // Group guests by table_number (or table name if "principal")
+  const grouped = data.reduce((acc, g) => {
+    const key = g.table_number || g.table_name || 'unknown'
+    if (!acc[key]) acc[key] = { table_number: key, guests: [] }
+    acc[key].guests.push(g)
+    return acc
+  }, {})
 
   const handleDragEnd = async (event, tableNumber) => {
     const { active, over } = event
@@ -137,12 +126,8 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
       seat_number: i + 1
     }))
 
-    console.log('updatedGuests:', updatedGuests)
-
     // Update state immutably: replace only this table's guests
     setData((prev) => [...prev.filter((g) => g.table_number !== tableNumber), ...updatedGuests])
-
-    console.log('data in function:', data)
 
     try {
       // Persist to DB
@@ -160,24 +145,31 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
     }
   }
 
-  useEffect(() => {
-    console.log('data:', data)
-  }, [data])
+  // Sort tables, "principal" comes first, then numeric order
+  const sortedTables = Object.values(grouped)
+    .sort((a, b) => {
+      const aKey = String(a.table_number).toLowerCase()
+      const bKey = String(b.table_number).toLowerCase()
 
-  // Prepare sorted tables and guests
-  const sortedTables = Object.values(
-    data.reduce((acc, g) => {
-      if (!acc[g.table_number]) acc[g.table_number] = { table_number: g.table_number, guests: [] }
-      acc[g.table_number].guests.push(g)
-      return acc
-    }, {})
-  )
-    .sort((a, b) => a.table_number - b.table_number) // sort tables
+      if (aKey === 'principal') return -1
+      if (bKey === 'principal') return 1
+
+      // if numeric, sort numerically
+      const aNum = Number(a.table_number)
+      const bNum = Number(b.table_number)
+      if (!isNaN(aNum) && !isNaN(bNum)) return aNum - bNum
+
+      // fallback to string compare
+      return aKey.localeCompare(bKey)
+    })
     .map((table) => ({
       ...table,
       guests: table.guests
         .slice()
-        .sort((a, b) => (Number(a.seat_number) || Infinity) - (Number(b.seat_number) || Infinity)) // sort guests
+        .sort(
+          (a, b) =>
+            (a.seat_number ? Number(a.seat_number) : Infinity) - (b.seat_number ? Number(b.seat_number) : Infinity)
+        )
     }))
 
   return (

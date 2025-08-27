@@ -46,8 +46,6 @@ const Client = () => {
 
       const dataFromApi = await res.json()
       const sortedData = dataFromApi.sort((a, b) => a.id - b.id)
-
-      console.log('dataFromApi:', dataFromApi)
       setData(sortedData)
     } catch (err) {
       console.error(err)

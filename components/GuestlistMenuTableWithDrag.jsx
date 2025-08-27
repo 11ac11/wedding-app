@@ -1,10 +1,9 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import { useState } from 'react'
 import styled from 'styled-components'
 import GuestMenuTableRow from './GuestMenuTableRow'
 import GuestlistTableMenuTotals from './GuestlistTableMenuTotals'
@@ -136,8 +135,12 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
       seat_number: i + 1
     }))
 
+    console.log('updatedGuests:', updatedGuests)
+
     // Update state immutably: replace only this table's guests
     setData((prev) => [...prev.filter((g) => g.table_number !== tableNumber), ...updatedGuests])
+
+    console.log('data in function:', data)
 
     try {
       // Persist to DB
@@ -154,6 +157,10 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
       console.error('Failed to update seat numbers', err)
     }
   }
+
+  useEffect(() => {
+    console.log('data:', data)
+  }, [data])
 
   // Prepare sorted tables and guests
   const sortedTables = Object.values(

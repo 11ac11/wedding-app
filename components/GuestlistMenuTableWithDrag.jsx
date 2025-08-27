@@ -8,7 +8,8 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import GuestMenuTableRow from './GuestMenuTableRow'
 import GuestlistTableMenuTotals from './GuestlistTableMenuTotals'
-import { updateGuestSeating } from '@/app/api' // adjust path
+import CircularTable from '@/components/CircularTable'
+import { updateGuestSeating } from '@/app/api'
 
 const uppercaseStyles = `
   font-weight: 900;
@@ -31,6 +32,12 @@ const TableNumberTitle = styled.h2`
   align-self: flex-start;
   width: 100%;
   ${uppercaseStyles}
+`
+
+const OverviewContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 `
 
 const GuestListTable = styled.table`
@@ -162,7 +169,17 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
             <TableNumberTitle>
               Mesa {tableNumber} ({tableGuests.length})
             </TableNumberTitle>
-            <GuestlistTableMenuTotals guestTableData={tableGuests} />
+            <OverviewContainer>
+              <GuestlistTableMenuTotals guestTableData={tableGuests} />
+              <CircularTable
+                seats={tableGuests.length}
+                tableDiameter={tableNumber === 'principal' ? 20 : 50}
+                seatDiameter={20}
+                gap={10}
+                label={tableNumber}
+                isPrincipal={tableNumber === 'principal'}
+              />
+            </OverviewContainer>
             <DndContext
               sensors={sensors}
               collisionDetection={closestCenter}

@@ -12,7 +12,7 @@ const uppercaseStyles = `
 const BothCountsContainer = styled.div`
   display: flex;
   align-self: flex-start;
-  margin: 1rem 0 2rem;
+  margin-bottom: 2rem;
   flex-wrap: wrap;
   gap: 2rem;
   border: 1px solid var(--slategrey);

@@ -40,7 +40,6 @@ const Client = ({ guestlistData = [] }) => {
     setLoading(true)
     const dataFromApi = await getAllGuests(filters)
     const sortedData = dataFromApi.sort((a, b) => a.id - b.id)
-    // console.log(dataFromApi[0])
     setData(sortedData)
     setLoading(false)
   }

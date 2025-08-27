@@ -2,6 +2,9 @@
 
 import { sql } from '@vercel/postgres'
 import { seed } from '@/lib/guests'
+
+export const dynamic = 'force-dynamic'
+
 export const getAllGuests = async (filters = { attending: 'Yes' }) => {
   try {
     const conditions = []

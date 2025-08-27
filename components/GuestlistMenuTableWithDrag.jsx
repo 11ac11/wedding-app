@@ -130,8 +130,6 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
     const oldIndex = tableGuests.findIndex((g) => g.id === active.id)
     const newIndex = tableGuests.findIndex((g) => g.id === over.id)
 
-    console.log('oldIndex, newIndex:', oldIndex, newIndex)
-
     // Reorder locally
     const newGuests = arrayMove(tableGuests, oldIndex, newIndex)
 
@@ -145,27 +143,15 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
       prev.map((g) => (g.table_number === tableNumber ? newGuests.find((ng) => ng.id === g.id) || g : g))
     )
 
-    // Persist all updates with detailed error handling
-    const results = await Promise.allSettled(
-      newGuests.map(async (guest) => {
-        try {
-          const res = await updateGuestSeatPosition(guest.id, guest.seat_number)
-          if (!res) throw new Error('Update returned false')
-          return { id: guest.id, seat: guest.seat_number, success: true }
-        } catch (err) {
-          console.error(`Failed to update guest ${guest.id}`, err)
-          return { id: guest.id, seat: guest.seat_number, success: false, error: err }
-        }
-      })
-    )
+    try {
+      // Persist all updates with correct seat numbers
+      await Promise.all(newGuests.map((guest) => updateGuestSeatPosition(guest.id, guest.seat_number)))
 
-    results.forEach((r) => {
-      if (r.status === 'fulfilled') {
-        console.log('✅ Update success:', r.value)
-      } else {
-        console.error('❌ Update failed:', r.reason)
-      }
-    })
+      // Optionally refresh from DB
+      await fetchGuestlist()
+    } catch (err) {
+      console.error('Failed to update seat numbers', err)
+    }
   }
 
   return (

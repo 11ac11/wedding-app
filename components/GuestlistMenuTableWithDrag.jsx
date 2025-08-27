@@ -129,23 +129,24 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
     const oldIndex = tableGuests.findIndex((g) => g.id === active.id)
     const newIndex = tableGuests.findIndex((g) => g.id === over.id)
 
-    // Reorder locally
-    const newGuests = arrayMove(tableGuests, oldIndex, newIndex)
+    const newTableGuests = arrayMove([...tableGuests], oldIndex, newIndex)
+    const updatedGuests = newTableGuests.map((g, i) => ({
+      ...g,
+      seat_number: i + 1
+    }))
 
-    // Reassign seat_number sequentially
-    newGuests.forEach((g, i) => {
-      g.seat_number = i + 1
-    })
-
-    // Update state immediately so UI reflects changes
+    // Update state immutably
     setData((prev) =>
-      prev.map((g) => (g.table_number === tableNumber ? newGuests.find((ng) => ng.id === g.id) || g : g))
+      prev
+        .filter((g) => g.table_number !== tableNumber)
+        .concat(updatedGuests)
+        .sort((a, b) => a.table_number - b.table_number || a.seat_number - b.seat_number)
     )
 
     try {
-      // Persist all updates via API
+      // Persist all seat numbers in parallel
       await Promise.all(
-        newGuests.map((guest) =>
+        updatedGuests.map((guest) =>
           fetch(`/api/guest/${guest.id}/seat`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -153,9 +154,6 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
           })
         )
       )
-
-      // Fetch fresh data
-      await fetchGuestlist()
     } catch (err) {
       console.error('Failed to update seat numbers', err)
     }
@@ -164,22 +162,19 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
   return (
     <>
       {sortedEntries.map(([tableNumber, tableGuests]) => {
-        // Sort by seat_number inside each table
-        tableGuests.sort((a, b) => {
-          const seatA = a.seat_number ? Number(a.seat_number) : Infinity
-          const seatB = b.seat_number ? Number(b.seat_number) : Infinity
-          return seatA - seatB
-        })
+        const sortedTableGuests = [...tableGuests].sort(
+          (a, b) => (Number(a.seat_number) || Infinity) - (Number(b.seat_number) || Infinity)
+        )
 
         return (
           <TableContainer key={tableNumber}>
             <TableNumberTitle>
-              Mesa {tableNumber} ({tableGuests.length})
+              Mesa {tableNumber} ({sortedTableGuests.length})
             </TableNumberTitle>
             <OverviewContainer>
-              <GuestlistTableMenuTotals guestTableData={tableGuests} />
+              <GuestlistTableMenuTotals guestTableData={sortedTableGuests} />
               <CircularTable
-                seats={tableGuests.length}
+                seats={sortedTableGuests.length}
                 tableDiameter={tableNumber === 'principal' ? 20 : 50}
                 seatDiameter={20}
                 gap={10}
@@ -213,9 +208,9 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
                     <th className="dietary-cell">Restricciones/Notas</th>
                   </tr>
                 </thead>
-                <SortableContext items={tableGuests.map((g) => g.id)} strategy={verticalListSortingStrategy}>
+                <SortableContext items={sortedTableGuests.map((g) => g.id)} strategy={verticalListSortingStrategy}>
                   <tbody>
-                    {tableGuests.map((guest) => (
+                    {sortedTableGuests.map((guest) => (
                       <SortableRow key={guest.id} guest={guest} loading={loading} fetchGuestlist={fetchGuestlist} />
                     ))}
                   </tbody>

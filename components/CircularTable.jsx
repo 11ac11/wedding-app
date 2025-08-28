@@ -151,11 +151,11 @@ export default function CircularTable({
       {label ? (
         <text
           x={cx}
-          y={cy}
+          y={cy + 2}
           textAnchor="middle"
           dominantBaseline="middle"
           fontFamily="system-ui, sans-serif"
-          fontSize={Math.min(24, rTable * 0.35)}
+          fontSize={Math.min(24, rTable * 1.2)}
           fill="var(--slategrey)"
         >
           {label}

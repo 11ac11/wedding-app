@@ -173,17 +173,27 @@ const GuestlistMenuTableWithDrag = ({ guestlistData, loading, fetchGuestlist }) 
         )
     }))
 
+  const renderTableTitle = (table) => {
+    const babies = table.guests.filter((guest) => guest.name.includes('bebe'))
+    const adultos = table.guests.filter((guest) => !guest.name.includes('bebe'))
+    const mainString = `Mesa ${table.table_number}`
+    const guestNumbersString = `${adultos.length} personas`
+    const babiesNumberStriing = babies?.length ? ` & ${babies.length} bebe` : ''
+    return `${mainString} (${guestNumbersString}${babiesNumberStriing})`
+  }
+
+  renderTableTitle(sortedTables[0])
+
   return (
     <>
       {sortedTables.map((table) => {
         return (
           <TableContainer key={table.table_number}>
-            <TableNumberTitle>
-              Mesa {table.table_number} ({table.guests.length})
-            </TableNumberTitle>
+            <TableNumberTitle>{renderTableTitle(table)}</TableNumberTitle>
             <OverviewContainer>
               <GuestlistTableMenuTotals guestTableData={table.guests} />
               <CircularTable
+                guests={table.guests}
                 seats={table.guests.length}
                 tableDiameter={table.table_number === 'principal' ? 20 : 50}
                 seatDiameter={20}
@@ -240,7 +250,7 @@ function SortableRow({ guest, loading, fetchGuestlist }) {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    backgroundColor: isDragging ? '#f0f0f0' : 'transparent'
+    ...(isDragging && { backgroundColor: '#f0f0f0' })
   }
 
   return (

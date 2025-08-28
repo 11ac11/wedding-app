@@ -7,7 +7,8 @@ import { updateGuestSeatPosition } from '@/app/api'
 import { Input } from './input'
 
 const StyledRow = styled.tr`
-  ${({ $invited }) => !$invited && 'opacity: 0.2;'}
+  ${({ $isBaby }) => $isBaby && 'background-color: #ffe598;'}
+  ${({ $hasSpeech }) => $hasSpeech && 'background-color: #d1d4ff;'}
   & > td {
     min-width: 20px;
     max-width: 20px;
@@ -104,7 +105,17 @@ const GuestMenuTableRow = forwardRef(({ guest, loading, fetchGuestlist, style, d
   }
 
   return (
-    <StyledRow ref={ref} style={style} $invited={!!guest.invited}>
+    <StyledRow
+      ref={ref}
+      style={style}
+      $isBaby={guest.name.includes('bebe')}
+      $hasSpeech={
+        guest.name.includes('Keady') ||
+        guest.name.includes('Danny') ||
+        guest.name.includes('Alex Crump') ||
+        guest.name.includes('Georgia')
+      }
+    >
       <td {...dragHandleProps} style={{ cursor: 'grab' }}>
         ☰
       </td>

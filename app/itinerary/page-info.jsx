@@ -107,10 +107,10 @@ export default function PageInfo() {
         <EventName>Hotel rey don jaime, Castelldefels</EventName>
         <StyledTime>18:00 - 04:00</StyledTime>
         <p>{`The wedding ceremony, dinner and party.`}</p>
+        <TimeAndEvent time={'17:45'} event={'Arrive'} />
         <TimeAndEvent time={'18:00'} event={'Ceremony'} />
-        <TimeAndEvent time={'18:30'} event={'Appetizers'} />
-        <TimeAndEvent time={'19:30'} event={'Dinner'} />
-        <TimeAndEvent time={'21:30'} event={'Pre-disco'} />
+        <TimeAndEvent time={'19:00'} event={'Appetizers'} />
+        <TimeAndEvent time={'20:30'} event={'Dinner'} />
         <TimeAndEvent time={'00:00'} event={'Club (on-site in hotel)'} />
         <TimeAndEvent time={'04:00'} event={'Fin.'} />
       </div>

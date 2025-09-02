@@ -151,12 +151,17 @@ export default function PageInfo() {
           <p
             style={{ marginTop: '1rem' }}
           >{`However, for the return journey, we don't recommend walking back up as the hotel is on top of a big hill.`}</p>
-          <a
-            href="https://maps.app.goo.gl/ZQoKuBpAR1b8uYmH8"
-            className="inline-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >{`See walking route on google maps`}</a>
+          <>
+            <a
+              href="https://maps.app.goo.gl/ZQoKuBpAR1b8uYmH8"
+              className="inline-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                marginBottom: '1rem'
+              }}
+            >{`See walking route on google maps`}</a>
+          </>
         </LocationInfo>
       </div>
       <div className="info-section" style={{ marginBottom: '4rem' }}>

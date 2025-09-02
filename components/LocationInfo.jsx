@@ -119,7 +119,9 @@ export default function LocationInfo({ children, handleCloseId, linkColor, openT
       {isOpen && (
         <MoreInfo $isOpen={true}>
           {children}
-          <ToggleMoreInfo onClick={() => handleClose(handleCloseId)}>Close</ToggleMoreInfo>
+          <div>
+            <ToggleMoreInfo onClick={() => handleClose(handleCloseId)}>Close</ToggleMoreInfo>
+          </div>
         </MoreInfo>
       )}
     </>

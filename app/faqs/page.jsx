@@ -119,6 +119,17 @@ export default async function FAQs() {
           </a>
         </p>
       </div>
+      <div className="info-section">
+        <h2 className="uppercase" style={{ fontSize: '2rem', textAlign: 'center', borderBottom: 0 }}>
+          Thursday/Saturday events
+        </h2>
+      </div>
+      <p>
+        {`For addresses and information on how to get there, please see the `}
+        <Link href="/itinerary" className="inline-link">
+          {'itinerary page.'}
+        </Link>
+      </p>
     </main>
   )
 }

@@ -79,9 +79,9 @@ export default async function FAQs() {
           >
             {'Condis (check on google maps)'}
           </a>
-          {` which is the same side of the train tracks to the hotel`}
+          {` which is the same side of the train tracks to the hotel.`}
         </p>
-        <p>{`Most of the bars, cafes and restaurants are the other side of the train tracks, towards the beach. To get there from the hotel, go down the hill, turn right and head towards the bridge to cross the train tracks, once over the bridge, head towards the beach and you will start seeing things.`}</p>
+        <p>{`Most of the bars, cafes and restaurants are the other side of the train tracks, towards the beach. To get there from the hotel, go down the hill, turn right and head towards the bridge to cross the train tracks. Once over the bridge, head towards the beach and you will start seeing things.`}</p>
         <a
           href="https://maps.app.goo.gl/BVgiAvZhW6RJZRj27"
           className="inline-link"

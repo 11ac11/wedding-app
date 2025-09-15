@@ -42,6 +42,9 @@ export default async function FAQs() {
           {`We'd love to see all the amazing moments from our special day through your eyes! Feel free to tag us on instagram using our tags below.`}
         </p>
         <Socials />
+      </div>
+      <div className="info-section">
+        <h2 className="uppercase">Share Your Photos</h2>
         <p>
           {`We've also set up a shared drive for photos and videos. After the wedding, click the button below and upload your captures to contribute to our collective memory of the day!`}
         </p>
